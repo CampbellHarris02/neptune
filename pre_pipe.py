@@ -9,10 +9,12 @@ import matplotlib.colors as mcolors
 from matplotlib.lines import Line2D
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
 
 
 
-# ─────────────────────────────────────────────────────────────────────────────
+
+
 # Wavelet Denoising
 
 def wavelet_denoise(signal, wavelet='db4', level=None, threshold_method='soft'):
@@ -25,7 +27,7 @@ def wavelet_denoise(signal, wavelet='db4', level=None, threshold_method='soft'):
     ]
     return pywt.waverec(denoised_coeffs, wavelet, mode='per')[:len(signal)]
 
-# ─────────────────────────────────────────────────────────────────────────────
+
 # Marcenko-Pastur Denoising
 
 def mp_denoise(corr_matrix, n_samples):
@@ -39,10 +41,10 @@ def mp_denoise(corr_matrix, n_samples):
     cleaned_corr /= np.outer(np.sqrt(np.diag(cleaned_corr)), np.sqrt(np.diag(cleaned_corr)))
     return cleaned_corr
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Feature Construction
 
-def build_features(price_series, window=100):
+# Feature Construction (Price-Based)
+
+def build_features(price_series, window=10):
     df = pd.DataFrame({'price': price_series})
     df['returns'] = df['price'].pct_change()
     df['momentum'] = df['price'].diff(window)
@@ -51,14 +53,44 @@ def build_features(price_series, window=100):
     features = df[['momentum', 'volatility', 'sharpe']].dropna()
     return (features - features.mean()) / features.std()
 
-# ─────────────────────────────────────────────────────────────────────────────
+
+# Feature Construction (OHLC)
+
+def build_ohlc_features(df):
+    vectors = []
+    prev_row = None
+    for _, row in df.iterrows():
+        o, h, l, c = row['open'], row['high'], row['low'], row['close']
+        hl_range = h - l
+        oc_change = c - o
+        
+        if hl_range == 0:
+            hl_range = 1e-8
+        features = [hl_range, oc_change, c, o, h, l]
+        log_features = np.log(np.abs(features) + 1e-8)
+        signed_sqrt = np.sign(features) * np.sqrt(np.abs(features))
+
+        if prev_row is None:
+            prev_row = features
+            prev_diff = np.zeros_like(features)
+        else:
+            diff = np.array(features) - np.array(prev_row)
+            accel = diff - prev_diff
+            frame_vector = np.concatenate([features, log_features, signed_sqrt, diff, accel])
+            vectors.append(frame_vector)
+            prev_row = features
+            prev_diff = diff
+
+    return np.array(vectors)
+
+
 # Eigenvector Feature Extraction
 
-def add_eigenvector_features(corr_matrix, top_k=3):
+def add_eigenvector_features(corr_matrix, top_k=5):
     _, evecs = eigh(corr_matrix)
     return evecs[:, -top_k:]  # shape: (features, top_k)
 
-# ─────────────────────────────────────────────────────────────────────────────
+
 # KMeans Clustering into Confidence Bins
 
 def cluster_confidence_bins(features, kmeans):
@@ -67,57 +99,54 @@ def cluster_confidence_bins(features, kmeans):
     ranking = np.argsort(np.argsort(cluster_centers))
     return np.array([ranking[label] + 1 for label in labels])
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Example Usage with Train-Test Split
+
+# Run Example and Predict Momentum
+
 
 if __name__ == "__main__":
     df = pd.read_csv("btc_usd_hourly_kraken.csv", index_col='timestamp', parse_dates=True)
-    price = df['close'].dropna().values
+    df = df[['open', 'high', 'low', 'close']].dropna()
 
-    # Step 1: Denoise
-    denoised = wavelet_denoise(price, wavelet='haar', level=3)
+    # Build Features
+    features = build_ohlc_features(df)
 
-    # Train/Test split (80% train, 20% test)
-    split = int(0.8 * len(denoised))
-    train_price, test_price = denoised[:split], denoised[split:]
+    # Apply PCA to reduce dimensions
+    n_components = 8
+    pca = PCA(n_components=n_components)
+    features_pca = pca.fit_transform(features)
 
-    # Step 2: Train Correlation Matrix + Denoising
-    train_returns = pd.Series(train_price).pct_change().dropna()
-    window = 100
-    train_matrix = np.array([train_returns.shift(i) for i in range(window)]).T[window-1:]
-    train_matrix = (train_matrix - train_matrix.mean(axis=0)) / train_matrix.std(axis=0)
-    corr_matrix = np.corrcoef(train_matrix, rowvar=False)
-    cleaned_corr = mp_denoise(corr_matrix, n_samples=train_matrix.shape[0])
+    # Predict Future Momentum
+    future_close = df['close'].shift(-1).values[len(df) - len(features_pca):]
+    current_close = df['close'].values[len(df) - len(features_pca):]
+    future_momentum = (future_close - current_close) > 0
 
-    # Step 3: Train KMeans on Features
-    train_features = build_features(train_price, window=window)
-    kmeans = KMeans(n_clusters=5, random_state=42).fit(train_features)
-    train_bins = cluster_confidence_bins(train_features, kmeans)
+    # Cluster with KMeans
+    kmeans = KMeans(n_clusters=8, random_state=42).fit(features_pca)
+    bins = cluster_confidence_bins(features_pca, kmeans)
 
-    # Step 4: Apply to Test Set
-    test_features = build_features(test_price, window=window)
-    test_bins = cluster_confidence_bins(test_features, kmeans)
-
-    # Step 5: Plotting Test Results
-    test_trimmed_price = test_price[-len(test_bins):]
-    x = np.arange(len(test_bins))
-
-    norm = mcolors.Normalize(vmin=1, vmax=5)
-    colors = cm.viridis(norm(test_bins))
+    # Align and Plot
+    aligned_price = df['close'].values[-len(bins):]
+    x = np.arange(len(bins))
 
     plt.figure(figsize=(14, 6))
-    ax1 = plt.gca()
-    ax1.plot(x, test_trimmed_price, label='Price', color='royalblue', linewidth=2)
-    ax1.set_ylabel('BTC/USD Price', fontsize=12)
-    ax1.set_title("BTC Test Price + Clustered Confidence Signal", fontsize=14)
-    ax1.grid(True, linestyle='--', alpha=0.3)
-    for i in range(len(x)):
-        ax1.scatter(x[i], test_trimmed_price[i], color=colors[i], s=15)
+    for bin_level in range(1, 9):
+        mask = bins == bin_level
+        plt.fill_between(x, aligned_price.min(), aligned_price.max(), where=mask, alpha=0.1 + 0.02*bin_level, label=f"Bin {bin_level}", step='mid')
 
-    bin_legend = [Line2D([0], [0], marker='o', color='w', label=f'Bin {i}',
-                         markerfacecolor=cm.viridis(norm(i)), markersize=8)
-                  for i in range(1, 6)]
-    plt.legend(handles=[*bin_legend, Line2D([], [], color='royalblue', label='Price')], 
-               title='Signal Strength', loc='lower right')
+    plt.plot(x, aligned_price, label='Price', color='black', linewidth=1.5)
+    plt.title("BTC Price with Clustered Confidence Bins (after PCA)")
+    plt.xlabel("Time Step")
+    plt.ylabel("Price")
+    plt.legend()
+    plt.grid(True)
     plt.tight_layout()
+    plt.show()
+
+    # Optional: Plot PCA Explained Variance
+    plt.figure(figsize=(8, 4))
+    plt.plot(np.cumsum(pca.explained_variance_ratio_), marker='o')
+    plt.title("Cumulative Explained Variance by PCA Components")
+    plt.xlabel("Number of Components")
+    plt.ylabel("Cumulative Variance Explained")
+    plt.grid(True)
     plt.show()
