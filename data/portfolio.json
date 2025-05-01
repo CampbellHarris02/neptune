@@ -3,7 +3,7 @@
   "BTC/USD": 0.0,
   "ADA/USD": 0.0,
   "BNB/USD": 0.0,
-  "AVAX/USD": 0.0,
+  "AVAX/USD": 14.102955,
   "MATIC/USD": 0.0,
   "EGLD/USD": 0.0,
   "UNI/USD": 0.0,
@@ -16,13 +16,14 @@
   "LINK/USD": 0.0,
   "LTC/USD": 0.0,
   "TON/USD": 0.0,
-  "SOL/USD": 0.0,
+  "SOL/USD": 14.106589,
   "DOGE/USD": 0.0,
   "SHIB/USD": 0.0,
   "TRX/USD": 0.0,
-  "CRV/USD": 0.0,
+  "CRV/USD": 14.09609,
   "ETH/USD": 0.0,
   "XLM/USD": 0.0,
   "AAVE/USD": 0.0,
-  "USDC/USD": 0.0
+  "USDC/USD": 0.0,
+  "USD": 13.7446
 }

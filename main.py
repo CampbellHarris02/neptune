@@ -1,6 +1,6 @@
 import time
 from centroids import ranked
-from update_portfolio import update_portfolio
+from update_all import update_all
 from buyer import buyer
 from seller import check_pending_orders
 
@@ -62,7 +62,7 @@ def main():
         if now - last_hourly_check >= 1800:
             print("⏰ Running hourly tasks...")
             print("updating portfolio...")
-            update_portfolio()
+            update_all()
             print("scanning coins...")
             ranked(assets=ASSETS)
             print("looking for potential orders...")

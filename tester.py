@@ -1,6 +1,6 @@
 import time
 from centroids import ranked
-from update_portfolio import update_portfolio
+from neptune.update_all import update_portfolio
 from buyer import buyer
 from seller import check_pending_orders
 

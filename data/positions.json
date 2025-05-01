@@ -1,1 +1,65 @@
-{}
+{
+  "CRV/USD": {
+    "entry_price": 0.709,
+    "trailing_high": 0.709,
+    "stop_price": 0.65228,
+    "qty": 19.909732,
+    "filled_at": "2025-05-01T22:08:11.062929"
+  },
+  "AVAX/USD": {
+    "entry_price": 21.64,
+    "trailing_high": 21.64,
+    "stop_price": 19.908800000000003,
+    "qty": 0.652009,
+    "filled_at": "2025-05-01T22:08:14.070916"
+  },
+  "INJ/USD": {
+    "entry_price": 10.273,
+    "trailing_high": 10.273,
+    "stop_price": 9.45116,
+    "qty": 1.371018,
+    "filled_at": "2025-05-01T22:08:17.041143"
+  },
+  "RUNE/USD": {
+    "entry_price": 1.406,
+    "trailing_high": 1.406,
+    "stop_price": 1.29352,
+    "qty": 10.025568,
+    "filled_at": "2025-05-01T22:08:20.312032"
+  },
+  "KAVA/USD": {
+    "entry_price": 0.436,
+    "trailing_high": 0.436,
+    "stop_price": 0.40112000000000003,
+    "qty": 32.350178,
+    "filled_at": "2025-05-01T22:08:23.343336"
+  },
+  "APE/USD": {
+    "entry_price": 0.5415,
+    "trailing_high": 0.5415,
+    "stop_price": 0.49818,
+    "qty": 26.015481,
+    "filled_at": "2025-05-01T22:08:26.025942"
+  },
+  "SOL/USD": {
+    "entry_price": 150.42,
+    "trailing_high": 150.42,
+    "stop_price": 138.38639999999998,
+    "qty": 0.093825,
+    "filled_at": "2025-05-01T22:08:32.136651"
+  },
+  "FLOW/USD": {
+    "entry_price": 0.408,
+    "trailing_high": 0.408,
+    "stop_price": 0.37535999999999997,
+    "qty": 34.429268,
+    "filled_at": "2025-05-01T22:08:35.031102"
+  },
+  "GRT/USD": {
+    "entry_price": 0.1029,
+    "trailing_high": 0.1029,
+    "stop_price": 0.094668,
+    "qty": 137.161735,
+    "filled_at": "2025-05-01T22:13:35.242996"
+  }
+}

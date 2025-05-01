@@ -93,10 +93,13 @@ def lloyd_max_quantizer(x, pdf, n_centroids, max_iter=5000, tol=1e-5):
     return centroids
 
 
-
 def get_centroids(df):
-    hist_combined = np.zeros(n_bins)  # ✅ now local to function
-    centroid_array = []  # also make this local to avoid appending across multiple runs
+    if df.empty or not all(col in df.columns for col in ["open", "high", "low", "close"]):
+        print("⚠️ DataFrame is empty or missing required columns.")
+        return []
+
+    hist_combined = np.zeros(n_bins)
+    centroid_array = []
 
     for frame in range(len(df)):
         row = df.iloc[frame]
@@ -114,36 +117,35 @@ def get_centroids(df):
         y = np.where(x < 0,
                      0.5 * np.exp(x / b_left) / b_left,
                      0.5 * np.exp(-x / b_right) / b_right)
-        y *= np.sum(hist) * bin_width  # Normalize to histogram mass
+        y *= np.sum(hist) * bin_width
 
         centroids = lloyd_max_quantizer(x, y, n_centroids)
         centroid_array.append(centroids)
 
+    if len(centroid_array) == 0:
+        print("⚠️ No centroids computed.")
     return centroid_array
+
+
     
 
-
-
-
-
 def cluster_centroids(centroid_series, n_clusters=8, random_state=42):
-    """
-    Cluster per-frame centroid vectors using KMeans and return cluster labels,
-    the fitted model, and a nearest-neighbor quantizer function.
-    """
-    # Convert to 2D matrix: (n_frames, n_centroids)
+    if len(centroid_series) == 0:
+        raise ValueError("No centroid vectors to cluster — check data pipeline.")
+
     centroid_matrix = np.stack(centroid_series.to_numpy())
 
-    # Fit KMeans
     kmeans = KMeans(n_clusters=n_clusters, random_state=random_state)
     labels = kmeans.fit_predict(centroid_matrix)
 
-    # Define nearest-neighbor quantizer
     def quantize_centroids(new_centroids):
         new_centroids = np.atleast_2d(new_centroids)
         return kmeans.predict(new_centroids)
 
     return labels, kmeans, quantize_centroids
+
+
+
 
 
 
@@ -268,6 +270,10 @@ def ranked(assets):
         df = df[['open', 'high', 'low', 'close']].dropna()
 
         centroids = get_centroids(df)
+        if not centroids:
+            print(f"⚠️ Skipping {symbol} due to empty centroids.")
+            continue
+
         df["laplace_centroids"] = centroids
 
         labels, kmeans_model, quantize_centroids = cluster_centroids(df["laplace_centroids"], n_clusters=8)
