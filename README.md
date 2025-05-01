@@ -4,10 +4,7 @@ main.py
     every hour run the following loop below
 
 centroids.py 
-    refresh our centroids
-
-ranking.py 
-    rank the coins by its current "bin probability score" from centroids
+    refresh our centroids and get ranked list of potential orders
 
 orders.py
     filter the good times to trade by the bad times to trade (bin score cut off at 90%)

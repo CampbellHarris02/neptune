@@ -188,7 +188,7 @@ def find_good_clusters(df):
     for cluster in cluster_total_counts:
         total = cluster_total_counts[cluster]
         success = cluster_success_counts.get(cluster, 0)
-        ratio = success / total
+        ratio = success / (total + 2) # +2 Wilson interval
         success_ratios[cluster] = ratio
 
     # Display as DataFrame
@@ -201,7 +201,7 @@ def find_good_clusters(df):
 
     print(summary_df)
     
-    return df
+    return df, summary_df
 
 
 
@@ -236,20 +236,16 @@ def fetch_kraken_ohlcv(symbol="BTC/USD", timeframe="1h", lookback_days=30, limit
 
     print(f"⏳ Fetching last {lookback_days} days of {symbol} ({timeframe}) data...")
 
-    while True:
-        try:
-            ohlcv = kraken.fetch_ohlcv(symbol, timeframe=timeframe, since=since, limit=limit_per_fetch)
-            if not ohlcv:
-                break
-            all_ohlcv.extend(ohlcv)
-            print(f"✅ Got {len(ohlcv)} candles — latest: {pd.to_datetime(ohlcv[-1][0], unit='ms')}")
-            since = ohlcv[-1][0] + 1
-            if pd.to_datetime(ohlcv[-1][0], unit='ms') >= end_time:
-                break
-            time.sleep(pause)
-        except Exception as e:
-            print(f"⚠️ Error: {e}. Retrying...")
-            time.sleep(5)
+    try:
+        ohlcv = kraken.fetch_ohlcv(symbol, timeframe=timeframe, since=since, limit=limit_per_fetch)
+        all_ohlcv.extend(ohlcv)
+        #print(f"✅ Got {len(ohlcv)} candles — latest: {pd.to_datetime(ohlcv[-1][0], unit='ms')}")
+        since = ohlcv[-1][0] + 1
+
+        #time.sleep(pause)
+    except Exception as e:
+        print(f"⚠️ Error: {e}. Retrying...")
+        #time.sleep(5)
 
     df = pd.DataFrame(all_ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
@@ -259,8 +255,60 @@ def fetch_kraken_ohlcv(symbol="BTC/USD", timeframe="1h", lookback_days=30, limit
     return df
 
 
+def ranked(assets):
+    
+    load_dotenv()
+    cluster_models = {}
+    coin_details = {}  # ⬅️ store full record per coin
+
+    for symbol, json_file in assets.items():
+        print(f"\n🚀 Fetching and processing {symbol} from Kraken...")
+
+        df = fetch_kraken_ohlcv(symbol)
+        df = df[['open', 'high', 'low', 'close']].dropna()
+
+        centroids = get_centroids(df)
+        df["laplace_centroids"] = centroids
+
+        labels, kmeans_model, quantize_centroids = cluster_centroids(df["laplace_centroids"], n_clusters=8)
+        df["laplace_cluster"] = labels
+
+        cluster_models[symbol] = {
+            "model": kmeans_model,
+            "quantizer": quantize_centroids
+        }
+
+        df_clusters, df_summary = find_good_clusters(df)
+
+        current_bin = int(df_clusters["laplace_cluster"].iloc[-1])
+        current_price = float(df_clusters["mid_price"].iloc[-1])
+        coin_score = float(df_summary.loc[df_summary["cluster"] == current_bin, "success_ratio"].values[0])
+
+        coin_details[symbol] = {
+            "score": round(coin_score, 4),
+            "price": round(current_price, 8),
+            "sell_price": round(current_price * (1 - BOUNDARY), 8),
+            "drop_order_price": round(current_price * (1 + BOUNDARY), 8)
+        }
+
+    # 🔃 Sort by score descending
+    sorted_items = sorted(coin_details.items(), key=lambda x: -x[1]["score"])
+    sorted_dict = {symbol: details for symbol, details in sorted_items}
+
+    # 💾 Save to JSON
+    with open("data/ranked_coins.json", "w") as f:
+        json.dump(sorted_dict, f, indent=2)
+
+    print("✅ Saved ranked coin scores to ranked_coins.json")
+
+
+
+
+    
+
 
 if __name__ == "__main__":
+    
     assets = {
         "BTC/USD": "data/centroids/btc_usd_cluster_centers.json",
         "ETH/USD": "data/centroids/eth_usd_cluster_centers.json",
@@ -278,41 +326,49 @@ if __name__ == "__main__":
         "ATOM/USD": "data/centroids/atom_usd_cluster_centers.json",
         "LTC/USD": "data/centroids/ltc_usd_cluster_centers.json",
     }
-    
-    
-    load_dotenv()
 
+    load_dotenv()
     cluster_models = {}
+    coin_details = {}  # ⬅️ store full record per coin
 
     for symbol, json_file in assets.items():
         print(f"\n🚀 Fetching and processing {symbol} from Kraken...")
 
-        # Fetch data directly from Kraken
         df = fetch_kraken_ohlcv(symbol)
         df = df[['open', 'high', 'low', 'close']].dropna()
 
-        # Compute Laplace centroids
         centroids = get_centroids(df)
         df["laplace_centroids"] = centroids
 
-        # Run KMeans clustering
         labels, kmeans_model, quantize_centroids = cluster_centroids(df["laplace_centroids"], n_clusters=8)
         df["laplace_cluster"] = labels
 
-        print(f"Cluster Centers for {symbol}:\n", kmeans_model.cluster_centers_)
-
-        # Save the cluster centers (for nearest-neighbor quantization in real-time)
-        cluster_centers = kmeans_model.cluster_centers_.tolist()
-        with open(json_file, "w") as f:
-            json.dump(cluster_centers, f)
-
-        # Save full model and quantizer in memory if needed
         cluster_models[symbol] = {
             "model": kmeans_model,
             "quantizer": quantize_centroids
         }
 
-        # Optional: evaluate clusters
-        df_clusters = find_good_clusters(df)
+        df_clusters, df_summary = find_good_clusters(df)
 
-    print("✅ All cluster centers saved.")
+        current_bin = int(df_clusters["laplace_cluster"].iloc[-1])
+        current_price = float(df_clusters["mid_price"].iloc[-1])
+        coin_score = float(df_summary.loc[df_summary["cluster"] == current_bin, "success_ratio"].values[0])
+
+        coin_details[symbol] = {
+            "score": round(coin_score, 4),
+            "price": round(current_price, 8),
+            "sell_price": round(current_price * (1 - BOUNDARY), 8),
+            "drop_order_price": round(current_price * (1 + BOUNDARY), 8)
+        }
+
+    # 🔃 Sort by score descending
+    sorted_items = sorted(coin_details.items(), key=lambda x: -x[1]["score"])
+    sorted_dict = {symbol: details for symbol, details in sorted_items}
+
+    # 💾 Save to JSON
+    with open("data/ranked_coins.json", "w") as f:
+        json.dump(sorted_dict, f, indent=2)
+
+    print("✅ Saved ranked coin scores to ranked_coins.json")
+
+

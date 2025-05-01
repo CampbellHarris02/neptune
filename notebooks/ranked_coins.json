@@ -1,0 +1,20 @@
+{
+  "SOL/USD": {
+    "score": 0.6552,
+    "price": 150.925,
+    "sell_price": 138.851,
+    "drop_order_price": 162.999
+  },
+  "ETH/USD": {
+    "score": 0.3768,
+    "price": 1852.84,
+    "sell_price": 1704.6128,
+    "drop_order_price": 2001.0672
+  },
+  "BTC/USD": {
+    "score": 0.2796,
+    "price": 96718.95,
+    "sell_price": 88981.434,
+    "drop_order_price": 104456.466
+  }
+}
