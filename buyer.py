@@ -8,7 +8,7 @@ from utilities import load_json, save_json
 
 load_dotenv()
 
-MIN_SCORE_THRESHOLD = 0.6
+MIN_SCORE_THRESHOLD = 0.7
 BUY_PORTFOLIO_PERCENT = 0.10  # 10% of total portfolio
 
 # --- Connect to Kraken ---
