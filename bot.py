@@ -1,3 +1,5 @@
+
+
 import ccxt  # type: ignore
 import pandas as pd  # type: ignore
 import time
@@ -10,11 +12,13 @@ from sklearn.cluster import KMeans
 # Configuration
 API_KEY = 'your_kraken_api_key'
 API_SECRET = 'your_kraken_api_secret'
-LOOKBACK_DAYS = 7
+LOOKBACK_DAYS = 3
 TOP_N_COINS = 10
-UPDATE_INTERVAL = 60*20  # in seconds
+UPDATE_INTERVAL = 20  # in seconds
 ALLOCATION_METHOD = 'momentum_weighted'  # options: 'momentum_weighted', 'equal_weight'
 INITIAL_CASH = 100  # USD
+UPDATE_INTERVAL = 5  # Refresh every 5 seconds
+
 LOG_FILE = 'portfolio_log.csv'
 TRADES_FILE = 'trades_log.csv'
 
@@ -28,12 +32,6 @@ kraken = ccxt.kraken({
 # Portfolio and trading state
 portfolio = {'USDT': INITIAL_CASH}
 
-trading_state = {
-    'ETH': {'position': False, 'buy_bin': None},
-    'BTC': {'position': False, 'buy_bin': None},
-    'USDT': {'position': False, 'buy_bin': None},
-}
-
 
 def setup_logs():
     with open(LOG_FILE, 'w', newline='') as f:
@@ -41,6 +39,14 @@ def setup_logs():
     with open(TRADES_FILE, 'w', newline='') as f:
         csv.writer(f).writerow(['timestamp', 'action', 'symbol', 'amount', 'price', 'fee'])  # updated
 
+
+def fetch_prices(symbols):
+    try:
+        tickers = kraken.fetch_tickers(symbols)
+        return {s: tickers[s]['last'] for s in symbols if s in tickers}
+    except Exception as e:
+        print(f"Error fetching prices: {e}")
+        return {}
 
 
 def get_symbols():
@@ -63,7 +69,6 @@ def compute_latest_bin(ohlc_df, pca_model, trained_kmeans):
     features_pca = pca_model.transform(features)
     bins = cluster_confidence_bins(features_pca, trained_kmeans)
     return bins[-1] if len(bins) > 0 else None
-
 
 
 def calculate_momentum(df):
@@ -111,7 +116,7 @@ def portfolio_value(portfolio, prices):
 
 
 
-GAS_FEE_RATE = 0.01  # 1% per trade
+GAS_FEE_RATE = 0.0  # 1% per trade
 
 def simulate_trade(side, symbol, amount, price):
     base = symbol.split('/')[0]
@@ -202,7 +207,7 @@ import time
 
 def get_bin_signals(symbols, symbol_models):
     bins = {}
-    latest_prices = {}
+    latest_prices = fetch_prices(symbols)  # Fetch real-time prices for all symbols
 
     for symbol in symbols:
         print(f"\n[📊] Evaluating {symbol}")
@@ -218,17 +223,16 @@ def get_bin_signals(symbols, symbol_models):
 
         model = symbol_models[symbol]
         current_bin = compute_latest_bin(df, model['pca'], model['kmeans'])
-        price = df['close'].iloc[-1]
+        price = latest_prices.get(symbol)
 
-        if current_bin is not None:
+        if current_bin is not None and price is not None:
             bins[symbol] = current_bin
-            latest_prices[symbol] = price
 
     return bins, latest_prices
 
 
 def optimize_portfolio(bins):
-    scores = {s: (8 - b) for s, b in bins.items()}  # Higher score = lower bin
+    scores = {s: (16 - b) / 16 for s, b in bins.items()} # Higher score = lower bin
     assets = list(scores.keys())
 
     w = cp.Variable(len(assets))  # portfolio weights
@@ -313,7 +317,11 @@ def main_loop(symbols, symbol_models):
 if __name__ == "__main__":
     
     TRAIN_DAYS = 30
-    symbols = ['BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'SOL/USDT', 'XRP/USDT', 'TON/USDT', 'DOGE/USDT', 'ADA/USDT']
+    symbols = [
+    'BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'SOL/USDT', 'XRP/USDT', 'TON/USDT', 'DOGE/USDT', 'ADA/USDT',
+    'DOT/USDT', 'AVAX/USDT', 'LINK/USDT', 'MATIC/USDT', 'SHIB/USDT', 'ATOM/USDT', 'LTC/USDT'
+]
+
 
     symbol_models = {}
 
@@ -327,10 +335,10 @@ if __name__ == "__main__":
         feats = build_ohlc_features(df[['open', 'high', 'low', 'close']])
         feats_df = pd.DataFrame(feats)
 
-        pca = PCA(n_components=8)
+        pca = PCA(n_components=16)
         features_pca = pca.fit_transform(feats_df)
 
-        kmeans = KMeans(n_clusters=8, random_state=42).fit(features_pca)
+        kmeans = KMeans(n_clusters=16, random_state=42).fit(features_pca)
 
         symbol_models[symbol] = {'pca': pca, 'kmeans': kmeans}
 

@@ -6,45 +6,114 @@ import os
 PORTFOLIO_LOG = "portfolio_log.csv"
 TRADES_LOG = "trades_log.csv"
 
+import ccxt  # Add this at the top with other imports
+
+# Add these functions for real-time price updates
+def fetch_real_time_prices(symbols):
+    kraken = ccxt.kraken()
+    try:
+        tickers = kraken.fetch_tickers(symbols)
+        return {s: tickers[s]['last'] for s in symbols if s in tickers}
+    except Exception as e:
+        print(f"Price fetch error: {e}")
+        return {}
+
+def get_current_holdings():
+    if not os.path.exists(PORTFOLIO_LOG):
+        return {}
+    df = pd.read_csv(PORTFOLIO_LOG, parse_dates=['timestamp'])
+    if df.empty:
+        return {}
+    
+    # Get latest position for each asset
+    latest_entries = df.loc[df.groupby('symbol')['timestamp'].idxmax()]
+    return latest_entries.set_index('symbol')[['volume', 'price']].to_dict('index')
+
+def calculate_live_portfolio():
+    holdings = get_current_holdings()
+    if not holdings:
+        return 0, pd.DataFrame()
+    
+    # Get symbols excluding USDT
+    symbols = [s for s in holdings.keys() if s != 'USDT']
+    prices = fetch_real_time_prices(symbols)
+    
+    total_value = 0
+    live_data = []
+    
+    # Add USDT value
+    if 'USDT' in holdings:
+        usdt_value = holdings['USDT']['volume']
+        total_value += usdt_value
+        live_data.append({
+            'symbol': 'USDT',
+            'value_usd': usdt_value,
+            'price': 1.0,
+            'volume': usdt_value
+        })
+    
+    # Calculate crypto values
+    for symbol, data in holdings.items():
+        if symbol == 'USDT' or symbol not in prices:
+            continue
+            
+        current_price = prices[symbol]
+        current_value = data['volume'] * current_price
+        total_value += current_value
+        
+        live_data.append({
+            'symbol': symbol,
+            'value_usd': current_value,
+            'price': current_price,
+            'volume': data['volume']
+        })
+    
+    return total_value, pd.DataFrame(live_data)
+
+# Modified update_dashboard function
 def update_dashboard():
     if not os.path.exists(PORTFOLIO_LOG) or not os.path.exists(TRADES_LOG):
         return "❌ Log files not found.", None, None, None
 
+    # Calculate live portfolio values
+    total_value, live_snapshot = calculate_live_portfolio()
     portfolio_log = pd.read_csv(PORTFOLIO_LOG, parse_dates=['timestamp'])
     trades_log = pd.read_csv(TRADES_LOG, parse_dates=['timestamp'])
 
-    if portfolio_log.empty:
-        return "❌ Portfolio log is empty.", None, None, None
+    # Create portfolio value timeline
+    historical_values = portfolio_log.groupby('timestamp')['value_usd'].sum().reset_index()
+    
+    # Add current live value to timeline
+    if not live_snapshot.empty:
+        current_time = pd.Timestamp.now()
+        historical_values = historical_values.append({
+            'timestamp': current_time,
+            'value_usd': total_value
+        }, ignore_index=True)
 
-    portfolio_value = portfolio_log.groupby('timestamp')['value_usd'].sum().reset_index()
-
+    # Create visualizations
     fig1 = px.line(
-        portfolio_value,
+        historical_values,
         x='timestamp',
         y='value_usd',
-        title="📈 Portfolio Value Over Time",
-        labels={'value_usd': 'Portfolio Value (USDT)'}
+        title="📈 Portfolio Value (Historical + Live)",
+        labels={'value_usd': 'Value (USDT)'}
     )
+    
+    fig2 = px.pie(
+        live_snapshot,
+        names='symbol',
+        values='value_usd',
+        title="📊 Live Portfolio Allocation"
+    ) if not live_snapshot.empty else None
 
-    latest_time = portfolio_log['timestamp'].max()
-    latest_snapshot = portfolio_log[portfolio_log['timestamp'] == latest_time]
-
-    fig2 = None
-    if not latest_snapshot.empty:
-        fig2 = px.pie(
-            latest_snapshot,
-            names='symbol',
-            values='value_usd',
-            title="📊 Current Portfolio Allocation"
-        )
-
+    # Format recent trades
     trades_table = None
     if not trades_log.empty:
         trades_table = trades_log.sort_values('timestamp', ascending=False).head(10)
+        trades_table = trades_table[['timestamp', 'action', 'symbol', 'amount', 'price']]
 
-    return "", fig1, fig2, trades_table  # "" means no error
-
-
+    return "", fig1, fig2, trades_table
 # Gradio App
 with gr.Blocks() as demo:
     gr.Markdown("# 🚀 Momentum Portfolio Bot Dashboard")
