@@ -1,8 +1,8 @@
 import os
 import json
-import ccxt
+import ccxt # type: ignore
 import time
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 
 load_dotenv()
 
@@ -40,15 +40,12 @@ def update_portfolio():
     balances = fetch_kraken_balances()
 
     for symbol in portfolio.keys():
-        if symbol == "USDT/USD":
-            coin = "USDT"
-        else:
-            coin = symbol.split("/")[0]
+        coin = symbol.split("/")[0]
 
         balance = balances['total'].get(coin, 0)
 
-        # If coin is USDT or USD, treat as cash
-        if coin in ["USD", "USDT"]:
+        # If it's USD, it's already in dollars
+        if coin == "USD":
             usd_value = balance
         else:
             price = fetch_current_price(kraken, symbol)
@@ -57,7 +54,8 @@ def update_portfolio():
             usd_value = balance * price
 
         portfolio[symbol] = round(usd_value, 6)
-        time.sleep(0.5)  # Be nice to Kraken
+        print(f"🔄 {symbol}: {balance:.6f} ≈ ${usd_value:.2f}")
+        time.sleep(0.5)
 
     save_portfolio(portfolio)
     print("✅ portfolio.json updated with live USD values.")

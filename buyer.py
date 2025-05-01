@@ -42,6 +42,8 @@ def buyer():
 
         coin = symbol.split("/")[0]
         coin_pair = f"{coin}/USD"
+        
+        print(f"found potential order (coin: {coin}), checking available funds...")
 
         if available_usd >= max_alloc and price > 0:
             amount = round(max_alloc / price, 6)

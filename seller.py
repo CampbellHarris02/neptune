@@ -44,7 +44,9 @@ def get_quantity(symbol):
 # --- Main Check ---
 def check_pending_orders():
     pending = load_json(PENDING_FILE)
+    print(f"pending orders: {pending}")
     positions = load_json(POSITION_FILE)
+    print(f"positions: {positions}")
     updated = {}
 
     for symbol, order_data in pending.items():
@@ -99,9 +101,9 @@ def monitor_positions():
             print(f"🚨 Selling {symbol}: price {current_price:.2f} < stop {new_stop_price:.2f}")
             try:
                 order = kraken.create_market_sell_order(symbol, data["qty"])
-                usdt_received = current_price * data["qty"]
-                portfolio["USDT/USD"] = portfolio.get("USDT/USD", 0) + usdt_received
-                print(f"✅ Sold {data['qty']} of {symbol}, received ~{usdt_received:.2f} USDT")
+                usd_received = current_price * data["qty"]
+                portfolio["USD"] = portfolio.get("USD", 0) + usd_received
+                print(f"✅ Sold {data['qty']} of {symbol}, received ~{usd_received:.2f} USD")
             except Exception as e:
                 print(f"❌ Error selling {symbol}: {e}")
                 updated_positions[symbol] = data

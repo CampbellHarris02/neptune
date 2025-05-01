@@ -29,7 +29,27 @@ ASSETS = {
     "AAVE/USD": "data/centroids/aave_usd_cluster_centers.json",
     "NEAR/USD": "data/centroids/near_usd_cluster_centers.json",
     "XTZ/USD": "data/centroids/xtz_usd_cluster_centers.json",
-    "CRV/USD": "data/centroids/crv_usd_cluster_centers.json"
+    "CRV/USD": "data/centroids/crv_usd_cluster_centers.json",
+    "RUNE/USD": "data/centroids/rune_usd_cluster_centers.json",
+    "INJ/USD": "data/centroids/inj_usd_cluster_centers.json",
+    "LDO/USD": "data/centroids/ldo_usd_cluster_centers.json",
+    "SUI/USD": "data/centroids/sui_usd_cluster_centers.json",
+    "OP/USD": "data/centroids/op_usd_cluster_centers.json",
+    "STX/USD": "data/centroids/stx_usd_cluster_centers.json",
+    "GRT/USD": "data/centroids/grt_usd_cluster_centers.json",
+    "FLOW/USD": "data/centroids/flow_usd_cluster_centers.json",
+    "AR/USD": "data/centroids/ar_usd_cluster_centers.json",
+    "ENS/USD": "data/centroids/ens_usd_cluster_centers.json",
+    "IMX/USD": "data/centroids/imx_usd_cluster_centers.json",
+    "SNX/USD": "data/centroids/snx_usd_cluster_centers.json",
+    "KAVA/USD": "data/centroids/kava_usd_cluster_centers.json",
+    "BCH/USD": "data/centroids/bch_usd_cluster_centers.json",
+    "SAND/USD": "data/centroids/sand_usd_cluster_centers.json",
+    "CHZ/USD": "data/centroids/chz_usd_cluster_centers.json",
+    "APE/USD": "data/centroids/ape_usd_cluster_centers.json",
+    "AXS/USD": "data/centroids/axs_usd_cluster_centers.json",
+    "DYDX/USD": "data/centroids/dydx_usd_cluster_centers.json",
+    "COMP/USD": "data/centroids/comp_usd_cluster_centers.json"
 }
 
 def main():
@@ -39,10 +59,13 @@ def main():
         now = time.time()
         
         # Check hourly tasks
-        if now - last_hourly_check >= 3600:
+        if now - last_hourly_check >= 1800:
             print("⏰ Running hourly tasks...")
+            print("updating portfolio...")
             update_portfolio()
+            print("scanning coins...")
             ranked(assets=ASSETS)
+            print("looking for potential orders...")
             buyer()
             last_hourly_check = now
 
