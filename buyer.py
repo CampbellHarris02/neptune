@@ -1,7 +1,7 @@
 import os
 import json
-from dotenv import load_dotenv
-import ccxt
+from dotenv import load_dotenv  # type: ignore
+import ccxt  # type: ignore
 from datetime import datetime
 
 from utilities import load_json, save_json
@@ -24,10 +24,10 @@ def buyer():
     pending_orders = load_json("data/pending_orders.json")
 
     total_value = sum(portfolio.values())
-    available_usdt = portfolio.get("USDT/USD", 0)
+    available_usd = portfolio.get("USD", 0)
     max_alloc = total_value * BUY_PORTFOLIO_PERCENT
 
-    print(f"💰 Portfolio total: ${total_value:.2f}, Available USDT: ${available_usdt:.2f}")
+    print(f"💰 Portfolio total: ${total_value:.2f}, Available USD: ${available_usd:.2f}")
 
     for symbol, data in ranked_coins.items():
         score = data.get("score", 0)
@@ -41,13 +41,13 @@ def buyer():
             continue
 
         coin = symbol.split("/")[0]
-        coin_pair = f"{coin}/USDT"
+        coin_pair = f"{coin}/USD"
 
-        if available_usdt >= max_alloc and price > 0:
+        if available_usd >= max_alloc and price > 0:
             amount = round(max_alloc / price, 6)
 
             try:
-                print(f"🛒 Placing buy order for {amount} {coin} at {price} USDT")
+                print(f"🛒 Placing buy order for {amount} {coin} at {price} USD")
                 order = kraken.create_limit_buy_order(coin_pair, amount, price)
                 print(f"✅ Order placed: {order['id']}")
 
@@ -58,11 +58,11 @@ def buyer():
                     "timestamp": datetime.utcnow().isoformat()
                 }
 
-                available_usdt -= max_alloc  # reduce for future checks
+                available_usd -= max_alloc  # reduce for future checks
 
             except Exception as e:
                 print(f"❌ Error placing order for {coin_pair}: {e}")
         else:
-            print(f"⚠️ Not enough USDT to buy {coin_pair} or invalid price")
+            print(f"⚠️ Not enough USD to buy {coin_pair} or invalid price")
 
     save_json(pending_orders, "data/pending_orders.json")

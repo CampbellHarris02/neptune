@@ -2,8 +2,8 @@ import os
 import json
 import time
 from datetime import datetime
-from dotenv import load_dotenv
-import ccxt
+from dotenv import load_dotenv  # type: ignore
+import ccxt  # type: ignore
 
 from utilities import load_json, save_json
 
@@ -22,7 +22,7 @@ kraken = ccxt.kraken({
     'enableRateLimit': True,
 })
 
-
+# --- Utilities ---
 def fetch_order_status(order_id):
     try:
         return kraken.fetch_order(order_id)
@@ -57,7 +57,7 @@ def check_pending_orders():
             continue
 
         if order["status"] == "closed":
-            filled_price = float(order["average"]) if order["average"] else float(order_data["price"])
+            filled_price = float(order["average"] or order_data["price"])
             qty = order["filled"]
             stop_price = filled_price * (1 - BOUNDARY)
 
@@ -71,13 +71,53 @@ def check_pending_orders():
                 "filled_at": datetime.utcnow().isoformat()
             }
         else:
-            updated[symbol] = order_data  # still pending
+            updated[symbol] = order_data
 
     save_json(positions, POSITION_FILE)
     save_json(updated, PENDING_FILE)
 
+
+def monitor_positions():
+    positions = load_json(POSITION_FILE)
+    portfolio = load_json(PORTFOLIO_FILE)
+    updated_positions = {}
+
+    for symbol, data in positions.items():
+        current_price = get_price(symbol)
+        if current_price is None:
+            updated_positions[symbol] = data
+            continue
+
+        trailing_high = max(data["trailing_high"], current_price)
+        new_stop_price = trailing_high * (1 - BOUNDARY)
+
+        # Update trailing stop
+        data["trailing_high"] = trailing_high
+        data["stop_price"] = new_stop_price
+
+        if current_price < new_stop_price:
+            print(f"🚨 Selling {symbol}: price {current_price:.2f} < stop {new_stop_price:.2f}")
+            try:
+                order = kraken.create_market_sell_order(symbol, data["qty"])
+                usdt_received = current_price * data["qty"]
+                portfolio["USDT/USD"] = portfolio.get("USDT/USD", 0) + usdt_received
+                print(f"✅ Sold {data['qty']} of {symbol}, received ~{usdt_received:.2f} USDT")
+            except Exception as e:
+                print(f"❌ Error selling {symbol}: {e}")
+                updated_positions[symbol] = data
+        else:
+            updated_positions[symbol] = data
+
+    save_json(updated_positions, POSITION_FILE)
+    save_json(portfolio, PORTFOLIO_FILE)
+
+
 if __name__ == "__main__":
     while True:
-        print("🔄 Monitoring pending orders...")
+        print("🔄 Checking pending orders...")
         check_pending_orders()
+
+        print("🔄 Monitoring filled positions for stop loss...")
+        monitor_positions()
+
         time.sleep(SLEEP_SECONDS)

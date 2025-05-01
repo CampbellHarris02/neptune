@@ -1,20 +1,20 @@
 
 import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+import pandas as pd # type: ignore
+import matplotlib.pyplot as plt # type: ignore
+import matplotlib.animation as animation # type: ignore
 import os
-from sklearn.decomposition import PCA
-from sklearn.cluster import KMeans
-from sklearn.metrics import mean_squared_error
-import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA # type: ignore
+from sklearn.cluster import KMeans # type: ignore
+from sklearn.metrics import mean_squared_error # type: ignore
+import matplotlib.pyplot as plt # type: ignore
 from scipy.stats import laplace
 
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 import os
-import ccxt
-import pandas as pd
+import ccxt # type: ignore
+import pandas as pd # type: ignore
 import time
 from datetime import datetime, timedelta, timezone
 

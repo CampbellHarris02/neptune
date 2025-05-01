@@ -1,7 +1,8 @@
+import time
 from centroids import ranked
 from update_portfolio import update_portfolio
 from buyer import buyer
-
+from seller import check_pending_orders
 
 ASSETS = {
     "BTC/USD": "data/centroids/btc_usd_cluster_centers.json",
@@ -32,20 +33,24 @@ ASSETS = {
 }
 
 def main():
-    
-    # RUN EVERY HOUR IN LOOP
-    # step 1) update portfolio values
-    # update_portfolio()
-    
-    # step 2) get ranked list of potential orders
-    ranked(assets=ASSETS)
-    
-    # step 3) filter and submit buy orders
-    buyer()
-    
-    # step 4) check stop loss
-    
+    last_hourly_check = time.time()
 
-    
+    while True:
+        now = time.time()
+        
+        # Check hourly tasks
+        if now - last_hourly_check >= 3600:
+            print("⏰ Running hourly tasks...")
+            update_portfolio()
+            ranked(assets=ASSETS)
+            buyer()
+            last_hourly_check = now
+
+        # Always check pending orders every 5 minutes
+        print("🔄 Checking stop losses...")
+        check_pending_orders()
+
+        time.sleep(300)  # wait 5 minutes
+
 if __name__ == "__main__":
     main()
