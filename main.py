@@ -54,6 +54,7 @@ ASSETS = {
 
 def main():
     last_hourly_check = time.time()
+    update_all()
 
     while True:
         now = time.time()

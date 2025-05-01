@@ -47,15 +47,16 @@ def check_pending_orders():
     print(f"pending orders: {pending}")
     positions = load_json(POSITION_FILE)
     print(f"positions: {positions}")
-    updated = {}
+    updated = []
 
-    for symbol, order_data in pending.items():
+    for order_data in pending:
+        symbol = order_data["symbol"]
         order_id = order_data["order_id"]
-        print(f"🔍 Checking order: {symbol} → {order_id}")
+        print(f"Checking order: {symbol} → {order_id}")
         order = fetch_order_status(order_id)
 
         if not order:
-            updated[symbol] = order_data
+            updated.append(order_data)
             continue
 
         if order["status"] == "closed":
@@ -63,7 +64,7 @@ def check_pending_orders():
             qty = order["filled"]
             stop_price = filled_price * (1 - BOUNDARY)
 
-            print(f"✅ {symbol} filled at {filled_price:.2f} — Trailing stop at {stop_price:.2f}")
+            print(f"{symbol} filled at {filled_price:.2f} — Trailing stop at {stop_price:.2f}")
 
             positions[symbol] = {
                 "entry_price": filled_price,
@@ -73,10 +74,11 @@ def check_pending_orders():
                 "filled_at": datetime.utcnow().isoformat()
             }
         else:
-            updated[symbol] = order_data
+            updated.append(order_data)
 
     save_json(positions, POSITION_FILE)
     save_json(updated, PENDING_FILE)
+
 
 
 def monitor_positions():
