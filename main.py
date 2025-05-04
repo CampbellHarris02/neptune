@@ -1,10 +1,43 @@
+"""
+Neptune trading-bot main runner (rich-enabled)
+----------------------------------------------
+This script coordinates hourly scanning/buying and five-minute stop-loss checks.
+• Uses **rich** for minimal but colourful terminal feedback.
+• All details are persisted in *log.txt* via the root logger.
+"""
+
+from __future__ import annotations
+
 import time
+import logging
+from typing import Dict
+
+from rich.console import Console # type: ignore
+from rich.logging import RichHandler # type: ignore
+
+# ───────────────────────────── Third‑party strategy modules ───────────────────
 from centroids import ranked
 from update_all import update_all
 from buyer import buyer
 from seller import check_pending_orders
 
-ASSETS = {
+# ───────────────────────────── Logging / Rich setup ──────────────────────────
+LOG_FILE = "log.txt"
+console = Console()
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        RichHandler(console=console, markup=True, rich_tracebacks=True),
+    ],
+)
+logger = logging.getLogger(__name__)
+
+
+ASSETS: Dict[str, str] = {
     "BTC/USD": "data/centroids/btc_usd_cluster_centers.json",
     "ETH/USD": "data/centroids/eth_usd_cluster_centers.json",
     "BNB/USD": "data/centroids/bnb_usd_cluster_centers.json",
@@ -49,32 +82,35 @@ ASSETS = {
     "APE/USD": "data/centroids/ape_usd_cluster_centers.json",
     "AXS/USD": "data/centroids/axs_usd_cluster_centers.json",
     "DYDX/USD": "data/centroids/dydx_usd_cluster_centers.json",
-    "COMP/USD": "data/centroids/comp_usd_cluster_centers.json"
+    "COMP/USD": "data/centroids/comp_usd_cluster_centers.json",
 }
 
-def main():
-    last_hourly_check = time.time()
-    update_all()
 
-    while True:
-        now = time.time()
-        
-        # Check hourly tasks
-        if now - last_hourly_check >= 1800:
-            print("⏰ Running hourly tasks...")
-            print("updating portfolio...")
-            update_all()
-            print("scanning coins...")
-            ranked(assets=ASSETS)
-            print("looking for potential orders...")
-            buyer()
-            last_hourly_check = now
 
-        # Always check pending orders every 5 minutes
-        print("🔄 Checking stop losses...")
-        check_pending_orders()
+def main() -> None:
+    """Run hourly scans & five‑minute stop‑loss checks with rich output."""
+    last_hourly = 0.0
+    update_all()  # initial full sync
+    console.rule("[bold cyan]Bot started")
 
-        time.sleep(300)  # wait 5 minutes
+    with console.status("[bold cyan]Running", spinner="earth"):
+        while True:
+            now = time.time()
+            if now - last_hourly >= 1800:  # 30‑minute cadence
+                console.log("[yellow]Hourly tasks (portfolio, scan, buyer)")
+                update_all()
+                ranked(assets=ASSETS)
+                buyer()
+                last_hourly = now
+
+            console.log("[green]Five-minute stop-loss sweep")
+            check_pending_orders()
+            time.sleep(300)  # five‑minute pause
+
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        console.log("[red]User interrupt - shutting down…")
+        logger.info("Bot terminated by user")
