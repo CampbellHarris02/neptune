@@ -27,19 +27,6 @@ from scripts.monitor_positions import monitor_positions
 # ───────────────────────────── Logging / Rich setup ──────────────────────────
 LOG_FILE = "log.txt"
 console = Console()
-STATUS_FILE = "status.txt"
-
-def log_status(message: str):
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    full_message = f"[{timestamp}] {message}"
-    
-    # Overwrite console line
-    console.print(f"{full_message:<80}", end="\r")
-
-    # Write to status.txt
-    with open(STATUS_FILE, "w") as f:
-        f.write(full_message + "\n")
-
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -50,6 +37,22 @@ logging.basicConfig(
     ],
 )
 logger = logging.getLogger(__name__)
+
+
+status = console.status("", spinner="earth")
+status.start()                     # one spinner for the whole run
+STATUS_FILE = "status.txt"
+def log_status(message: str) -> None:
+    """Replace the status line in the terminal and write status.txt."""
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    full = f"[{ts}] {message}"
+
+    # Update Rich status (overwrites the same line)
+    status.update(f"[cyan]{message}")
+
+    # Persist for the web-UI
+    with open(STATUS_FILE, "w") as f:
+        f.write(full + "\n")
 
 
 ASSETS: Dict[str, str] = {
@@ -102,29 +105,26 @@ ASSETS: Dict[str, str] = {
 
 
 def main() -> None:
-    """Run hourly scans & five‑minute stop‑loss checks with rich output."""
     last_hourly = 0.0
-    update_all(assets=ASSETS)  # initial full sync
+    update_all(assets=ASSETS)          # initial sync
     console.rule("[bold cyan]Bot started")
+    while True:
+        now = time.time()
+        if now - last_hourly >= 1800:  # every 30 min
+            log_status("Hourly: portfolio sync, scan, buyer")
+            update_all(assets=ASSETS)
+            rank_coins()
+            buyer()
+            last_hourly = now
+        log_status("Five-minute stop-loss sweep")
+        check_pending_orders()
+        monitor_positions()
+        time.sleep(300)
 
-    with console.status("[bold cyan]Running", spinner="earth"):
-        while True:
-            now = time.time()
-            if now - last_hourly >= 1800:  # 30‑minute cadence
-                log_status("⏰ Hourly: portfolio sync, scan, buyer")
-                update_all(assets=ASSETS)
-                rank_coins()
-                buyer()
-                last_hourly = now
-
-            log_status("🔄 Five-minute stop-loss sweep")
-            check_pending_orders()
-            monitor_positions()
-            time.sleep(300)
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        log_status("⛔ User interrupt - shutting down…")
+        log_status("User interrupt - shutting down…")
         logger.info("Bot terminated by user")

@@ -10,3 +10,4 @@
 2025-05-07 17:04:07 [INFO] SOL/USD: 0.093825 ≈ $13.73
 2025-05-07 17:04:07 [INFO] portfolio.json updated (10 assets).
 2025-05-07 17:04:10 [INFO] positions.json verified (4 active).
+2025-05-07 17:12:04 [INFO] Bot terminated by user
