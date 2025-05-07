@@ -11,19 +11,32 @@ from __future__ import annotations
 import time
 import logging
 from typing import Dict
+from datetime import datetime
 
 from rich.console import Console # type: ignore
 from rich.logging import RichHandler # type: ignore
 
 # ───────────────────────────── Third‑party strategy modules ───────────────────
-from centroids import ranked
-from update_all import update_all
-from buyer import buyer
-from seller import check_pending_orders
+from scripts.centroids import ranked
+from scripts.update_all import update_all
+from scripts.buyer import buyer
+from scripts.seller import check_pending_orders
 
 # ───────────────────────────── Logging / Rich setup ──────────────────────────
 LOG_FILE = "log.txt"
 console = Console()
+STATUS_FILE = "status.txt"
+
+def log_status(message: str):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    full_message = f"[{timestamp}] {message}"
+    
+    # Overwrite console line
+    console.print(f"{full_message:<80}", end="\r")
+
+    # Write to status.txt
+    with open(STATUS_FILE, "w") as f:
+        f.write(full_message + "\n")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -96,20 +109,19 @@ def main() -> None:
         while True:
             now = time.time()
             if now - last_hourly >= 1800:  # 30‑minute cadence
-                console.log("[yellow]Hourly tasks (portfolio, scan, buyer)")
+                log_status("⏰ Hourly: portfolio sync, scan, buyer")
                 update_all()
                 ranked(assets=ASSETS)
                 buyer()
                 last_hourly = now
 
-            console.log("[green]Five-minute stop-loss sweep")
+            log_status("🔄 Five-minute stop-loss sweep")
             check_pending_orders()
-            time.sleep(300)  # five‑minute pause
-
+            time.sleep(300)
 
 if __name__ == "__main__":
     try:
         main()
     except KeyboardInterrupt:
-        console.log("[red]User interrupt - shutting down…")
+        log_status("⛔ User interrupt - shutting down…")
         logger.info("Bot terminated by user")

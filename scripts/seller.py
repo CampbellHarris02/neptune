@@ -26,10 +26,6 @@ PENDING_FILE   = "data/pending_orders.json"
 POSITION_FILE  = "data/positions.json"
 PORTFOLIO_FILE = "data/portfolio.json"
 
-DASH_PENDING_FILE = "dashboard/public/data/pending_orders.json"
-DASH_POSITION_FILE  = "dashboard/public/data/positions.json"
-DASH_PORTFOLIO_FILE = "dashboard/public/data/portfolio.json"
-
 LOG_FILE       = "log.txt"
 SLEEP_SECONDS  = 30          # loop delay
 BOUNDARY       = 0.08        # 8 % trailing stop
@@ -124,9 +120,7 @@ def check_pending_orders() -> None:
 
     save_json(positions, POSITION_FILE)
     save_json(updated,   PENDING_FILE)
-    
-    save_json(positions, DASH_POSITION_FILE)
-    save_json(updated, DASH_POSITION_FILE)
+
 
 def monitor_positions() -> None:
     positions  = load_json(POSITION_FILE)
@@ -167,9 +161,7 @@ def monitor_positions() -> None:
 
     save_json(new_pos,  POSITION_FILE)
     save_json(portfolio, PORTFOLIO_FILE)
-    
-    save_json(new_pos,  DASH_POSITION_FILE)
-    save_json(portfolio, DASH_PORTFOLIO_FILE)
+
 
 # ───────────────────────────── Main loop ─────────────────────────────────────
 def main() -> None:

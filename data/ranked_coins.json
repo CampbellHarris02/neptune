@@ -1,266 +1,266 @@
 {
-  "LTC/USD": {
-    "score": 0.7653,
-    "price": 88.52,
-    "sell_price": 81.4384,
-    "drop_order_price": 95.6016
+  "APE/USD": {
+    "score": 0.7333,
+    "price": 0.4839,
+    "sell_price": 0.445188,
+    "drop_order_price": 0.522612
   },
   "IMX/USD": {
-    "score": 0.7209,
-    "price": 0.5225,
-    "sell_price": 0.4807,
-    "drop_order_price": 0.5643
-  },
-  "MATIC/USD": {
-    "score": 0.6508,
-    "price": 0.2169,
-    "sell_price": 0.199548,
-    "drop_order_price": 0.234252
-  },
-  "SNX/USD": {
-    "score": 0.6327,
-    "price": 0.635,
-    "sell_price": 0.5842,
-    "drop_order_price": 0.6858
-  },
-  "LDO/USD": {
-    "score": 0.6127,
-    "price": 0.7635,
-    "sell_price": 0.70242,
-    "drop_order_price": 0.82458
+    "score": 0.718,
+    "price": 0.527,
+    "sell_price": 0.48484,
+    "drop_order_price": 0.56916
   },
   "AAVE/USD": {
-    "score": 0.5933,
-    "price": 169.215,
-    "sell_price": 155.6778,
-    "drop_order_price": 182.7522
-  },
-  "CHZ/USD": {
-    "score": 0.5867,
-    "price": 0.03825,
-    "sell_price": 0.03519,
-    "drop_order_price": 0.04131
-  },
-  "SUI/USD": {
-    "score": 0.5714,
-    "price": 3.29195,
-    "sell_price": 3.028594,
-    "drop_order_price": 3.555306
+    "score": 0.6575,
+    "price": 169.435,
+    "sell_price": 155.8802,
+    "drop_order_price": 182.9898
   },
   "DOGE/USD": {
-    "score": 0.5703,
-    "price": 0.17027535,
-    "sell_price": 0.15665332,
-    "drop_order_price": 0.18389738
+    "score": 0.6429,
+    "price": 0.1716499,
+    "sell_price": 0.15791791,
+    "drop_order_price": 0.18538189
   },
-  "SOL/USD": {
-    "score": 0.5337,
-    "price": 145.73,
-    "sell_price": 134.0716,
-    "drop_order_price": 157.3884
+  "OP/USD": {
+    "score": 0.6301,
+    "price": 0.5919,
+    "sell_price": 0.544548,
+    "drop_order_price": 0.639252
   },
-  "RUNE/USD": {
-    "score": 0.5172,
-    "price": 1.2325,
-    "sell_price": 1.1339,
-    "drop_order_price": 1.3311
+  "MATIC/USD": {
+    "score": 0.605,
+    "price": 0.2189,
+    "sell_price": 0.201388,
+    "drop_order_price": 0.236412
   },
-  "ADA/USD": {
-    "score": 0.515,
-    "price": 0.6631605,
-    "sell_price": 0.61010766,
-    "drop_order_price": 0.71621334
+  "LTC/USD": {
+    "score": 0.6,
+    "price": 88.335,
+    "sell_price": 81.2682,
+    "drop_order_price": 95.4018
+  },
+  "CHZ/USD": {
+    "score": 0.5942,
+    "price": 0.03865,
+    "sell_price": 0.035558,
+    "drop_order_price": 0.041742
+  },
+  "SUI/USD": {
+    "score": 0.5677,
+    "price": 3.2864,
+    "sell_price": 3.023488,
+    "drop_order_price": 3.549312
+  },
+  "SNX/USD": {
+    "score": 0.5647,
+    "price": 0.6415,
+    "sell_price": 0.59018,
+    "drop_order_price": 0.69282
+  },
+  "LDO/USD": {
+    "score": 0.5616,
+    "price": 0.767,
+    "sell_price": 0.70564,
+    "drop_order_price": 0.82836
+  },
+  "EGLD/USD": {
+    "score": 0.5556,
+    "price": 15.25,
+    "sell_price": 14.03,
+    "drop_order_price": 16.47
+  },
+  "INJ/USD": {
+    "score": 0.5288,
+    "price": 9.424,
+    "sell_price": 8.67008,
+    "drop_order_price": 10.17792
   },
   "FIL/USD": {
-    "score": 0.5094,
-    "price": 2.536,
-    "sell_price": 2.33312,
-    "drop_order_price": 2.73888
-  },
-  "KAVA/USD": {
-    "score": 0.5,
-    "price": 0.42875,
-    "sell_price": 0.39445,
-    "drop_order_price": 0.46305
-  },
-  "SHIB/USD": {
-    "score": 0.4944,
-    "price": 1.267e-05,
-    "sell_price": 1.166e-05,
-    "drop_order_price": 1.368e-05
+    "score": 0.5065,
+    "price": 2.5555,
+    "sell_price": 2.35106,
+    "drop_order_price": 2.75994
   },
   "DOT/USD": {
-    "score": 0.4865,
-    "price": 3.90675,
-    "sell_price": 3.59421,
-    "drop_order_price": 4.21929
+    "score": 0.4906,
+    "price": 3.9177,
+    "sell_price": 3.604284,
+    "drop_order_price": 4.231116
+  },
+  "KAVA/USD": {
+    "score": 0.4795,
+    "price": 0.4286,
+    "sell_price": 0.394312,
+    "drop_order_price": 0.462888
   },
   "TON/USD": {
-    "score": 0.4743,
-    "price": 2.995,
-    "sell_price": 2.7554,
-    "drop_order_price": 3.2346
+    "score": 0.4711,
+    "price": 3.002,
+    "sell_price": 2.76184,
+    "drop_order_price": 3.24216
+  },
+  "RUNE/USD": {
+    "score": 0.4683,
+    "price": 1.2345,
+    "sell_price": 1.13574,
+    "drop_order_price": 1.33326
+  },
+  "GRT/USD": {
+    "score": 0.4549,
+    "price": 0.08985,
+    "sell_price": 0.082662,
+    "drop_order_price": 0.097038
   },
   "STX/USD": {
-    "score": 0.4711,
-    "price": 0.85595,
-    "sell_price": 0.787474,
-    "drop_order_price": 0.924426
-  },
-  "ENS/USD": {
-    "score": 0.4673,
-    "price": 17.52,
-    "sell_price": 16.1184,
-    "drop_order_price": 18.9216
-  },
-  "BCH/USD": {
-    "score": 0.4526,
-    "price": 362.145,
-    "sell_price": 333.1734,
-    "drop_order_price": 391.1166
-  },
-  "ATOM/USD": {
-    "score": 0.4496,
-    "price": 4.10585,
-    "sell_price": 3.777382,
-    "drop_order_price": 4.434318
+    "score": 0.4483,
+    "price": 0.85185,
+    "sell_price": 0.783702,
+    "drop_order_price": 0.919998
   },
   "NEAR/USD": {
     "score": 0.4471,
-    "price": 2.263,
-    "sell_price": 2.08196,
-    "drop_order_price": 2.44404
-  },
-  "BTC/USD": {
-    "score": 0.4444,
-    "price": 96795.05,
-    "sell_price": 89051.446,
-    "drop_order_price": 104538.654
+    "price": 2.2715,
+    "sell_price": 2.08978,
+    "drop_order_price": 2.45322
   },
   "XRP/USD": {
-    "score": 0.4436,
-    "price": 2.12288,
-    "sell_price": 1.9530496,
-    "drop_order_price": 2.2927104
+    "score": 0.4407,
+    "price": 2.122645,
+    "sell_price": 1.9528334,
+    "drop_order_price": 2.2924566
+  },
+  "SHIB/USD": {
+    "score": 0.4387,
+    "price": 1.27e-05,
+    "sell_price": 1.168e-05,
+    "drop_order_price": 1.372e-05
+  },
+  "SOL/USD": {
+    "score": 0.4364,
+    "price": 146.275,
+    "sell_price": 134.573,
+    "drop_order_price": 157.977
+  },
+  "BTC/USD": {
+    "score": 0.4324,
+    "price": 96521.85,
+    "sell_price": 88800.102,
+    "drop_order_price": 104243.598
+  },
+  "ATOM/USD": {
+    "score": 0.4291,
+    "price": 4.12435,
+    "sell_price": 3.794402,
+    "drop_order_price": 4.454298
+  },
+  "BCH/USD": {
+    "score": 0.4286,
+    "price": 358.82,
+    "sell_price": 330.1144,
+    "drop_order_price": 387.5256
   },
   "CRV/USD": {
-    "score": 0.4242,
-    "price": 0.659,
-    "sell_price": 0.60628,
-    "drop_order_price": 0.71172
-  },
-  "ETH/USD": {
-    "score": 0.418,
-    "price": 1812.435,
-    "sell_price": 1667.4402,
-    "drop_order_price": 1957.4298
-  },
-  "GRT/USD": {
-    "score": 0.4155,
-    "price": 0.08961,
-    "sell_price": 0.0824412,
-    "drop_order_price": 0.0967788
+    "score": 0.4141,
+    "price": 0.6625,
+    "sell_price": 0.6095,
+    "drop_order_price": 0.7155
   },
   "UNI/USD": {
-    "score": 0.4119,
-    "price": 4.7765,
-    "sell_price": 4.39438,
-    "drop_order_price": 5.15862
+    "score": 0.4067,
+    "price": 4.8095,
+    "sell_price": 4.42474,
+    "drop_order_price": 5.19426
+  },
+  "XLM/USD": {
+    "score": 0.3927,
+    "price": 0.2590065,
+    "sell_price": 0.23828598,
+    "drop_order_price": 0.27972702
+  },
+  "ENS/USD": {
+    "score": 0.3918,
+    "price": 17.66,
+    "sell_price": 16.2472,
+    "drop_order_price": 19.0728
+  },
+  "COMP/USD": {
+    "score": 0.3862,
+    "price": 38.36,
+    "sell_price": 35.2912,
+    "drop_order_price": 41.4288
+  },
+  "XTZ/USD": {
+    "score": 0.3772,
+    "price": 0.53395,
+    "sell_price": 0.491234,
+    "drop_order_price": 0.576666
   },
   "AXS/USD": {
     "score": 0.3765,
-    "price": 2.3065,
-    "sell_price": 2.12198,
-    "drop_order_price": 2.49102
+    "price": 2.3115,
+    "sell_price": 2.12658,
+    "drop_order_price": 2.49642
   },
-  "XLM/USD": {
-    "score": 0.3759,
-    "price": 0.258195,
-    "sell_price": 0.2375394,
-    "drop_order_price": 0.2788506
-  },
-  "SAND/USD": {
-    "score": 0.3741,
-    "price": 0.2686,
-    "sell_price": 0.247112,
-    "drop_order_price": 0.290088
-  },
-  "EGLD/USD": {
-    "score": 0.3596,
-    "price": 15.115,
-    "sell_price": 13.9058,
-    "drop_order_price": 16.3242
+  "LINK/USD": {
+    "score": 0.374,
+    "price": 13.63898,
+    "sell_price": 12.5478616,
+    "drop_order_price": 14.7300984
   },
   "FLOW/USD": {
     "score": 0.3574,
-    "price": 0.3635,
-    "sell_price": 0.33442,
-    "drop_order_price": 0.39258
+    "price": 0.366,
+    "sell_price": 0.33672,
+    "drop_order_price": 0.39528
   },
-  "XTZ/USD": {
-    "score": 0.3533,
-    "price": 0.532,
-    "sell_price": 0.48944,
-    "drop_order_price": 0.57456
-  },
-  "OP/USD": {
-    "score": 0.3346,
-    "price": 0.5792,
-    "sell_price": 0.532864,
-    "drop_order_price": 0.625536
-  },
-  "INJ/USD": {
-    "score": 0.3333,
-    "price": 9.371,
-    "sell_price": 8.62132,
-    "drop_order_price": 10.12068
+  "ETH/USD": {
+    "score": 0.3015,
+    "price": 1802.565,
+    "sell_price": 1658.3598,
+    "drop_order_price": 1946.7702
   },
   "ALGO/USD": {
-    "score": 0.3221,
-    "price": 0.19623,
-    "sell_price": 0.1805316,
-    "drop_order_price": 0.2119284
-  },
-  "APE/USD": {
-    "score": 0.3081,
-    "price": 0.4782,
-    "sell_price": 0.439944,
-    "drop_order_price": 0.516456
+    "score": 0.2827,
+    "price": 0.197705,
+    "sell_price": 0.1818886,
+    "drop_order_price": 0.2135214
   },
   "AVAX/USD": {
-    "score": 0.2816,
-    "price": 19.22,
-    "sell_price": 17.6824,
-    "drop_order_price": 20.7576
+    "score": 0.2636,
+    "price": 19.28,
+    "sell_price": 17.7376,
+    "drop_order_price": 20.8224
   },
-  "LINK/USD": {
-    "score": 0.2774,
-    "price": 13.56132,
-    "sell_price": 12.4764144,
-    "drop_order_price": 14.6462256
-  },
-  "COMP/USD": {
-    "score": 0.2621,
-    "price": 38.18,
-    "sell_price": 35.1256,
-    "drop_order_price": 41.2344
+  "ADA/USD": {
+    "score": 0.2578,
+    "price": 0.6637795,
+    "sell_price": 0.61067714,
+    "drop_order_price": 0.71688186
   },
   "AR/USD": {
-    "score": 0.1875,
-    "price": 6.64,
-    "sell_price": 6.1088,
-    "drop_order_price": 7.1712
+    "score": 0.1538,
+    "price": 6.735,
+    "sell_price": 6.1962,
+    "drop_order_price": 7.2738
   },
-  "DYDX/USD": {
-    "score": 0.1119,
-    "price": 0.5465,
-    "sell_price": 0.50278,
-    "drop_order_price": 0.59022
+  "SAND/USD": {
+    "score": 0.1515,
+    "price": 0.2699,
+    "sell_price": 0.248308,
+    "drop_order_price": 0.291492
   },
   "TRX/USD": {
-    "score": 0.0811,
-    "price": 0.2464725,
-    "sell_price": 0.2267547,
-    "drop_order_price": 0.2661903
+    "score": 0.1111,
+    "price": 0.2476025,
+    "sell_price": 0.2277943,
+    "drop_order_price": 0.2674107
+  },
+  "DYDX/USD": {
+    "score": 0.1103,
+    "price": 0.5535,
+    "sell_price": 0.50922,
+    "drop_order_price": 0.59778
   }
 }

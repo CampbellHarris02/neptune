@@ -64,9 +64,14 @@
 <body>
   <header>
     <img src="/static/assets/neptune_icon.png" alt="Neptune Icon" />
-    <h1>Neptune Positions</h1>
+    <h1>Neptune Crypto Trading Bot</h1>
   </header>
 
+  <div id="statusDisplay" style="margin-bottom: 1.5rem; font-size: 1.1rem; color: #94a3b8;">
+    🔄 Fetching status...
+  </div>
+
+  <h1 style="margin-top: 3rem;">Positions</h1>
   <table id="positionsTable">
     <thead>
       <tr>
@@ -81,24 +86,98 @@
     <tbody></tbody>
   </table>
 
-  <script>
-    fetch("/positions")
-      .then(res => res.json())
-      .then(data => {
-        const tbody = document.querySelector("#positionsTable tbody");
+    <h1 style="margin-top: 3rem;">Portfolio</h1>
+    <table id="portfolioTable">
+        <thead>
+            <tr>
+            <th>Asset</th>
+            <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h1 style="margin-top: 3rem;">Ranked Coins</h1>
+    <table id="rankedCoinsTable">
+    <thead>
+        <tr>
+        <th>Symbol</th>
+        <th>Score</th>
+        <th>Price</th>
+        <th>Sell Price</th>
+        <th>Drop Order Price</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+    </table>
+
+
+
+    <script>
+        // Load positions
+        fetch("/positions")
+          .then(res => res.json())
+          .then(data => {
+            const tbody = document.querySelector("#positionsTable tbody");
+            Object.entries(data).forEach(([symbol, info]) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${symbol}</td>
+                <td>${Number(info.entry_price).toFixed(4)}</td>
+                <td>${Number(info.trailing_high).toFixed(4)}</td>
+                <td>${Number(info.stop_price).toFixed(4)}</td>
+                <td>${Number(info.qty).toFixed(4)}</td>
+                <td>${new Date(info.filled_at).toLocaleString()}</td>
+              `;
+              tbody.appendChild(row);
+            });
+          });
+      
+        // Load portfolio
+        fetch("/portfolio")
+          .then(res => res.json())
+          .then(data => {
+            const tbody = document.querySelector("#portfolioTable tbody");
+            Object.entries(data).forEach(([symbol, qty]) => {
+              const row = document.createElement("tr");
+              row.innerHTML = `
+                <td>${symbol}</td>
+                <td>${Number(qty).toFixed(4)}</td>
+              `;
+              tbody.appendChild(row);
+            });
+          });
+
+        // Load ranked coins
+        fetch("/ranked_coins")
+        .then(res => res.json())
+        .then(data => {
+        const tbody = document.querySelector("#rankedCoinsTable tbody");
         Object.entries(data).forEach(([symbol, info]) => {
             const row = document.createElement("tr");
             row.innerHTML = `
-              <td>${symbol}</td>
-              <td>${Number(info.entry_price).toFixed(4)}</td>
-              <td>${Number(info.trailing_high).toFixed(4)}</td>
-              <td>${Number(info.stop_price).toFixed(4)}</td>
-              <td>${Number(info.qty).toFixed(4)}</td>
-              <td>${new Date(info.filled_at).toLocaleString()}</td>
+            <td>${symbol}</td>
+            <td>${Number(info.score).toFixed(4)}</td>
+            <td>${Number(info.price).toFixed(4)}</td>
+            <td>${Number(info.sell_price).toFixed(4)}</td>
+            <td>${Number(info.drop_order_price).toFixed(4)}</td>
             `;
             tbody.appendChild(row);
-          });          
-      });
-  </script>
+        });
+        });
+
+        // Load bot status
+        fetch("/status")
+        .then(res => res.json())
+        .then(data => {
+        document.getElementById("statusDisplay").textContent = `📡 ${data.status}`;
+        })
+        .catch(() => {
+        document.getElementById("statusDisplay").textContent = "⚠️ Unable to load status.";
+        });
+
+
+      </script>
+      
 </body>
 </html>

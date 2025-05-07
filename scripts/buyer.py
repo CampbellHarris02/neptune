@@ -17,7 +17,7 @@ from dotenv import load_dotenv        # type: ignore
 from rich.console import Console    # type: ignore
 from rich.logging import RichHandler    # type: ignore
 
-from utilities import load_json, save_json
+from scripts.utilities import load_json, save_json
 
 # ───────────────────────────── Config ────────────────────────────────────────
 load_dotenv()
@@ -106,7 +106,6 @@ def buyer() -> None:
             logger.error("Error placing order for %s: %s", coin_pair, exc)
 
     save_json(pending_orders, "data/pending_orders.json")
-    save_json(pending_orders, "dashboard/public/data/pending_orders.json")
     console.log("[green]Buyer finished")
 
 

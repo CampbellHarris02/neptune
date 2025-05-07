@@ -2,7 +2,7 @@ import os
 import json
 from dotenv import load_dotenv  # type: ignore
 from datetime import datetime
-from utilities import load_json, save_json
+from scripts.utilities import load_json, save_json
 
 load_dotenv()
 

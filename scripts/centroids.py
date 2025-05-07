@@ -200,8 +200,6 @@ def find_good_clusters(df):
         "successes": [cluster_success_counts.get(c, 0) for c in success_ratios],
         "total": [cluster_total_counts[c] for c in success_ratios]
     }).sort_values("success_ratio", ascending=False)
-
-    print(summary_df)
     
     return df, summary_df
 
@@ -236,12 +234,9 @@ def fetch_kraken_ohlcv(symbol="BTC/USD", timeframe="1h", lookback_days=30, limit
 
     all_ohlcv = []
 
-    print(f"⏳ Fetching last {lookback_days} days of {symbol} ({timeframe}) data...")
-
     try:
         ohlcv = kraken.fetch_ohlcv(symbol, timeframe=timeframe, since=since, limit=limit_per_fetch)
         all_ohlcv.extend(ohlcv)
-        #print(f"✅ Got {len(ohlcv)} candles — latest: {pd.to_datetime(ohlcv[-1][0], unit='ms')}")
         since = ohlcv[-1][0] + 1
 
         #time.sleep(pause)
@@ -253,7 +248,6 @@ def fetch_kraken_ohlcv(symbol="BTC/USD", timeframe="1h", lookback_days=30, limit
     df['timestamp'] = pd.to_datetime(df['timestamp'], unit='ms')
     df.set_index('timestamp', inplace=True)
 
-    print(f"✅ Fetched {len(df)} rows for {symbol}")
     return df
 
 
@@ -264,7 +258,6 @@ def ranked(assets):
     coin_details = {}  # ⬅️ store full record per coin
 
     for symbol, json_file in assets.items():
-        print(f"\n🚀 Fetching and processing {symbol} from Kraken...")
 
         df = fetch_kraken_ohlcv(symbol)
         df = df[['open', 'high', 'low', 'close']].dropna()
@@ -305,10 +298,7 @@ def ranked(assets):
     with open("data/ranked_coins.json", "w") as f:
         json.dump(sorted_dict, f, indent=2)
         
-    with open("dashboard/public/data/ranked_coins.json", "w") as f:
-        json.dump(sorted_dict, f, indent=2)
 
-    print("✅ Saved ranked coin scores to ranked_coins.json")
 
 
 
@@ -341,7 +331,6 @@ if __name__ == "__main__":
     coin_details = {}  # ⬅️ store full record per coin
 
     for symbol, json_file in assets.items():
-        print(f"\n🚀 Fetching and processing {symbol} from Kraken...")
 
         df = fetch_kraken_ohlcv(symbol)
         df = df[['open', 'high', 'low', 'close']].dropna()
@@ -377,7 +366,5 @@ if __name__ == "__main__":
     # 💾 Save to JSON
     with open("data/ranked_coins.json", "w") as f:
         json.dump(sorted_dict, f, indent=2)
-
-    print("✅ Saved ranked coin scores to ranked_coins.json")
 
 

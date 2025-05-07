@@ -3,7 +3,7 @@ import json
 import time
 from datetime import datetime
 from dotenv import load_dotenv  # type: ignore
-from utilities import load_json, save_json
+from scripts.utilities import load_json, save_json
 
 # --- Config ---
 load_dotenv()
