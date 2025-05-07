@@ -40,7 +40,6 @@ logger = logging.getLogger(__name__)
 ASSETS: Dict[str, str] = {
     "BTC/USD": "data/centroids/btc_usd_cluster_centers.json",
     "ETH/USD": "data/centroids/eth_usd_cluster_centers.json",
-    "BNB/USD": "data/centroids/bnb_usd_cluster_centers.json",
     "SOL/USD": "data/centroids/sol_usd_cluster_centers.json",
     "XRP/USD": "data/centroids/xrp_usd_cluster_centers.json",
     "TON/USD": "data/centroids/ton_usd_cluster_centers.json",

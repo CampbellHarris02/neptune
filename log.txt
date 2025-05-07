@@ -1,0 +1,32 @@
+2025-05-07 12:42:03 [INFO] USD cash balance: 0.068800
+2025-05-07 12:42:04 [INFO] APE/USD: 52.910592 ≈ $25.21
+2025-05-07 12:42:05 [INFO] AVAX/USD: 0.580491 ≈ $11.11
+2025-05-07 12:42:06 [INFO] DYDX/USD: 22.331911 ≈ $12.17
+2025-05-07 12:42:07 [INFO] EGLD/USD: 0.827561 ≈ $12.46
+2025-05-07 12:42:08 [INFO] ENS/USD: 0.725013 ≈ $12.59
+2025-05-07 12:42:09 [INFO] KAVA/USD: 29.399947 ≈ $12.54
+2025-05-07 12:42:10 [INFO] OP/USD: 19.494020 ≈ $11.24
+2025-05-07 12:42:11 [INFO] SHIB/USD: 1021919.898910 ≈ $12.92
+2025-05-07 12:42:12 [INFO] SOL/USD: 0.093825 ≈ $13.67
+2025-05-07 12:42:12 [INFO] portfolio.json updated (10 assets).
+2025-05-07 12:42:15 [INFO] Removing stale position – no on‑chain balance for CRV/USD
+2025-05-07 12:42:15 [INFO] Removing stale position – no on‑chain balance for INJ/USD
+2025-05-07 12:42:15 [INFO] Removing stale position – no on‑chain balance for RUNE/USD
+2025-05-07 12:42:15 [INFO] Removing stale position – no on‑chain balance for FLOW/USD
+2025-05-07 12:42:15 [INFO] Removing stale position – no on‑chain balance for GRT/USD
+2025-05-07 12:42:15 [INFO] positions.json verified (4 active).
+2025-05-07 12:42:18 [INFO] USD cash balance: 0.068800
+2025-05-07 12:42:19 [INFO] APE/USD: 52.910592 ≈ $25.21
+2025-05-07 12:42:20 [INFO] AVAX/USD: 0.580491 ≈ $11.11
+2025-05-07 12:42:21 [INFO] DYDX/USD: 22.331911 ≈ $12.17
+2025-05-07 12:42:22 [INFO] EGLD/USD: 0.827561 ≈ $12.46
+2025-05-07 12:42:23 [INFO] ENS/USD: 0.725013 ≈ $12.59
+2025-05-07 12:42:24 [INFO] KAVA/USD: 29.399947 ≈ $12.54
+2025-05-07 12:42:25 [INFO] OP/USD: 19.494020 ≈ $11.24
+2025-05-07 12:42:26 [INFO] SHIB/USD: 1021919.898910 ≈ $12.92
+2025-05-07 12:42:27 [INFO] SOL/USD: 0.093825 ≈ $13.67
+2025-05-07 12:42:27 [INFO] portfolio.json updated (10 assets).
+2025-05-07 12:42:30 [INFO] positions.json verified (4 active).
+2025-05-07 12:45:09 [INFO] Portfolio 123.98 USD (cash 0.07 USD) – max allocation per coin 12.40 USD
+2025-05-07 12:45:09 [INFO] Skip LTC/USD – insufficient USD (0.07 left)
+2025-05-07 12:45:32 [INFO] Bot terminated by user

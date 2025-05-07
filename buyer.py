@@ -106,6 +106,7 @@ def buyer() -> None:
             logger.error("Error placing order for %s: %s", coin_pair, exc)
 
     save_json(pending_orders, "data/pending_orders.json")
+    save_json(pending_orders, "dashboard/public/data/pending_orders.json")
     console.log("[green]Buyer finished")
 
 

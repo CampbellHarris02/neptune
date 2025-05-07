@@ -1,2 +1,9 @@
 .venv/
-venv/s
+venv/
+
+.env/
+env/
+
+logs/
+
+data/

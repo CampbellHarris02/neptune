@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NEPTUNE</title>
+  <link rel="icon" href="/static/assets/neptune_icon.png" type="image/png" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom, #0d1b2a, #1b263b);
+      color: #e0e1dd;
+      padding: 2rem;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    header img {
+      width: 50px;
+      height: 50px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+      color: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1e293b;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #334155;
+      text-align: left;
+    }
+
+    th {
+      background: #0f172a;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    tr:hover {
+      background-color: #2c3e50;
+    }
+
+    td {
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="/static/assets/neptune_icon.png" alt="Neptune Icon" />
+    <h1>Neptune Positions</h1>
+  </header>
+
+  <table id="positionsTable">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Entry Price</th>
+        <th>Trailing High</th>
+        <th>Stop Price</th>
+        <th>Quantity</th>
+        <th>Filled At</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    fetch("/positions")
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.querySelector("#positionsTable tbody");
+        Object.entries(data).forEach(([symbol, info]) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${symbol}</td>
+              <td>${Number(info.entry_price).toFixed(4)}</td>
+              <td>${Number(info.trailing_high).toFixed(4)}</td>
+              <td>${Number(info.stop_price).toFixed(4)}</td>
+              <td>${Number(info.qty).toFixed(4)}</td>
+              <td>${new Date(info.filled_at).toLocaleString()}</td>
+            `;
+            tbody.appendChild(row);
+          });          
+      });
+  </script>
+</body>
+</html>

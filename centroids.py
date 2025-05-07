@@ -304,6 +304,9 @@ def ranked(assets):
     # 💾 Save to JSON
     with open("data/ranked_coins.json", "w") as f:
         json.dump(sorted_dict, f, indent=2)
+        
+    with open("dashboard/public/data/ranked_coins.json", "w") as f:
+        json.dump(sorted_dict, f, indent=2)
 
     print("✅ Saved ranked coin scores to ranked_coins.json")
 
