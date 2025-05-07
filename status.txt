@@ -1,1 +1,1 @@
-[2025-05-07 14:39:14] 🔄 Five-minute stop-loss sweep
+[2025-05-07 17:03:41] ⛔ User interrupt - shutting down…

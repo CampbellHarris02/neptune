@@ -17,10 +17,12 @@ from rich.console import Console # type: ignore
 from rich.logging import RichHandler # type: ignore
 
 # ───────────────────────────── Third‑party strategy modules ───────────────────
-from scripts.centroids import ranked
+from scripts.rank import rank_coins
 from scripts.update_all import update_all
 from scripts.buyer import buyer
-from scripts.seller import check_pending_orders
+from scripts.check_pending_orders import check_pending_orders
+from scripts.monitor_positions import monitor_positions
+
 
 # ───────────────────────────── Logging / Rich setup ──────────────────────────
 LOG_FILE = "log.txt"
@@ -102,7 +104,7 @@ ASSETS: Dict[str, str] = {
 def main() -> None:
     """Run hourly scans & five‑minute stop‑loss checks with rich output."""
     last_hourly = 0.0
-    update_all()  # initial full sync
+    update_all(assets=ASSETS)  # initial full sync
     console.rule("[bold cyan]Bot started")
 
     with console.status("[bold cyan]Running", spinner="earth"):
@@ -110,13 +112,14 @@ def main() -> None:
             now = time.time()
             if now - last_hourly >= 1800:  # 30‑minute cadence
                 log_status("⏰ Hourly: portfolio sync, scan, buyer")
-                update_all()
-                ranked(assets=ASSETS)
+                update_all(assets=ASSETS)
+                rank_coins()
                 buyer()
                 last_hourly = now
 
             log_status("🔄 Five-minute stop-loss sweep")
             check_pending_orders()
+            monitor_positions()
             time.sleep(300)
 
 if __name__ == "__main__":

@@ -170,10 +170,10 @@
         fetch("/status")
         .then(res => res.json())
         .then(data => {
-        document.getElementById("statusDisplay").textContent = `📡 ${data.status}`;
+        document.getElementById("statusDisplay").textContent = `${data.status}`;
         })
         .catch(() => {
-        document.getElementById("statusDisplay").textContent = "⚠️ Unable to load status.";
+        document.getElementById("statusDisplay").textContent = "WARNING Unable to load status.";
         });
 
 

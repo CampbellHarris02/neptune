@@ -18,6 +18,8 @@ from typing import Optional, Dict, Any
 import ccxt  # type: ignore
 from dotenv import load_dotenv  # type: ignore
 
+from scripts.historical import historical
+
 # ---------------------------------------------------------------------------
 # 0.  Logging
 # ---------------------------------------------------------------------------
@@ -124,23 +126,47 @@ def update_portfolio() -> None:
     logging.info("portfolio.json updated (%d assets).", len(updated))
 
 
+ALLOWED_FIELDS = {"entry_price", "qty", "filled_at"}   # nothing else!
+
 def verify_positions() -> None:
+    """
+    • Remove any position whose on-chain balance is zero
+    • Strip extraneous keys so each entry has only
+      {'entry_price', 'qty', 'filled_at'}
+    """
     balances = safe_fetch_balances()
     if balances is None:
-        return  # skip pruning when balance unknown
+        return                                          # skip cycle if API down
 
     positions = load_json(POSITIONS_FILE)
     updated: Dict[str, Any] = {}
 
     for symbol, entry in positions.items():
         coin = symbol.split("/")[0]
-        if balances["total"].get(coin, 0) > 0:
-            updated[symbol] = entry
+
+        # 1) keep only if wallet still holds that coin
+        if balances["total"].get(coin, 0) == 0:
+            logging.info("Removing stale position - no balance for %s", symbol)
+            continue
+
+        # 2) enforce schema
+        clean_entry = {k: entry[k] for k in ALLOWED_FIELDS if k in entry}
+
+        # warn if something was discarded
+        extra_keys = set(entry) - ALLOWED_FIELDS
+        if extra_keys:
+            logging.warning("%s had extra fields %s - removed",
+                            symbol, ", ".join(extra_keys))
+
+        # 3) sanity-check required fields
+        if ALLOWED_FIELDS.issubset(clean_entry):
+            updated[symbol] = clean_entry
         else:
-            logging.info("Removing stale position – no on‑chain balance for %s", symbol)
+            logging.error("Position %s missing required keys - dropped", symbol)
 
     save_json(updated, POSITIONS_FILE)
     logging.info("positions.json verified (%d active).", len(updated))
+
 
 
 def clean_pending_orders() -> None:
@@ -158,7 +184,7 @@ def clean_pending_orders() -> None:
             if status["status"] in ("open", "pending"):
                 updated.append(order)
             else:
-                logging.info("Order %s is %s – removing from pending list", order_id, status["status"])
+                logging.info("Order %s is %s - removing from pending list", order_id, status["status"])
         except Exception as exc:
             logging.warning("Could not fetch order %s: %s", order_id, exc)
         time.sleep(0.3)
@@ -170,10 +196,11 @@ def clean_pending_orders() -> None:
 # 6.  Orchestration
 # ---------------------------------------------------------------------------
 
-def update_all() -> None:
+def update_all(assets) -> None:
     update_portfolio()
     verify_positions()
     clean_pending_orders()
+    historical(assets)
 
 
 if __name__ == "__main__":
