@@ -39,7 +39,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-status = console.status("", spinner="earth")
+status = console.status("Running...", spinner="earth")
 status.start()                     # one spinner for the whole run
 STATUS_FILE = "status.txt"
 def log_status(message: str) -> None:
@@ -106,18 +106,21 @@ ASSETS: Dict[str, str] = {
 
 def main() -> None:
     last_hourly = 0.0
-    update_all(assets=ASSETS)          # initial sync
+    update_all(assets=ASSETS, status=status)          # initial sync
     console.rule("[bold cyan]Bot started")
     while True:
         now = time.time()
         if now - last_hourly >= 1800:  # every 30 min
             log_status("Hourly: portfolio sync, scan, buyer")
-            update_all(assets=ASSETS)
+            update_all(assets=ASSETS, status=status)
+            log_status(message="Evaluating coins...")
             rank_coins()
+            log_status(message="Running buyer...")
             buyer()
             last_hourly = now
-        log_status("Five-minute stop-loss sweep")
+        log_status(message="Checking pending orders...")
         check_pending_orders()
+        log_status(message="Monitoring positions...")
         monitor_positions()
         time.sleep(300)
 

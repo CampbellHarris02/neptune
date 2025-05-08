@@ -223,23 +223,34 @@ def get_centroids(
 def safe_cluster(series, k=8):
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", ConvergenceWarning)
-        return cluster_centroids(series, n_clusters=k)
+
+        # Convert series to array and filter out all-zero vectors
+        vectors = np.stack(series.to_numpy())
+        non_zero_mask = ~np.all(vectors == 0, axis=1)
+        filtered_vectors = vectors[non_zero_mask]
+
+        n_samples = len(filtered_vectors)
+        if n_samples == 0:
+            #print("⚠️ Skipping clustering: all centroid vectors are zero.")
+            dummy_labels = np.full(len(series), -1)
+            return dummy_labels, None, lambda x: np.full(len(x), -1)
+
+        if n_samples < k:
+            #print(f"⚠️ Reducing k: only {n_samples} valid samples (k={k} → {n_samples})")
+            k = n_samples
+
+        # Fit on filtered vectors
+        kmeans = KMeans(n_clusters=k, random_state=42)
+        labels = np.full(len(series), -1)
+        labels[non_zero_mask] = kmeans.fit_predict(filtered_vectors)
+
+        def quantize_centroids(new_centroids):
+            new_centroids = np.atleast_2d(new_centroids)
+            return kmeans.predict(new_centroids)
+
+        return labels, kmeans, quantize_centroids
 
 
-def cluster_centroids(centroid_series, n_clusters=8, random_state=42):
-    if len(centroid_series) == 0:
-        raise ValueError("No centroid vectors to cluster — check data pipeline.")
-
-    centroid_matrix = np.stack(centroid_series.to_numpy())
-
-    kmeans = KMeans(n_clusters=n_clusters, random_state=random_state)
-    labels = kmeans.fit_predict(centroid_matrix)
-
-    def quantize_centroids(new_centroids):
-        new_centroids = np.atleast_2d(new_centroids)
-        return kmeans.predict(new_centroids)
-
-    return labels, kmeans, quantize_centroids
 
 
 

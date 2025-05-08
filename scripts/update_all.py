@@ -17,8 +17,10 @@ from typing import Optional, Dict, Any
 
 import ccxt  # type: ignore
 from dotenv import load_dotenv  # type: ignore
+from datetime import datetime
 
 from scripts.historical import historical
+
 
 # ---------------------------------------------------------------------------
 # 0.  Logging
@@ -30,6 +32,19 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
+
+STATUS_FILE = "status.txt"
+def update_log_status(status, message: str) -> None:
+    """Replace the status line in the terminal and write status.txt."""
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    full = f"[{ts}] {message}"
+
+    # Update Rich status (overwrites the same line)
+    status.update(f"[cyan]{message}")
+
+    # Persist for the web-UI
+    with open(STATUS_FILE, "w") as f:
+        f.write(full + "\n")
 
 # ---------------------------------------------------------------------------
 # 1.  Environment & File paths
@@ -196,10 +211,14 @@ def clean_pending_orders() -> None:
 # 6.  Orchestration
 # ---------------------------------------------------------------------------
 
-def update_all(assets) -> None:
+def update_all(assets, status) -> None:
+    update_log_status(status=status, message="Updating portfolio positions...")
     update_portfolio()
+    update_log_status(status=status, message="Syncing local books with Kraken's portfolio positions...")
     verify_positions()
+    update_log_status(status=status, message="Cleaning pending orders...")
     clean_pending_orders()
+    update_log_status(status=status, message="Updating historical data...")
     historical(assets)
 
 
