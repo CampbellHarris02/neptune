@@ -155,13 +155,18 @@
         const tbody = document.querySelector("#rankedCoinsTable tbody");
         Object.entries(data).forEach(([symbol, info]) => {
             const row = document.createElement("tr");
+            row.style.cursor = "pointer";
+            row.onclick = () => {
+              window.location.href = `/chart/${symbol.toLowerCase().replace("/", "_")}`;
+            };
             row.innerHTML = `
-            <td>${symbol}</td>
-            <td>${Number(info.score).toFixed(4)}</td>
-            <td>${Number(info.price).toFixed(4)}</td>
-            <td>${Number(info.sell_price).toFixed(4)}</td>
-            <td>${Number(info.drop_order_price).toFixed(4)}</td>
+              <td>${symbol}</td>
+              <td>${Number(info.score).toFixed(4)}</td>
+              <td>${Number(info.price).toFixed(4)}</td>
+              <td>${Number(info.sell_price).toFixed(4)}</td>
+              <td>${Number(info.drop_order_price).toFixed(4)}</td>
             `;
+
             tbody.appendChild(row);
         });
         });

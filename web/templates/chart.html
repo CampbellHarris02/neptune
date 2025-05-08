@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ symbol }} Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #0d1b2a;
+      color: #e0e1dd;
+      font-family: "Segoe UI", sans-serif;
+      padding: 2rem;
+    }
+    canvas {
+      background: #1e293b;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <h1>{{ symbol }} – 1D Price Chart</h1>
+  <canvas id="priceChart" width="1000" height="400"></canvas>
+
+  <script>
+    fetch(`/historical_data/{{ symbol.lower() }}/1d.csv`)
+      .then(response => response.text())
+      .then(text => {
+        const lines = text.trim().split("\n");
+        const headers = lines.shift().split(",");
+        const rows = lines.map(line => line.split(","));
+
+        const timestamps = rows.map(r => r[0]);
+        const closes = rows.map(r => parseFloat(r[4]));
+
+        const ctx = document.getElementById("priceChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: timestamps,
+            datasets: [{
+              label: "{{ symbol }} Close Price",
+              data: closes,
+              borderColor: "white",
+              backgroundColor: "rgba(255,255,255,0.1)",
+              tension: 0.2
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: { ticks: { color: "#e0e1dd" } },
+              y: { ticks: { color: "#e0e1dd" } }
+            }
+          }
+        });
+      });
+  </script>
+</body>
+</html>

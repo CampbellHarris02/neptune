@@ -1,8 +1,19 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, send_from_directory
 import json
 import os
 
 app = Flask(__name__)
+
+
+@app.route("/chart/<symbol>")
+def chart(symbol):
+    return render_template("chart.html", symbol=symbol.upper())
+
+@app.route("/historical_data/<symbol>/<filename>")
+def serve_csv(symbol, filename):
+    return send_from_directory(f"data/historical/{symbol.lower()}", filename)
+
+
 
 @app.route("/")
 def home():

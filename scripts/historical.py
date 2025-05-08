@@ -50,7 +50,6 @@ ASSETS = {
     "INJ/USD": "data/centroids/inj_usd_cluster_centers.json",
     "LDO/USD": "data/centroids/ldo_usd_cluster_centers.json",
     "SUI/USD": "data/centroids/sui_usd_cluster_centers.json",
-    "OP/USD": "data/centroids/op_usd_cluster_centers.json",
     "STX/USD": "data/centroids/stx_usd_cluster_centers.json",
     "GRT/USD": "data/centroids/grt_usd_cluster_centers.json",
     "FLOW/USD": "data/centroids/flow_usd_cluster_centers.json",
@@ -63,7 +62,6 @@ ASSETS = {
     "CHZ/USD": "data/centroids/chz_usd_cluster_centers.json",
     "APE/USD": "data/centroids/ape_usd_cluster_centers.json",
     "AXS/USD": "data/centroids/axs_usd_cluster_centers.json",
-    "DYDX/USD": "data/centroids/dydx_usd_cluster_centers.json",
     "COMP/USD": "data/centroids/comp_usd_cluster_centers.json",
 }
 
@@ -76,7 +74,7 @@ os.makedirs(BASE_OUTPUT_DIR, exist_ok=True)
 # Fetch function
 # ─────────────────────────────────────────────────────────────
 
-def fetch_kraken_ohlcv(symbol, timeframe, lookback_amount, lookback_unit="hours", limit_per_fetch=720, pause=5):
+def fetch_kraken_ohlcv(symbol, timeframe, lookback_amount, lookback_unit="hours", limit_per_fetch=720, pause=2.5):
     kraken = ccxt.kraken({
         'apiKey': os.getenv("KRAKEN_API_KEY"),
         'secret': os.getenv("KRAKEN_API_SECRET"),
@@ -133,7 +131,7 @@ def historical(assets):
 
             # always refresh (overwrite) ───────────────────────────────
             df = fetch_kraken_ohlcv(symbol, timeframe, lookback_amount=hours)
-            time.sleep(5)   # polite delay for the API
+            time.sleep(2.5)   # polite delay for the API
 
             if df is not None and not df.empty:
                 df.to_csv(file_path)
