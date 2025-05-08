@@ -204,6 +204,7 @@ def update_all(assets) -> None:
 
 
 if __name__ == "__main__":
+
     logging.info("────────── update cycle start ──────────")
     update_all()
     logging.info("────────── update cycle end ───────────\n")

@@ -1,9 +1,9 @@
 from pathlib import Path
-from ta.momentum import RSIIndicator, ROCIndicator
-from ta.trend    import MACD
+from ta.momentum import RSIIndicator, ROCIndicator # type: ignore
+from ta.trend    import MACD # type: ignore
 import numpy as np
 import pandas as pd
-import ccxt, os, time, logging
+import ccxt, os, time, logging # type: ignore
 from datetime import datetime, timedelta, timezone
 from dotenv import load_dotenv        # type: ignore
 
@@ -139,3 +139,19 @@ def sell_and_log(symbol: str, price: float, data: dict,
         positions = load_json(POSITION_FILE)
         positions[symbol] = data
         save_json(positions, POSITION_FILE)
+
+
+if __name__ == "__main__":
+    import time
+    from rich.console import Console # type: ignore
+
+    console = Console()
+    console.log("[cyan]Starting position monitor loop…")
+
+    while True:
+        try:
+            monitor_positions()
+            console.log(f"[green]monitor_positions ran successfully at {datetime.now().isoformat()}")
+        except Exception as e:
+            logger.error("Error in monitor_positions(): %s", e, exc_info=True)
+        time.sleep(SLEEP_SECONDS)

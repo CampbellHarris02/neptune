@@ -22,7 +22,7 @@ from scripts.utilities import load_json, save_json
 load_dotenv()
 
 LOG_FILE              = "log.txt"
-MIN_SCORE_THRESHOLD   = 0.70
+MIN_SCORE_THRESHOLD   = 0.7
 BUY_PORTFOLIO_PERCENT = 0.10   # allocate at most 10 % of total portfolio
 
 # ───────────────────────────── Logging setup ────────────────────────────────
@@ -91,7 +91,14 @@ def buyer() -> None:
 
         try:
             order = kraken.create_limit_buy_order(symbol, amount, price)
-            order_id = order.get("id") or order.get("orderId")
+            if isinstance(order, dict):
+                order_id = order.get("id") or order.get("orderId")
+            elif isinstance(order, list) and len(order) > 0:
+                # Maybe Kraken returned [ order_id, … ]?
+                order_id = order[0]
+            else:
+                raise ValueError(f"Unexpected order format: {order}")
+
             logger.info("Order placed - id %s", order_id)
 
             pending_orders[symbol] = {

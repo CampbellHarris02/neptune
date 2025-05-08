@@ -1,6 +1,6 @@
 import json
 import os
-import ccxt
+import ccxt #type: ignore
 from dotenv import load_dotenv        # type: ignore
 from rich.console import Console        # type: ignore
 from rich.logging import RichHandler    # type: ignore
@@ -23,11 +23,24 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # --- Utilities ---
+from pathlib import Path
+
+BASE = Path(__file__).parent.parent   # neptune/scripts → neptune/
+
+
 def load_json(path):
-    return json.load(open(path)) if os.path.exists(path) else {}
+    full = os.path.join(BASE, path)
+    if os.path.exists(full):
+        with open(full, "r", encoding="utf-8") as f:
+            return json.load(f)
+    else:
+        return {}
 
 def save_json(obj, path):
-    with open(path, "w") as f:
+    full = os.path.join(BASE, path)
+    # ensure the directory exists
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    with open(full, "w", encoding="utf-8") as f:
         json.dump(obj, f, indent=2)
         
         

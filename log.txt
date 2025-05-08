@@ -11,3 +11,44 @@
 2025-05-07 17:04:07 [INFO] portfolio.json updated (10 assets).
 2025-05-07 17:04:10 [INFO] positions.json verified (4 active).
 2025-05-07 17:12:04 [INFO] Bot terminated by user
+2025-05-07 17:27:54 [INFO] USD cash balance: 125.194500
+2025-05-07 17:27:54 [INFO] portfolio.json updated (1 assets).
+2025-05-07 17:27:57 [INFO] Removing stale position - no balance for AVAX/USD
+2025-05-07 17:27:57 [INFO] Removing stale position - no balance for KAVA/USD
+2025-05-07 17:27:57 [INFO] Removing stale position - no balance for APE/USD
+2025-05-07 17:27:57 [INFO] Removing stale position - no balance for SOL/USD
+2025-05-07 17:27:57 [INFO] positions.json verified (0 active).
+2025-05-07 18:20:12 [INFO] USD cash balance: 125.194500
+2025-05-07 18:20:12 [INFO] portfolio.json updated (1 assets).
+2025-05-07 18:20:15 [INFO] positions.json verified (0 active).
+2025-05-07 19:05:19 [INFO] Bot terminated by user
+2025-05-07 21:26:17 [INFO] USD cash balance: 125.194500
+2025-05-07 21:26:17 [INFO] portfolio.json updated (1 assets).
+2025-05-07 21:26:20 [INFO] positions.json verified (0 active).
+2025-05-07 21:26:54 [INFO] Bot terminated by user
+2025-05-07 21:27:38 [INFO] USD cash balance: 125.194500
+2025-05-07 21:27:38 [INFO] portfolio.json updated (1 assets).
+2025-05-07 21:27:41 [INFO] positions.json verified (0 active).
+2025-05-07 22:19:51 [INFO] USD cash balance: 125.194500
+2025-05-07 22:19:51 [INFO] portfolio.json updated (1 assets).
+2025-05-07 22:19:54 [INFO] positions.json verified (0 active).
+2025-05-07 23:06:39 [INFO] Portfolio 125.19 USD (cash 125.19 USD) – max allocation per coin 12.52 USD
+2025-05-07 23:06:39 [INFO] Placing limit buy: LTC/USD 0.142008 @ 88.16000 USD
+2025-05-07 23:06:41 [INFO] Order placed - id OAGRM3-GKGVU-BQ2TR7
+2025-05-07 23:06:41 [ERROR] Error placing order for LTC/USD: list indices must be integers or slices, not str
+2025-05-07 23:06:41 [INFO] Placing limit buy: BCH/USD 0.034997 @ 357.73001 USD
+2025-05-07 23:06:41 [INFO] Order placed - id OCXBHQ-LQJJL-GGUZA7
+2025-05-07 23:06:41 [ERROR] Error placing order for BCH/USD: list indices must be integers or slices, not str
+2025-05-07 23:12:03 [INFO] Processing AAVE/USD …
+2025-05-07 23:12:04 [INFO]   AAVE/USD final_ratio=0.7476 (succ 613 / 810)
+2025-05-07 23:12:04 [INFO] Processing ADA/USD …
+2025-05-07 23:12:05 [INFO]   ADA/USD final_ratio=0.6410 (succ 1532 / 2380)
+2025-05-07 23:12:05 [INFO] Processing ALGO/USD …
+2025-05-07 23:12:06 [INFO]   ALGO/USD final_ratio=0.6117 (succ 1136 / 1847)
+2025-05-07 23:12:06 [INFO] Processing APE/USD …
+2025-05-07 23:12:06 [INFO]   APE/USD final_ratio=0.6939 (succ 1165 / 1669)
+2025-05-07 23:12:06 [INFO] Processing AR/USD …
+2025-05-07 23:13:51 [INFO] ────────── update cycle start ──────────
+2025-05-07 23:16:47 [INFO] USD cash balance: 125.194500
+2025-05-07 23:16:47 [INFO] portfolio.json updated (1 assets).
+2025-05-07 23:16:50 [INFO] positions.json verified (0 active).
