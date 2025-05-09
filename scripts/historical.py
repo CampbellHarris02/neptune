@@ -3,10 +3,20 @@ import time
 import json
 import pandas as pd
 from datetime import datetime, timedelta, timezone
-import ccxt
+import ccxt # type: ignore
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 load_dotenv()
+import logging
+
+
+LOG_FILE = "log.txt"
+logging.basicConfig(
+    filename=LOG_FILE,
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
 
 # ─────────────────────────────────────────────────────────────
 # Configuration
@@ -19,6 +29,15 @@ MAX_LOOKBACK_FOR_720_HOURS = {
     "1h":   720 * 1,     # 720 hours
     "30m":  720 * 0.5,   # 360 hours
     "15m":  720 * 0.25   # 180 hours
+}
+
+TIMEFRAME_DELTAS = {
+    "15m": timedelta(minutes=15),
+    "30m": timedelta(minutes=30),
+    "1h":  timedelta(hours=1),
+    "4h":  timedelta(hours=4),
+    "1d":  timedelta(days=1),
+    "1w":  timedelta(weeks=1),
 }
 
 ASSETS = {
@@ -91,7 +110,7 @@ def fetch_kraken_ohlcv(symbol, timeframe, lookback_amount, lookback_unit="hours"
         try:
             ohlcv = kraken.fetch_ohlcv(symbol, timeframe=timeframe, since=since, limit=limit_per_fetch)
         except Exception as e:
-            print(f"⚠️  Error fetching {symbol} [{timeframe}]: {e}")
+            logging.info(f"Error fetching {symbol} [{timeframe}]: {e}")
             break
 
         if not ohlcv:
@@ -106,7 +125,7 @@ def fetch_kraken_ohlcv(symbol, timeframe, lookback_amount, lookback_unit="hours"
         time.sleep(pause)
 
     if not all_ohlcv:
-        print(f"⚠️  No data returned for {symbol} [{timeframe}]")
+        logging.info(f"No data returned for {symbol} [{timeframe}]")
         return None
 
     df = pd.DataFrame(all_ohlcv, columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
@@ -120,21 +139,61 @@ def fetch_kraken_ohlcv(symbol, timeframe, lookback_amount, lookback_unit="hours"
 # ─────────────────────────────────────────────────────────────
 
 def historical(assets):
-    """Download OHLCV for every symbol / timeframe and overwrite existing CSVs."""
+    """Update OHLCV data by fetching only the minimal recent data required to keep up-to-date."""
     for symbol in assets:
         symbol_id = symbol.replace("/", "_").lower()
-        coin_dir  = os.path.join(BASE_OUTPUT_DIR, symbol_id)
+        coin_dir = os.path.join(BASE_OUTPUT_DIR, symbol_id)
         os.makedirs(coin_dir, exist_ok=True)
 
-        for timeframe, hours in MAX_LOOKBACK_FOR_720_HOURS.items():
+        for timeframe, delta in TIMEFRAME_DELTAS.items():
             file_path = os.path.join(coin_dir, f"{timeframe}.csv")
 
-            # always refresh (overwrite) ───────────────────────────────
-            df = fetch_kraken_ohlcv(symbol, timeframe, lookback_amount=hours)
-            time.sleep(2.5)   # polite delay for the API
+            df_existing = None
+            last_timestamp = None
 
-            if df is not None and not df.empty:
-                df.to_csv(file_path)
+            # Try to read existing data
+            if os.path.exists(file_path):
+                try:
+                    df_existing = pd.read_csv(file_path, parse_dates=["timestamp"])
+                    df_existing.set_index("timestamp", inplace=True)
+                    last_timestamp = df_existing.index[-1]
+                except Exception as e:
+                    logging.info(f"Error reading {file_path}: {e}")
+
+            # Determine if update is needed
+            now = datetime.now(timezone.utc)
+            hours_to_fetch = 2 * delta.total_seconds() / 3600
+
+            if last_timestamp:
+                next_expected_time = last_timestamp + delta
+                if next_expected_time > now:
+                    logging.info(f"Up-to-date: {symbol} [{timeframe}] — skipping.")
+                    continue
+            else:
+                logging.info(f"No file yet for {symbol} [{timeframe}] — creating with recent data.")
+
+            # Always fetch 2 candles worth (minimally)
+            df_new = fetch_kraken_ohlcv(symbol, timeframe, lookback_amount=hours_to_fetch)
+
+            if df_new is None or df_new.empty:
+                continue
+
+            # Filter and combine only if prior data exists
+            if df_existing is not None:
+                df_new = df_new[df_new.index > df_existing.index[-1]]
+                if df_new.empty:
+                    logging.info(f"No new rows for {symbol} [{timeframe}]")
+                    continue
+                df_combined = pd.concat([df_existing, df_new])
+                df_combined = df_combined[~df_combined.index.duplicated(keep="last")]
+                df_combined.sort_index(inplace=True)
+                df_combined.to_csv(file_path)
+                logging.info(f"Appended {len(df_new)} rows to {symbol} [{timeframe}]")
+            else:
+                df_new.to_csv(file_path)
+                logging.info(f"Created new file with {len(df_new)} rows for {symbol} [{timeframe}]")
+
+            time.sleep(2.5)  # Respect Kraken API rate limits
 
 
 
