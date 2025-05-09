@@ -150,6 +150,10 @@ def historical(assets):
 
             df_existing = None
             last_timestamp = None
+            # Ensure last_timestamp is timezone-aware (UTC)
+            if last_timestamp.tzinfo is None:
+                last_timestamp = last_timestamp.tz_localize("UTC")
+
 
             # Try to read existing data
             if os.path.exists(file_path):

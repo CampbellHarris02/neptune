@@ -5032,3 +5032,13 @@
 2025-05-09 13:28:38 [INFO] BTC/USD: 0.000124 ≈ $12.77
 2025-05-09 13:28:38 [INFO] portfolio.json updated (7 assets).
 2025-05-09 13:28:41 [INFO] positions.json verified (0 active).
+2025-05-09 13:39:17 [INFO] Bot terminated by user
+2025-05-09 13:39:26 [INFO] USD cash balance: 49.801900
+2025-05-09 13:39:28 [INFO] AAVE/USD: 0.064314 ≈ $13.49
+2025-05-09 13:39:29 [INFO] RUNE/USD: 9.266803 ≈ $13.91
+2025-05-09 13:39:30 [INFO] SOL/USD: 0.078217 ≈ $13.42
+2025-05-09 13:39:31 [INFO] SUI/USD: 3.202640 ≈ $12.60
+2025-05-09 13:39:32 [INFO] TRX/USD: 49.115337 ≈ $12.89
+2025-05-09 13:39:32 [INFO] BTC/USD: 0.000124 ≈ $12.80
+2025-05-09 13:39:33 [INFO] portfolio.json updated (7 assets).
+2025-05-09 13:39:35 [INFO] positions.json verified (0 active).
