@@ -9,3 +9,11 @@ env
 logs/
 
 data/
+
+log.txt
+
+status.txt
+
+portfolio.json
+
+ranked_coins.json

@@ -150,9 +150,6 @@ def historical(assets):
 
             df_existing = None
             last_timestamp = None
-            # Ensure last_timestamp is timezone-aware (UTC)
-            if last_timestamp.tzinfo is None:
-                last_timestamp = last_timestamp.tz_localize("UTC")
 
 
             # Try to read existing data
@@ -161,6 +158,9 @@ def historical(assets):
                     df_existing = pd.read_csv(file_path, parse_dates=["timestamp"])
                     df_existing.set_index("timestamp", inplace=True)
                     last_timestamp = df_existing.index[-1]
+                    # Ensure last_timestamp is timezone-aware (UTC)
+                    if last_timestamp.tzinfo is None:
+                        last_timestamp = last_timestamp.tz_localize("UTC")
                 except Exception as e:
                     logging.info(f"Error reading {file_path}: {e}")
 
