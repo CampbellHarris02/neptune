@@ -149,8 +149,8 @@ func main() {
 		c.JSON(http.StatusOK, payload)
 	})
 
-	log.Println("📡  http://localhost:8080")
-	must(r.Run(":8080"))
+	log.Println("📡  http://localhost:5000")
+	must(r.Run(":5000"))
 }
 
 // models.go or near the other helpers
