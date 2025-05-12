@@ -60,7 +60,7 @@ def buyer() -> None:
     available_usd  = portfolio.get("USD", 0.0)
     max_alloc      = total_value * BUY_PORTFOLIO_PERCENT
 
-    logger.info("Portfolio %.2f USD (cash %.2f USD) – max allocation per coin %.2f USD",
+    logger.info("Portfolio %.2f USD (cash %.2f USD) - max allocation per coin %.2f USD",
                 total_value, available_usd, max_alloc)
 
     # iterate coins ordered by score descending

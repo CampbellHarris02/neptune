@@ -12,7 +12,7 @@ import time
 import logging
 from typing import Dict
 from datetime import datetime
-import ccxt
+import ccxt # type: ignore
 import os
 
 from rich.console import Console # type: ignore
@@ -23,7 +23,7 @@ from scripts.rank import rank_coins
 from scripts.update_all import update_all
 from scripts.buyer import buyer
 from scripts.check_pending_orders import check_pending_orders
-from scripts.monitor_positions import monitor_positions
+from scripts.monitor_portfolio import monitor_portfolio
 from scripts.pnl_tracker import update_account_pnl
 
 
@@ -144,7 +144,7 @@ def main() -> None:
         log_status(message="Checking pending orders...")
         check_pending_orders()
         log_status(message="Monitoring positions...")
-        monitor_positions()
+        monitor_portfolio()
 
         time.sleep(300)
 

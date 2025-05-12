@@ -57,9 +57,9 @@ def momentum_score(df: pd.DataFrame) -> float:
     return float(np.clip((rsi_s + macd_s + roc_s + sma_s) / 4, -1, 1))
 
 # ------------------------------------------------------------
-#  Main monitor
+#  monitor
 # ------------------------------------------------------------
-def monitor_positions() -> None:
+def monitor_portfolio() -> None:
     positions = load_json(POSITION_FILE)
     portfolio = load_json(PORTFOLIO_FILE)
     new_pos   = {}
@@ -167,7 +167,7 @@ if __name__ == "__main__":
 
     while True:
         try:
-            monitor_positions()
+            monitor_portfolio()
             console.log(f"[green]monitor_positions ran successfully at {datetime.now().isoformat()}")
         except Exception as e:
             logger.error("Error in monitor_positions(): %s", e, exc_info=True)

@@ -93,6 +93,25 @@ def safe_fetch_balances(max_attempts: int = 3) -> Optional[Dict[str, Any]]:
     logging.error("All fetch_balance attempts failed – keeping previous snapshot.")
     return None
 
+def fetch_and_save_positions() -> None:
+    try:
+        open_positions = kraken.private_post_open_positions()  # or fetch_positions()
+    except Exception as e:
+        logging.error("Could not fetch positions: %s", e)
+        return
+
+    cleaned = {}
+    for symbol, pos in open_positions.items():
+        cleaned[symbol] = {
+            "entry_price": float(pos["cost"])   ,   # or whatever field Kraken returns
+            "qty"        : float(pos["vol"]),
+            "filled_at"  : pos["open_time"],     # adjust key name/format to your taste
+        }
+
+    save_json(cleaned, POSITIONS_FILE)
+    logging.info("positions.json populated (%d active).", len(cleaned))
+
+
 
 def fetch_current_price(symbol: str) -> Optional[float]:
     try:
@@ -203,12 +222,17 @@ def clean_pending_orders() -> None:
 def update_all(assets, status) -> None:
     update_log_status(status=status, message="Updating portfolio positions...")
     update_portfolio()
+
     update_log_status(status=status, message="Syncing local books with Kraken's portfolio positions...")
+    fetch_and_save_positions()
     verify_positions()
+
     update_log_status(status=status, message="Cleaning pending orders...")
     clean_pending_orders()
+
     update_log_status(status=status, message="Updating historical data...")
     historical(assets=assets, status=status)
+
     update_log_status(status=status, message="Updating historical events...")
     update_events(assets=assets, status=status)
     

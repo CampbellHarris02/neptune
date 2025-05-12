@@ -6,10 +6,8 @@ from pandas.errors import EmptyDataError
 from datetime import datetime, timedelta, timezone
 import ccxt # type: ignore
 
-
-
-import os, time, logging, pandas as pd, ccxt
-from datetime import datetime, timedelta, timezone
+import warnings
+warnings.filterwarnings("ignore")
 
 from dotenv import load_dotenv # type: ignore
 load_dotenv()
