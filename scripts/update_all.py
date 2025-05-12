@@ -19,7 +19,8 @@ import ccxt  # type: ignore
 from dotenv import load_dotenv  # type: ignore
 from datetime import datetime
 
-from scripts.historical import historical
+from scripts.historical import historical, update_events
+from scripts.utilities import update_log_status
 
 
 # ---------------------------------------------------------------------------
@@ -33,18 +34,6 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-STATUS_FILE = "status.txt"
-def update_log_status(status, message: str) -> None:
-    """Replace the status line in the terminal and write status.txt."""
-    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    full = f"[{ts}] {message}"
-
-    # Update Rich status (overwrites the same line)
-    status.update(f"[cyan]{message}")
-
-    # Persist for the web-UI
-    with open(STATUS_FILE, "w") as f:
-        f.write(full + "\n")
 
 # ---------------------------------------------------------------------------
 # 1.  Environment & File paths
@@ -219,7 +208,10 @@ def update_all(assets, status) -> None:
     update_log_status(status=status, message="Cleaning pending orders...")
     clean_pending_orders()
     update_log_status(status=status, message="Updating historical data...")
-    historical(assets)
+    historical(assets=assets, status=status)
+    update_log_status(status=status, message="Updating historical events...")
+    update_events(assets=assets, status=status)
+    
 
 
 if __name__ == "__main__":

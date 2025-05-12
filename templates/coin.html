@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ .Symbol }} • Neptune</title>
+
+  <link rel="stylesheet" href="/static/css/home.css" />
+  <link rel="stylesheet" href="/static/css/coin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <script src="/static/js/coin.js" defer></script>
+
+</head>
+<body>
+  {{ template "header" .Header }}
+
+  <h1>{{ .Symbol }}</h1>
+
+  <div class="tf-bar">
+    <button class="tf-btn" data-tf="15m">15 m</button>
+    <button class="tf-btn" data-tf="30m">30 m</button>
+    <button class="tf-btn" data-tf="1h">1 h</button>
+    <button class="tf-btn" data-tf="4h">4 h</button>
+    <button class="tf-btn active" data-tf="1d">1 d</button>
+    <button class="tf-btn" data-tf="1w">1 w</button>
+  </div>
+
+  <div id="chart" class="chart-wrap"></div>
+
+  <div class="events-box">
+    <h3>Trades</h3>
+    <div id="eventsList"></div>
+  </div>
+
+  <script>
+    const symbol = "{{ .Symbol }}";
+  </script>
+</body>
+</html>

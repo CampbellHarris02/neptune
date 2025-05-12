@@ -12,6 +12,8 @@ import time
 import logging
 from typing import Dict
 from datetime import datetime
+import ccxt
+import os
 
 from rich.console import Console # type: ignore
 from rich.logging import RichHandler # type: ignore
@@ -22,6 +24,7 @@ from scripts.update_all import update_all
 from scripts.buyer import buyer
 from scripts.check_pending_orders import check_pending_orders
 from scripts.monitor_positions import monitor_positions
+from scripts.pnl_tracker import update_account_pnl
 
 
 # ───────────────────────────── Logging / Rich setup ──────────────────────────
@@ -75,7 +78,6 @@ ASSETS: Dict[str, str] = {
     "FIL/USD": "data/centroids/fil_usd_cluster_centers.json",
     "UNI/USD": "data/centroids/uni_usd_cluster_centers.json",
     "ALGO/USD": "data/centroids/algo_usd_cluster_centers.json",
-    "EGLD/USD": "data/centroids/egld_usd_cluster_centers.json",
     "AAVE/USD": "data/centroids/aave_usd_cluster_centers.json",
     "NEAR/USD": "data/centroids/near_usd_cluster_centers.json",
     "XTZ/USD": "data/centroids/xtz_usd_cluster_centers.json",
@@ -103,14 +105,28 @@ ASSETS: Dict[str, str] = {
 }
 
 
+def kraken_client():
+    return ccxt.kraken({
+        "apiKey"         : os.getenv("KRAKEN_API_KEY"),
+        "secret"         : os.getenv("KRAKEN_API_SECRET"),
+        "enableRateLimit": True,
+    })
+
 
 def main() -> None:
+    kraken = kraken_client()
+
     last_hourly = 0.0
-    update_all(assets=ASSETS, status=status)          # initial sync
+    last_daily  = time.time()       # ← initialize here
+    update_all(assets=ASSETS, status=status)  # initial sync
+    update_account_pnl(kraken)
     console.rule("[bold cyan]Bot started")
+
     while True:
         now = time.time()
-        if now - last_hourly >= 1800:  # every 30 min
+
+        # every 30 min
+        if now - last_hourly >= 1800:
             log_status("Hourly: portfolio sync, scan, buyer")
             update_all(assets=ASSETS, status=status)
             log_status(message="Evaluating coins...")
@@ -118,11 +134,20 @@ def main() -> None:
             log_status(message="Running buyer...")
             buyer()
             last_hourly = now
+
+        # every 24 h
+        if now - last_daily >= 24 * 3600:
+            log_status("Daily: account PnL update")
+            update_account_pnl(kraken)
+            last_daily = now
+
         log_status(message="Checking pending orders...")
         check_pending_orders()
         log_status(message="Monitoring positions...")
         monitor_positions()
+
         time.sleep(300)
+
 
 
 if __name__ == "__main__":

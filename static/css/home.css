@@ -1,0 +1,213 @@
+
+/* ─── Font: Apple SF Pro stack ───────────────────────────────────────── */
+@font-face {
+    font-family: "SF Pro Display";
+    font-style: normal;
+    font-weight: 250;
+    src: local("SF Pro Display"), local("San Francisco"), local("Helvetica Neue");
+  }
+  
+  :root {
+    --fg: #ffffff;
+    --bg: #000000;
+    --accent: #1e90ff;
+  }
+  
+  * { box-sizing: border-box; margin: 0; }
+  
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont,
+                 "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                 "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+  }
+  
+/* ─── Planet header ──────────────────────────────────────────────── */
+.planet-header {
+    position: relative;
+    width: 75vw;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  
+    /* NEW — tell the browser “my inline size is a container query” */
+    container-type: inline-size;
+  }
+  
+  /* planet image now fills the header */
+  .planet-img {
+    width: 100%;           /* 100 % of the header (75 vw) */
+    height: auto;
+    transform: translateY(-40%);
+    pointer-events: none;
+  }
+  
+
+  .site-title {
+    position:absolute;
+    bottom:55%;
+    left:0;
+    right:0;
+    transform:translateY(-50%);
+    text-align:center;
+    white-space:nowrap;
+  
+    /* horizontal safety margin inside the sphere */
+    padding-inline:10vw;
+    box-sizing:border-box;
+  
+    /* responsive type linked to the planet container */
+    font-size:clamp(4rem,11cqw,14rem);
+  
+    font-weight:250;
+    letter-spacing:0.015em;
+    overflow:hidden;          /* crop any edge artefacts */
+  }
+  
+  
+/* — Thinner only in Chrome / Edge (not Safari) — */
+/* Chrome / Edge (Blink) — use Inter 200 for extra thin strokes */
+@supports (-webkit-touch-callout:none) and (not (font: -apple-system-body)) {
+    .site-title {
+      font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+      font-weight: 200;                           /* lighter than SF 250      */
+      font-variation-settings: "wght" 200;        /* exact axis value         */
+      -webkit-font-smoothing: antialiased;        /* thins stems in Blink     */
+    }
+  }
+  
+
+  /* Safari-only tweak: make the word ~18 % larger                               */
+/* (Chrome/Edge ignore this block because the feature-test is false)          */
+@supports (font: -apple-system-body) {
+    .site-title {
+      /* raise the slope: 11 cqw → 13 cqw — still clamped so it never explodes */
+      font-size: clamp(4rem, 18cqw, 18rem);
+
+    }
+  }
+  
+  
+  
+  /* ─── Main column (chart + buttons) ────────────────────────────── */
+.content{
+    display:flex;
+    flex-direction:column;   /* stack items vertically            */
+    align-items:center;      /* centre the column horizontally    */
+    gap:8rem;
+    padding:0 4rem 3rem;
+    margin-top:-35vw;        /* keep your upward pull, optional   */
+  }
+  
+  .chart-box {
+    width: 90%;
+    max-width: 1000px;
+    min-height: 300px;     /* ensures it doesn’t collapse */
+    height: auto;
+    border: none;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Let inner div or canvas stretch fully */
+  .chart-box > div,
+  .chart-box canvas {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: auto; /* override any hard constraints */
+  }
+  
+  
+
+  /* ─── buttons row under the chart ─────────────────────────────── */
+.side-buttons{
+    display:flex;
+    flex-direction:row;           /* side-by-side                  */
+    justify-content:center;       /* centre the row                */
+    gap:5rem;                     /* space between buttons         */
+  
+    width:90%;                    /* align with chart width        */
+    max-width:600px;              /* wider than previous 300px     */
+    margin-top:0rem;              /* little breathing-room down    */
+    margin-bottom:10rem;
+
+    z-index: 1; /* ensure above any overlapping chart or bg */
+
+}
+  
+.btn{
+    flex:1 1 0;                   /* equal widths, shrink if needed */
+    min-width:120px;              /* don’t get too skinny           */
+    padding:1.5rem 2rem;
+    border:2px solid var(--fg);
+    border-radius:14px;
+    text-align:center;
+    text-decoration:none;
+    color:var(--fg);
+    font-size:1.25rem;
+    transition:background .45s, transform .45s;
+}
+
+  .btn:hover{
+    background:var(--accent);
+    transform:translateY(-3px);
+  }
+  
+  /* optional: stack buttons on very narrow phones */
+  @media (max-width: 480px){
+    .side-buttons{
+      flex-direction:column;
+      gap:2rem;
+    }
+  }
+  
+
+/* ── Safari-only: make chart + buttons bigger ───────────────────────── */
+@media not all and (min-resolution: 0.001dpcm) {
+  @supports (-webkit-appearance: none) {
+
+    /* 1️⃣  wider / taller chart */
+    .chart-box {
+      width: 95%;          /* fill nearly full column */
+      max-width: 1400px;   /* desktop upper-limit     */
+      min-height: 500px;   /* taller baseline         */
+    }
+
+    /* 2️⃣  button row grows with chart */
+    .side-buttons {
+      max-width: 800px;    /* match wider chart       */
+      gap: 6rem;           /* more space between two  */
+    }
+
+    /* 3️⃣  bigger button typography & padding */
+    .btn {
+      padding: 2rem 3rem;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+
+/* under your existing rules … */
+
+.asset-box{
+  margin-top:3rem;
+  margin-bottom:2rem;
+  text-align:center;
+  font-family:inherit;
+}
+
+.asset-value{
+  font-size:4rem;
+  font-weight:200;
+}
+
+.asset-delta{
+  font-size:3rem;
+  margin-top:.25rem;
+}
+
+

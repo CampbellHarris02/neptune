@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="/static/css/portfolio.css" />
+  <link rel="stylesheet" href="/static/css/home.css" />
+</head>
+<body>
+  {{ template "header" .Header }}
+
+  <div class="portfolio-container">
+    <h1>Portfolio</h1>
+    <table>
+      <thead><tr><th>#</th><th>Asset</th><th>Quantity</th></tr></thead>
+      <tbody>
+        {{ range $idx, $p := .Positions }}
+        <tr onclick="window.location.href='/coin?symbol={{ $p.Symbol }}&from=portfolio'">
+          <td>{{ add $idx 1 }}</td>
+          <td>{{ $p.Symbol }}</td>
+          <td>{{ printf "%.4f" $p.Quantity }}</td>
+        </tr>
+        {{ end }}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>

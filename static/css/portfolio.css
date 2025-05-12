@@ -1,0 +1,47 @@
+
+.portfolio-container {
+  max-width: 800px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #0f172a;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.1rem;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+}
+
+th {
+  background: #0f1b2d;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+tr {
+  background: #1e293b;
+  color: white;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+tr:hover {
+  background: #334155;
+}
+
+tr:not(:last-child) {
+  border-bottom: 1px solid #2a3b4f;
+}

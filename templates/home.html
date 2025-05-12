@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Neptune</title>
+
+  <!-- favicon -->
+  <link rel="icon" href="/static/assets/neptune_icon.png" />
+
+  <!-- styles -->
+  <link rel="stylesheet" href="/static/css/home.css" />
+
+  <!-- libraries -->
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.10/dist/ext/sse.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+  <script src="/static/js/home.js" defer></script>
+</head>
+<body>
+  <!-- ─── Planet header ───────────────────────────────────────────── -->
+  <header class="planet-header">
+    <img src="/static/assets/neptune_icon.png" class="planet-img" alt="planet icon" />
+    <h1 class="site-title">Neptune</h1>
+  </header>
+
+  <main class="content">
+    <!-- chart -->
+    <div id="pnlCanvas" style="width:100%; height:400px;"></div>
+
+    <!-- asset snapshot -->
+    <section id="asset-box" class="asset-box">
+      <div class="asset-value" id="assetValue">$--</div>
+      <div class="asset-delta" id="assetDelta">Δ -- %</div>
+    </section>
+
+    <!-- buttons -->
+    <nav class="side-buttons">
+      <a href="/portfolio" class="btn">Portfolio</a>
+      <a href="/strategy"  class="btn">Strategy</a>
+    </nav>
+  </main>
+</body>
+</html>
