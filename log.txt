@@ -584,3 +584,6 @@
 2025-05-12 10:36:44 [INFO] LTC/USD: no new fills
 2025-05-12 10:36:51 [INFO] TRX/USD: wrote 3 rows → events.json (+1)
 2025-05-12 10:37:01 [INFO] XLM/USD: no new fills
+2025-05-12 10:37:08 [INFO] FIL/USD: no new fills
+2025-05-12 10:37:15 [INFO] UNI/USD: no new fills
+2025-05-12 10:37:23 [INFO] ALGO/USD: no new fills
