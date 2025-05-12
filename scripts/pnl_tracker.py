@@ -9,22 +9,26 @@ CSV_PATH = "data/account_pnl.csv"
 JSON_PATH = "data/assets_usd.json"
 SLEEP    = 1.2                   # rate-limit spacing for price calls
 
+
+
+
+
+
 def _usd_price(kr, asset: str) -> float | None:
     """Spot price of <asset> in USD or None if pair unavailable."""
-    asset = {"BTC": "XBT"}.get(asset, asset)         # Kraken quirk
-    pair  = f"{asset}/USD"
-    if pair not in kr.markets:                       # e.g. some small coins
+    pair = f"{asset}/USD"
+    if pair not in kr.markets:  # e.g. some small coins
         return None
     return kr.fetch_ticker(pair)["last"]
 
 def _portfolio_value_usd(kr) -> float:
-    bal   = kr.fetch_balance(params={"asset_class": "currency"})["total"]
+    bal = kr.fetch_balance(params={"asset_class": "currency"})["total"]
     total = 0.0
 
     for asset, qty in bal.items():
         if qty == 0:
             continue
-        if asset in ("USD", "ZUSD"):                 # cash balance
+        if asset in ("USD", "ZUSD"):  # cash balance
             total += qty
             continue
         price = _usd_price(kr, asset)
@@ -45,15 +49,15 @@ def _last_row(path):
 
 def update_account_pnl(kr: ccxt.kraken):
     """Call once – does nothing if today's snapshot already exists."""
-    today  = datetime.now(timezone.utc).date().isoformat()
-    last   = _last_row(CSV_PATH)
+    today = datetime.now(timezone.utc).date().isoformat()
+    last = _last_row(CSV_PATH)
 
     if last is not None and str(last["date"]) == today:
-        return                                           # already done today
+        return  # already done today
 
     value = _portfolio_value_usd(kr)
-    pct   = 0.0 if last is None else round(
-            (value - last["value_usd"]) / last["value_usd"] * 100, 4)
+    pct = 0.0 if last is None else round(
+        (value - last["value_usd"]) / last["value_usd"] * 100, 4)
 
     os.makedirs(os.path.dirname(CSV_PATH), exist_ok=True)
     header_needed = not os.path.exists(CSV_PATH)
@@ -63,7 +67,7 @@ def update_account_pnl(kr: ccxt.kraken):
         if header_needed:
             w.writerow(["date", "value_usd", "pct_pnl"])
         w.writerow([today, value, pct])
-        
+
     with open(JSON_PATH, "w") as j:
         json.dump({"value_usd": value, "pct_pnl": pct}, j, indent=2)
 

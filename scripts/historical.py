@@ -70,7 +70,6 @@ ASSETS = {
     "FIL/USD": "data/centroids/fil_usd_cluster_centers.json",
     "UNI/USD": "data/centroids/uni_usd_cluster_centers.json",
     "ALGO/USD": "data/centroids/algo_usd_cluster_centers.json",
-    "EGLD/USD": "data/centroids/egld_usd_cluster_centers.json",
     "AAVE/USD": "data/centroids/aave_usd_cluster_centers.json",
     "NEAR/USD": "data/centroids/near_usd_cluster_centers.json",
     "XTZ/USD": "data/centroids/xtz_usd_cluster_centers.json",
@@ -151,22 +150,29 @@ def fetch_kraken_ohlcv(symbol, timeframe, lookback_amount, lookback_unit="hours"
 
 TARGET_ROWS = 700                         # keep exactly 720 rows
 
+# helper
+def safe_fetch_ohlcv(symbol: str, tf: str, hours: float) -> pd.DataFrame:
+    """Fetch OHLCV and handle errors gracefully."""
+    df = fetch_kraken_ohlcv(symbol, tf, lookback_amount=hours)
+    if df is not None and not df.empty:
+        if df.index.tzinfo is None:
+            df.index = df.index.tz_localize("UTC")
+    return df
 
 
 def historical(assets, status):
     """Maintain a rolling 720-row UTC-aware OHLCV window for every symbol / timeframe."""
     total = len(assets)
     for i, symbol in enumerate(assets, 1):
-        message = f"[{i}/{total}] Updating historical data for {symbol}..."
-        update_log_status(status=status, message=message)
-        
-        sym_id   = symbol.replace("/", "_").lower()        # e.g. btc_usd
+        update_log_status(status=status, message=f"[{i}/{total}] Updating historical data for {symbol}...")
+
+        sym_id = symbol.replace("/", "_").lower()
         coin_dir = os.path.join(BASE_OUTPUT_DIR, sym_id)
         os.makedirs(coin_dir, exist_ok=True)
 
         for tf, delta in TIMEFRAME_DELTAS.items():
             path = os.path.join(coin_dir, f"{tf}.csv")
-            now  = datetime.now(timezone.utc)
+            now = datetime.now(timezone.utc)
 
             # ── read existing file (if any) ──────────────────────────────
             try:
@@ -180,68 +186,56 @@ def historical(assets, status):
                 else:
                     raise EmptyDataError("file missing or empty")
             except (ValueError, EmptyDataError):
-                # Bad header, empty file, or no 'timestamp' column → start fresh
                 df = pd.DataFrame(
                     columns=["open", "high", "low", "close", "volume"],
                     index=pd.DatetimeIndex([], name="timestamp", tz="UTC")
                 )
 
-            # ── 1 · append forward to present ────────────────────────────
+            # ── 1 · append forward ───────────────────────────────────────
             last_ts = df.index[-1] if not df.empty else now - TARGET_ROWS * delta
             while last_ts + delta <= now:
-                look_hours = 4 * delta.total_seconds() / 3600  # grab 4 candles
-                new = fetch_kraken_ohlcv(symbol, tf, lookback_amount=look_hours)
+                look_hours = 100 * delta.total_seconds() / 3600
+                new = safe_fetch_ohlcv(symbol, tf, look_hours)
                 if new is None or new.empty:
                     break
-                if new.index.tzinfo is None:
-                    new.index = new.index.tz_localize("UTC")
 
                 new = new[new.index > last_ts]
                 if new.empty:
                     break
-                if not new.empty:
-                    df = (
-                        pd.concat([df, new]) if not df.empty else new
-                    ).sort_index().drop_duplicates()
 
+                df = pd.concat([df, new])
                 last_ts = df.index[-1]
                 logging.info(f"{symbol} [{tf}] appended {len(new)} rows")
-                time.sleep(2.5)
+                time.sleep(1.0)  # only after successful fetch
 
-            # ── 2 · back-fill until we have 720 rows ─────────────────────
+            # ── 2 · back-fill ────────────────────────────────────────────
             while len(df) < TARGET_ROWS:
                 if df.empty:
-                    # no data yet → start TARGET_ROWS*delta back from 'now'
                     earliest_needed = now - TARGET_ROWS * delta
                 else:
                     earliest_needed = df.index[0] - (TARGET_ROWS - len(df)) * delta
 
                 hours_back = (now - earliest_needed).total_seconds() / 3600 * 1.2
-                old = fetch_kraken_ohlcv(symbol, tf, lookback_amount=hours_back)
+                old = safe_fetch_ohlcv(symbol, tf, hours_back)
 
                 if old is None or old.empty:
                     logging.info(f"{symbol} [{tf}] cannot fetch further history")
                     break
 
-                if old.index.tzinfo is None:
-                    old.index = old.index.tz_localize("UTC")
-
-                # keep only rows strictly older than current first row (if any)
                 if not df.empty:
                     old = old[old.index < df.index[0]]
-
                 if old.empty:
                     break
 
-                df = pd.concat([old, df]).sort_index().drop_duplicates()
+                df = pd.concat([old, df])
                 logging.info(f"{symbol} [{tf}] prepended {len(old)} rows")
-                time.sleep(2.5)
+                time.sleep(1.0)  # only after successful fetch
 
-
-            # ── 3 · final trim to latest 720 rows & save ─────────────────
-            df = df.tail(TARGET_ROWS)
+            # ── 3 · Final sort, dedup, trim, save ────────────────────────
+            df = df.sort_index().drop_duplicates().tail(TARGET_ROWS)
             df.to_csv(path)
             logging.info(f"{symbol} [{tf}] saved {len(df)} rows → {path}")
+
 
 
 

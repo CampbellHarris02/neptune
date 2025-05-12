@@ -29,14 +29,7 @@ const (
 	staticDir   = "./static"
 	templateDir = "./templates"
 	chartDir    = "./static/charts"
-	pnlCSV      = "./data/mock_pnl.csv"
-	tradesJSON  = "./data/mock_trades.json"
 	accountCSV  = "./data/account_pnl.csv"
-	mockSymbol  = "BTC/USD"
-
-	daysBack      = 90
-	chartWidthIn  = 6
-	chartHeightIn = 4
 )
 
 /* ─── models ─────────────────────────────────────────────────────────────── */
@@ -101,13 +94,7 @@ func main() {
 	r.GET("/", func(c *gin.Context) { c.HTML(http.StatusOK, "home.html", nil) })
 	r.StaticFile("/assets_usd", "./data/assets_usd.json")
 
-	r.GET("/chart", func(c *gin.Context) {
-		c.Header("HX-Trigger", "chart-refreshed")
-		c.Header("Content-Type", "text/html")
-		html := `<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>`
-		html += buildLineChartHTML()
-		c.String(http.StatusOK, html)
-	})
+	r.GET("/chart_data", serveChartJSON)
 
 	r.GET("/strategy", func(c *gin.Context) {
 		coins, err := loadRankedCoins()
@@ -278,10 +265,6 @@ func loadRankedCoins() ([]RankedCoin, error) {
 	return coins, nil
 }
 
-// ---------------------------------------------------------------------
-// load 1-day CSV and events.json for a symbol
-// ---------------------------------------------------------------------
-
 // -----------------------------------------------------------------------------
 // Coin types
 // -----------------------------------------------------------------------------
@@ -301,9 +284,10 @@ type CoinEvent struct {
 }
 
 type CoinPayload struct {
-	Symbol string      `json:"symbol"`
-	Series []CoinPoint `json:"series"`
-	Events []CoinEvent `json:"events"`
+	Symbol   string      `json:"symbol"`
+	Series   []CoinPoint `json:"series"`
+	Events   []CoinEvent `json:"events"`
+	StopLoss float64     `json:"stop_loss"`
 }
 
 // -----------------------------------------------------------------------------
@@ -329,14 +313,13 @@ func loadCoinPayload(sym, tf string) (CoinPayload, error) {
 
 	var series []CoinPoint
 	for i, rec := range records {
-		// optional: skip header row — detect by trying to parse price
 		if i == 0 {
 			if _, err := strconv.ParseFloat(rec[1], 64); err != nil {
-				continue // header
+				continue // skip header
 			}
 		}
 		if len(rec) < 5 {
-			continue // need o,h,l,c
+			continue
 		}
 
 		o, _ := strconv.ParseFloat(rec[1], 64)
@@ -345,23 +328,43 @@ func loadCoinPayload(sym, tf string) (CoinPayload, error) {
 		c_, _ := strconv.ParseFloat(rec[4], 64)
 
 		series = append(series, CoinPoint{rec[0], o, h, l, c_})
-
 	}
 
-	// ---- events ---------------------------------------------------------------
+	// ---- events (optional) ----------------------------------------------------
 	evtPath := filepath.Join(base, "events.json")
-	ef, err := os.Open(evtPath)
-	if err != nil {
-		return CoinPayload{}, fmt.Errorf("open events: %w", err)
-	}
-	defer ef.Close()
-
 	var events []CoinEvent
-	if err := json.NewDecoder(ef).Decode(&events); err != nil {
-		return CoinPayload{}, fmt.Errorf("decode events: %w", err)
+	if ef, err := os.Open(evtPath); err == nil {
+		defer ef.Close()
+		if err := json.NewDecoder(ef).Decode(&events); err != nil {
+			log.Printf("warning: could not decode events.json for %s: %v", sym, err)
+		}
+	} else {
+		log.Printf("info: no events.json for %s", sym)
 	}
 
-	return CoinPayload{Symbol: sym, Series: series, Events: events}, nil
+	// ---- monitor (optional) ---------------------------------------------------
+	monPath := filepath.Join(base, "monitor.json")
+	var stopLoss float64 = 0
+
+	if monData, err := os.ReadFile(monPath); err == nil {
+		var monitor map[string]any
+		if err := json.Unmarshal(monData, &monitor); err == nil {
+			if val, ok := monitor["stop_loss"].(float64); ok {
+				stopLoss = val
+			}
+		} else {
+			log.Printf("warning: could not parse monitor.json for %s: %v", sym, err)
+		}
+	} else {
+		log.Printf("info: no monitor.json for %s", sym)
+	}
+
+	return CoinPayload{
+		Symbol:   sym,
+		Series:   series,
+		Events:   events,
+		StopLoss: stopLoss,
+	}, nil
 }
 
 // btc_usd folder path for "BTC/USD"
@@ -421,4 +424,48 @@ func loadAccountPNL(valueNotPct bool) []pnlPoint {
 		out = append(out, pnlPoint{rec[0], v})
 	}
 	return out
+}
+
+func loadPNLData(csvPath string) ([]string, []float64, error) {
+	file, err := os.Open(csvPath)
+	if err != nil {
+		return nil, nil, err
+	}
+	defer file.Close()
+
+	r := csv.NewReader(file)
+	records, err := r.ReadAll()
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var dates []string
+	var values []float64
+
+	for i, row := range records {
+		if i == 0 || len(row) < 3 {
+			continue // skip header or malformed row
+		}
+		dates = append(dates, row[0])
+		val, err := strconv.ParseFloat(row[2], 64) // pct_pnl
+		if err != nil {
+			continue
+		}
+		values = append(values, val)
+	}
+
+	return dates, values, nil
+}
+
+func serveChartJSON(c *gin.Context) {
+	dates, values, err := loadPNLData("data/account_pnl.csv")
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"labels": dates,
+		"values": values,
+	})
 }

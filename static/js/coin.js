@@ -33,8 +33,13 @@ function loadAndDraw(tf) {
     });
 }
 
-/* Draw chart and add buy/sell arrows ---------------------------------------- */
+
+
+
+
+
 function draw(p) {
+  // 1) No-data guard
   if (!p.series?.length) {
     chart.clear();
     chart.setOption({
@@ -49,54 +54,89 @@ function draw(p) {
     return;
   }
 
-  const xs = p.series.map((c) => c.t);
-  const ohlc = p.series.map((c) => [c.o, c.c, c.l, c.h]);
+  // 2) Prep data
+  const stopLoss = p.stop_loss ?? null;
+  const events   = Array.isArray(p.events) ? p.events : [];
 
-  const buyPts = [];
+  // Build ohlc entries with timestamps
+  const ohlc = p.series.map(c => [
+    c.t,       // time ISO string
+    c.o,       // open
+    c.c,       // close
+    c.l,       // low
+    c.h        // high
+  ]);
+
+  // scatter markers
+  const buyPts  = [];
   const sellPts = [];
-
-  p.events.forEach((e) => {
-    const item = {
-      value: [e.time, e.price],
-      symbol: "triangle",
-      symbolSize: 9,
-    };
-    if (e.side === "buy") {
-      buyPts.push({ ...item, itemStyle: { color: "#3fdb6f" } });
-    } else {
-      sellPts.push({
-        ...item,
-        itemStyle: { color: "#f44336" },
-        symbolRotate: 180,
-      });
-    }
+  events.forEach(e => {
+    const pt = { value: [e.time, e.price], symbol: "triangle", symbolSize: 9 };
+    if (e.side === "buy")  buyPts.push({ ...pt, itemStyle: { color: "#3fdb6f" } });
+    else                    sellPts.push({ ...pt, itemStyle: { color: "#f44336" }, symbolRotate: 180 });
   });
 
+  // last‐buy/sell events
+  const lastBuy  = [...events].reverse().find(e => e.side === "buy");
+  const lastSell = [...events].reverse().find(e => e.side === "sell");
+
+  // horizontal lines
+  const hLines = [];
+  if (stopLoss !== null) {
+    hLines.push({
+      yAxis: stopLoss,
+      name: "SL",
+      label: { show: true, position: "end", formatter: "SL", color: "#f44336" },
+      lineStyle: { type: "dashed", color: "#f44336", width: 1.5 }
+    });
+  }
+  if (lastBuy) {
+    hLines.push({
+      yAxis: lastBuy.price,
+      name: "LB",
+      label: { show: true, position: "end", formatter: "LB", color: "#3fdb6f" },
+      lineStyle: { type: "dashed", color: "#3fdb6f", width: 1.5 }
+    });
+  }
+  if (lastSell) {
+    hLines.push({
+      yAxis: lastSell.price,
+      name: "LS",
+      label: { show: true, position: "end", formatter: "LS", color: "#f44336" },
+      lineStyle: { type: "dashed", color: "#f44336", width: 1.5 }
+    });
+  }
+
+  // vertical lines
+  const vLines = [];
+  if (lastBuy) {
+    vLines.push({
+      xAxis: lastBuy.time,
+      lineStyle: { type: "dashed", color: "#3fdb6f", width: 1 },
+      label: { show: false }
+    });
+  }
+  if (lastSell) {
+    vLines.push({
+      xAxis: lastSell.time,
+      lineStyle: { type: "dashed", color: "#f44336", width: 1 },
+      label: { show: false }
+    });
+  }
+
+  // 3) Render chart
   chart.setOption({
     animation: false,
     dataZoom: [
       { type: "inside", xAxisIndex: 0, throttle: 50 },
-      {
-        type: "slider",
-        xAxisIndex: 0,
-        height: 18,
-        handleSize: "80%",
-        bottom: 8,
-        fillerColor: "#444",
-      },
-      {
-        type: "inside",
-        yAxisIndex: 0,
-        orient: "vertical",
-        filterMode: "none",
-      },
+      { type: "slider",  xAxisIndex: 0, height: 18, handleSize: "80%", bottom: 8, fillerColor: "#444" },
+      { type: "inside",  yAxisIndex: 0, orient: "vertical", filterMode: "none" },
     ],
     tooltip: { trigger: "axis", axisPointer: { type: "cross" } },
     xAxis: {
-      type: "category",
-      data: xs,
+      type: "time",
       scale: true,
-      axisLine: { onZero: false },
+      axisLine: { onZero: false }
     },
     yAxis: { scale: true },
     grid: { left: "8%", right: "6%", top: 60, bottom: 60 },
@@ -106,27 +146,38 @@ function draw(p) {
         name: "OHLC",
         data: ohlc,
         itemStyle: {
-          color: "#45b3ff",
-          color0: "#d35454",
+          color: "#45b3ff",   // up color
+          color0: "#d35454",  // down color
           borderColor: "#45b3ff",
-          borderColor0: "#d35454",
+          borderColor0: "#d35454"
         },
+        markLine: {
+          silent: true,
+          symbol: "none",
+          data: [
+            ...hLines,
+            ...vLines
+          ]
+        }
       },
-      { name: "Buy", type: "scatter", data: buyPts },
-      { name: "Sell", type: "scatter", data: sellPts },
-    ],
+      { name: "Buy",  type: "scatter", data: buyPts },
+      { name: "Sell", type: "scatter", data: sellPts }
+    ]
   });
 
-  listDiv.innerHTML = p.events
-    .slice()
-    .sort((a, b) => b.time.localeCompare(a.time))
-    .map(
-      (ev) => `
-    <div class="event-row event-${ev.side}">
-      <span>${ev.time.replace("T", " ").replace("Z", "")}</span>
-      <span>${ev.side.toUpperCase()} @ ${ev.price}</span>
-      <span>${ev.qty}</span>
-    </div>`
-    )
+  // 4) Trade ledger
+  listDiv.innerHTML = events
+    .slice().sort((a,b)=>b.time.localeCompare(a.time))
+    .map(ev => {
+      const qty   = Number(ev.qty).toPrecision(6);
+      const price = Number(ev.price).toFixed(2);
+      const time  = ev.time.replace("T"," ").replace("Z","");
+      return `
+        <div class="event-row event-${ev.side}">
+          <span>${time}</span>
+          <span>${ev.side.toUpperCase()} @ ${price}</span>
+          <span>${qty}</span>
+        </div>`;
+    })
     .join("");
 }

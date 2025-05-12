@@ -587,3 +587,1426 @@
 2025-05-12 10:37:08 [INFO] FIL/USD: no new fills
 2025-05-12 10:37:15 [INFO] UNI/USD: no new fills
 2025-05-12 10:37:23 [INFO] ALGO/USD: no new fills
+2025-05-12 10:37:30 [INFO] EGLD/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:37:39 [INFO] AAVE/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:37:49 [INFO] NEAR/USD: no new fills
+2025-05-12 10:37:56 [INFO] XTZ/USD: no new fills
+2025-05-12 10:38:03 [INFO] CRV/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:38:13 [INFO] RUNE/USD: wrote 4 rows → events.json (+1)
+2025-05-12 10:38:23 [INFO] INJ/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:38:32 [INFO] LDO/USD: no new fills
+2025-05-12 10:38:40 [INFO] SUI/USD: wrote 2 rows → events.json (+1)
+2025-05-12 10:38:49 [INFO] OP/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:38:59 [INFO] STX/USD: no new fills
+2025-05-12 10:39:06 [INFO] GRT/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:39:16 [INFO] FLOW/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:39:26 [INFO] AR/USD: no new fills
+2025-05-12 10:39:33 [INFO] ENS/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:39:42 [INFO] IMX/USD: no new fills
+2025-05-12 10:39:50 [INFO] SNX/USD: no new fills
+2025-05-12 10:39:57 [INFO] KAVA/USD: wrote 5 rows → events.json (+1)
+2025-05-12 10:40:07 [INFO] BCH/USD: no new fills
+2025-05-12 10:40:14 [INFO] SAND/USD: no new fills
+2025-05-12 10:40:21 [INFO] CHZ/USD: no new fills
+2025-05-12 10:40:28 [INFO] APE/USD: wrote 7 rows → events.json (+1)
+2025-05-12 10:40:38 [INFO] AXS/USD: no new fills
+2025-05-12 10:40:45 [INFO] DYDX/USD: wrote 3 rows → events.json (+1)
+2025-05-12 10:40:55 [INFO] COMP/USD: no new fills
+2025-05-12 10:42:34 [INFO] USD cash balance: 24.040900
+2025-05-12 10:42:35 [INFO] AAVE/USD: 0.064314 ≈ $14.46
+2025-05-12 10:42:36 [INFO] DOT/USD: 2.692341 ≈ $13.98
+2025-05-12 10:42:37 [INFO] RUNE/USD: 9.266803 ≈ $18.06
+2025-05-12 10:42:38 [INFO] SOL/USD: 0.078217 ≈ $13.93
+2025-05-12 10:42:39 [INFO] SUI/USD: 3.202640 ≈ $12.89
+2025-05-12 10:42:40 [INFO] TRX/USD: 98.270008 ≈ $27.04
+2025-05-12 10:42:41 [INFO] BTC/USD: 0.000124 ≈ $12.82
+2025-05-12 10:42:41 [INFO] portfolio.json updated (8 assets).
+2025-05-12 10:42:44 [INFO] positions.json verified (0 active).
+2025-05-12 10:42:46 [INFO] BTC/USD [15m] appended 1 rows
+2025-05-12 10:42:54 [INFO] BTC/USD [15m] saved 699 rows → data/historical/btc_usd/15m.csv
+2025-05-12 10:42:57 [INFO] BTC/USD [30m] appended 1 rows
+2025-05-12 10:42:59 [INFO] BTC/USD [30m] saved 700 rows → data/historical/btc_usd/30m.csv
+2025-05-12 10:42:59 [INFO] BTC/USD [1h] saved 700 rows → data/historical/btc_usd/1h.csv
+2025-05-12 10:42:59 [INFO] BTC/USD [4h] saved 700 rows → data/historical/btc_usd/4h.csv
+2025-05-12 10:42:59 [INFO] BTC/USD [1d] saved 700 rows → data/historical/btc_usd/1d.csv
+2025-05-12 10:43:02 [INFO] BTC/USD [1w] saved 606 rows → data/historical/btc_usd/1w.csv
+2025-05-12 10:43:04 [INFO] ETH/USD [15m] appended 1 rows
+2025-05-12 10:43:13 [INFO] ETH/USD [15m] saved 699 rows → data/historical/eth_usd/15m.csv
+2025-05-12 10:43:15 [INFO] ETH/USD [30m] appended 1 rows
+2025-05-12 10:43:17 [INFO] ETH/USD [30m] saved 700 rows → data/historical/eth_usd/30m.csv
+2025-05-12 10:43:17 [INFO] ETH/USD [1h] saved 700 rows → data/historical/eth_usd/1h.csv
+2025-05-12 10:43:17 [INFO] ETH/USD [4h] saved 700 rows → data/historical/eth_usd/4h.csv
+2025-05-12 10:43:17 [INFO] ETH/USD [1d] saved 700 rows → data/historical/eth_usd/1d.csv
+2025-05-12 10:43:20 [INFO] ETH/USD [1w] saved 510 rows → data/historical/eth_usd/1w.csv
+2025-05-12 10:43:23 [INFO] SOL/USD [15m] appended 1 rows
+2025-05-12 10:43:25 [INFO] SOL/USD [15m] saved 700 rows → data/historical/sol_usd/15m.csv
+2025-05-12 10:43:28 [INFO] SOL/USD [30m] appended 1 rows
+2025-05-12 10:43:30 [INFO] SOL/USD [30m] saved 700 rows → data/historical/sol_usd/30m.csv
+2025-05-12 10:43:30 [INFO] SOL/USD [1h] saved 700 rows → data/historical/sol_usd/1h.csv
+2025-05-12 10:43:30 [INFO] SOL/USD [4h] saved 700 rows → data/historical/sol_usd/4h.csv
+2025-05-12 10:43:30 [INFO] SOL/USD [1d] saved 700 rows → data/historical/sol_usd/1d.csv
+2025-05-12 10:43:33 [INFO] SOL/USD [1w] saved 204 rows → data/historical/sol_usd/1w.csv
+2025-05-12 10:43:35 [INFO] XRP/USD [15m] appended 1 rows
+2025-05-12 10:43:38 [INFO] XRP/USD [15m] saved 700 rows → data/historical/xrp_usd/15m.csv
+2025-05-12 10:43:40 [INFO] XRP/USD [30m] appended 1 rows
+2025-05-12 10:43:43 [INFO] XRP/USD [30m] saved 700 rows → data/historical/xrp_usd/30m.csv
+2025-05-12 10:43:43 [INFO] XRP/USD [1h] saved 700 rows → data/historical/xrp_usd/1h.csv
+2025-05-12 10:43:43 [INFO] XRP/USD [4h] saved 700 rows → data/historical/xrp_usd/4h.csv
+2025-05-12 10:43:43 [INFO] XRP/USD [1d] saved 700 rows → data/historical/xrp_usd/1d.csv
+2025-05-12 10:43:46 [INFO] XRP/USD [1w] saved 417 rows → data/historical/xrp_usd/1w.csv
+2025-05-12 10:43:48 [INFO] TON/USD [15m] appended 1 rows
+2025-05-12 10:43:51 [INFO] TON/USD [15m] saved 700 rows → data/historical/ton_usd/15m.csv
+2025-05-12 10:43:53 [INFO] TON/USD [30m] appended 1 rows
+2025-05-12 10:43:56 [INFO] TON/USD [30m] saved 700 rows → data/historical/ton_usd/30m.csv
+2025-05-12 10:43:56 [INFO] TON/USD [1h] saved 700 rows → data/historical/ton_usd/1h.csv
+2025-05-12 10:43:56 [INFO] TON/USD [4h] saved 700 rows → data/historical/ton_usd/4h.csv
+2025-05-12 10:43:59 [INFO] TON/USD [1d] saved 214 rows → data/historical/ton_usd/1d.csv
+2025-05-12 10:44:01 [INFO] TON/USD [1w] saved 31 rows → data/historical/ton_usd/1w.csv
+2025-05-12 10:44:04 [INFO] DOGE/USD [15m] appended 1 rows
+2025-05-12 10:44:06 [INFO] DOGE/USD [15m] saved 700 rows → data/historical/doge_usd/15m.csv
+2025-05-12 10:44:09 [INFO] DOGE/USD [30m] appended 1 rows
+2025-05-12 10:44:11 [INFO] DOGE/USD [30m] saved 700 rows → data/historical/doge_usd/30m.csv
+2025-05-12 10:44:11 [INFO] DOGE/USD [1h] saved 700 rows → data/historical/doge_usd/1h.csv
+2025-05-12 10:44:11 [INFO] DOGE/USD [4h] saved 700 rows → data/historical/doge_usd/4h.csv
+2025-05-12 10:44:11 [INFO] DOGE/USD [1d] saved 700 rows → data/historical/doge_usd/1d.csv
+2025-05-12 10:44:14 [INFO] DOGE/USD [1w] saved 282 rows → data/historical/doge_usd/1w.csv
+2025-05-12 10:44:16 [INFO] ADA/USD [15m] appended 1 rows
+2025-05-12 10:44:19 [INFO] ADA/USD [15m] saved 700 rows → data/historical/ada_usd/15m.csv
+2025-05-12 10:44:21 [INFO] ADA/USD [30m] appended 1 rows
+2025-05-12 10:44:24 [INFO] ADA/USD [30m] saved 700 rows → data/historical/ada_usd/30m.csv
+2025-05-12 10:44:24 [INFO] ADA/USD [1h] saved 700 rows → data/historical/ada_usd/1h.csv
+2025-05-12 10:44:24 [INFO] ADA/USD [4h] saved 700 rows → data/historical/ada_usd/4h.csv
+2025-05-12 10:44:24 [INFO] ADA/USD [1d] saved 700 rows → data/historical/ada_usd/1d.csv
+2025-05-12 10:44:27 [INFO] ADA/USD [1w] saved 346 rows → data/historical/ada_usd/1w.csv
+2025-05-12 10:44:29 [INFO] DOT/USD [15m] appended 1 rows
+2025-05-12 10:44:32 [INFO] DOT/USD [15m] saved 700 rows → data/historical/dot_usd/15m.csv
+2025-05-12 10:44:34 [INFO] DOT/USD [30m] appended 1 rows
+2025-05-12 10:44:37 [INFO] DOT/USD [30m] saved 700 rows → data/historical/dot_usd/30m.csv
+2025-05-12 10:44:37 [INFO] DOT/USD [1h] saved 700 rows → data/historical/dot_usd/1h.csv
+2025-05-12 10:44:37 [INFO] DOT/USD [4h] saved 700 rows → data/historical/dot_usd/4h.csv
+2025-05-12 10:44:37 [INFO] DOT/USD [1d] saved 700 rows → data/historical/dot_usd/1d.csv
+2025-05-12 10:44:39 [INFO] DOT/USD [1w] saved 248 rows → data/historical/dot_usd/1w.csv
+2025-05-12 10:44:42 [INFO] AVAX/USD [15m] appended 1 rows
+2025-05-12 10:44:45 [INFO] AVAX/USD [15m] saved 700 rows → data/historical/avax_usd/15m.csv
+2025-05-12 10:44:47 [INFO] AVAX/USD [30m] appended 1 rows
+2025-05-12 10:44:50 [INFO] AVAX/USD [30m] saved 700 rows → data/historical/avax_usd/30m.csv
+2025-05-12 10:44:50 [INFO] AVAX/USD [1h] saved 700 rows → data/historical/avax_usd/1h.csv
+2025-05-12 10:44:50 [INFO] AVAX/USD [4h] saved 700 rows → data/historical/avax_usd/4h.csv
+2025-05-12 10:44:50 [INFO] AVAX/USD [1d] saved 700 rows → data/historical/avax_usd/1d.csv
+2025-05-12 10:44:52 [INFO] AVAX/USD [1w] saved 178 rows → data/historical/avax_usd/1w.csv
+2025-05-12 10:44:55 [INFO] LINK/USD [15m] appended 1 rows
+2025-05-12 10:44:57 [INFO] LINK/USD [15m] saved 700 rows → data/historical/link_usd/15m.csv
+2025-05-12 10:45:00 [INFO] LINK/USD [30m] appended 1 rows
+2025-05-12 10:45:02 [INFO] LINK/USD [30m] saved 700 rows → data/historical/link_usd/30m.csv
+2025-05-12 10:45:02 [INFO] LINK/USD [1h] saved 700 rows → data/historical/link_usd/1h.csv
+2025-05-12 10:45:02 [INFO] LINK/USD [4h] saved 700 rows → data/historical/link_usd/4h.csv
+2025-05-12 10:45:02 [INFO] LINK/USD [1d] saved 700 rows → data/historical/link_usd/1d.csv
+2025-05-12 10:45:05 [INFO] LINK/USD [1w] saved 295 rows → data/historical/link_usd/1w.csv
+2025-05-12 10:45:07 [INFO] MATIC/USD [15m] appended 2 rows
+2025-05-12 10:45:10 [INFO] MATIC/USD [15m] saved 700 rows → data/historical/matic_usd/15m.csv
+2025-05-12 10:45:12 [INFO] MATIC/USD [30m] appended 1 rows
+2025-05-12 10:45:15 [INFO] MATIC/USD [30m] saved 700 rows → data/historical/matic_usd/30m.csv
+2025-05-12 10:45:15 [INFO] MATIC/USD [1h] saved 700 rows → data/historical/matic_usd/1h.csv
+2025-05-12 10:45:15 [INFO] MATIC/USD [4h] saved 700 rows → data/historical/matic_usd/4h.csv
+2025-05-12 10:45:15 [INFO] MATIC/USD [1d] saved 700 rows → data/historical/matic_usd/1d.csv
+2025-05-12 10:45:18 [INFO] MATIC/USD [1w] saved 209 rows → data/historical/matic_usd/1w.csv
+2025-05-12 10:45:20 [INFO] SHIB/USD [15m] appended 2 rows
+2025-05-12 10:45:23 [INFO] SHIB/USD [15m] saved 700 rows → data/historical/shib_usd/15m.csv
+2025-05-12 10:45:25 [INFO] SHIB/USD [30m] appended 1 rows
+2025-05-12 10:45:28 [INFO] SHIB/USD [30m] saved 700 rows → data/historical/shib_usd/30m.csv
+2025-05-12 10:45:28 [INFO] SHIB/USD [1h] saved 700 rows → data/historical/shib_usd/1h.csv
+2025-05-12 10:45:28 [INFO] SHIB/USD [4h] saved 700 rows → data/historical/shib_usd/4h.csv
+2025-05-12 10:45:28 [INFO] SHIB/USD [1d] saved 700 rows → data/historical/shib_usd/1d.csv
+2025-05-12 10:45:30 [INFO] SHIB/USD [1w] saved 181 rows → data/historical/shib_usd/1w.csv
+2025-05-12 10:45:33 [INFO] ATOM/USD [15m] appended 2 rows
+2025-05-12 10:45:35 [INFO] ATOM/USD [15m] saved 700 rows → data/historical/atom_usd/15m.csv
+2025-05-12 10:45:38 [INFO] ATOM/USD [30m] appended 1 rows
+2025-05-12 10:45:40 [INFO] ATOM/USD [30m] saved 700 rows → data/historical/atom_usd/30m.csv
+2025-05-12 10:45:40 [INFO] ATOM/USD [1h] saved 700 rows → data/historical/atom_usd/1h.csv
+2025-05-12 10:45:40 [INFO] ATOM/USD [4h] saved 700 rows → data/historical/atom_usd/4h.csv
+2025-05-12 10:45:40 [INFO] ATOM/USD [1d] saved 700 rows → data/historical/atom_usd/1d.csv
+2025-05-12 10:45:43 [INFO] ATOM/USD [1w] saved 317 rows → data/historical/atom_usd/1w.csv
+2025-05-12 10:45:46 [INFO] LTC/USD [15m] appended 2 rows
+2025-05-12 10:45:49 [INFO] LTC/USD [15m] saved 700 rows → data/historical/ltc_usd/15m.csv
+2025-05-12 10:45:51 [INFO] LTC/USD [30m] appended 1 rows
+2025-05-12 10:45:54 [INFO] LTC/USD [30m] saved 700 rows → data/historical/ltc_usd/30m.csv
+2025-05-12 10:45:54 [INFO] LTC/USD [1h] saved 700 rows → data/historical/ltc_usd/1h.csv
+2025-05-12 10:45:54 [INFO] LTC/USD [4h] saved 700 rows → data/historical/ltc_usd/4h.csv
+2025-05-12 10:45:54 [INFO] LTC/USD [1d] saved 700 rows → data/historical/ltc_usd/1d.csv
+2025-05-12 10:45:56 [INFO] LTC/USD [1w] saved 602 rows → data/historical/ltc_usd/1w.csv
+2025-05-12 10:45:59 [INFO] TRX/USD [15m] appended 2 rows
+2025-05-12 10:46:01 [INFO] TRX/USD [15m] saved 700 rows → data/historical/trx_usd/15m.csv
+2025-05-12 10:46:04 [INFO] TRX/USD [30m] appended 1 rows
+2025-05-12 10:46:07 [INFO] TRX/USD [30m] saved 700 rows → data/historical/trx_usd/30m.csv
+2025-05-12 10:46:07 [INFO] TRX/USD [1h] saved 700 rows → data/historical/trx_usd/1h.csv
+2025-05-12 10:46:07 [INFO] TRX/USD [4h] saved 700 rows → data/historical/trx_usd/4h.csv
+2025-05-12 10:46:07 [INFO] TRX/USD [1d] saved 700 rows → data/historical/trx_usd/1d.csv
+2025-05-12 10:46:09 [INFO] TRX/USD [1w] saved 271 rows → data/historical/trx_usd/1w.csv
+2025-05-12 10:46:12 [INFO] XLM/USD [15m] appended 2 rows
+2025-05-12 10:46:14 [INFO] XLM/USD [15m] saved 700 rows → data/historical/xlm_usd/15m.csv
+2025-05-12 10:46:17 [INFO] XLM/USD [30m] appended 1 rows
+2025-05-12 10:46:19 [INFO] XLM/USD [30m] saved 700 rows → data/historical/xlm_usd/30m.csv
+2025-05-12 10:46:19 [INFO] XLM/USD [1h] saved 700 rows → data/historical/xlm_usd/1h.csv
+2025-05-12 10:46:20 [INFO] XLM/USD [4h] saved 700 rows → data/historical/xlm_usd/4h.csv
+2025-05-12 10:46:20 [INFO] XLM/USD [1d] saved 700 rows → data/historical/xlm_usd/1d.csv
+2025-05-12 10:46:22 [INFO] XLM/USD [1w] saved 411 rows → data/historical/xlm_usd/1w.csv
+2025-05-12 10:46:25 [INFO] FIL/USD [15m] appended 2 rows
+2025-05-12 10:46:27 [INFO] FIL/USD [15m] saved 700 rows → data/historical/fil_usd/15m.csv
+2025-05-12 10:46:30 [INFO] FIL/USD [30m] appended 1 rows
+2025-05-12 10:46:33 [INFO] FIL/USD [30m] saved 700 rows → data/historical/fil_usd/30m.csv
+2025-05-12 10:46:33 [INFO] FIL/USD [1h] saved 700 rows → data/historical/fil_usd/1h.csv
+2025-05-12 10:46:33 [INFO] FIL/USD [4h] saved 700 rows → data/historical/fil_usd/4h.csv
+2025-05-12 10:46:33 [INFO] FIL/USD [1d] saved 700 rows → data/historical/fil_usd/1d.csv
+2025-05-12 10:46:35 [INFO] FIL/USD [1w] saved 239 rows → data/historical/fil_usd/1w.csv
+2025-05-12 10:46:38 [INFO] UNI/USD [15m] appended 2 rows
+2025-05-12 10:46:40 [INFO] UNI/USD [15m] saved 700 rows → data/historical/uni_usd/15m.csv
+2025-05-12 10:46:43 [INFO] UNI/USD [30m] appended 1 rows
+2025-05-12 10:46:46 [INFO] UNI/USD [30m] saved 700 rows → data/historical/uni_usd/30m.csv
+2025-05-12 10:46:46 [INFO] UNI/USD [1h] saved 700 rows → data/historical/uni_usd/1h.csv
+2025-05-12 10:46:46 [INFO] UNI/USD [4h] saved 700 rows → data/historical/uni_usd/4h.csv
+2025-05-12 10:46:46 [INFO] UNI/USD [1d] saved 700 rows → data/historical/uni_usd/1d.csv
+2025-05-12 10:46:48 [INFO] UNI/USD [1w] saved 239 rows → data/historical/uni_usd/1w.csv
+2025-05-12 10:46:51 [INFO] ALGO/USD [15m] appended 2 rows
+2025-05-12 10:46:53 [INFO] ALGO/USD [15m] saved 700 rows → data/historical/algo_usd/15m.csv
+2025-05-12 10:46:56 [INFO] ALGO/USD [30m] appended 1 rows
+2025-05-12 10:46:58 [INFO] ALGO/USD [30m] saved 700 rows → data/historical/algo_usd/30m.csv
+2025-05-12 10:46:58 [INFO] ALGO/USD [1h] saved 700 rows → data/historical/algo_usd/1h.csv
+2025-05-12 10:46:58 [INFO] ALGO/USD [4h] saved 700 rows → data/historical/algo_usd/4h.csv
+2025-05-12 10:46:58 [INFO] ALGO/USD [1d] saved 700 rows → data/historical/algo_usd/1d.csv
+2025-05-12 10:47:01 [INFO] ALGO/USD [1w] saved 278 rows → data/historical/algo_usd/1w.csv
+2025-05-12 10:47:03 [INFO] EGLD/USD [15m] appended 2 rows
+2025-05-12 10:47:08 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:14 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:19 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:24 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:29 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:34 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:39 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:44 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:49 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:54 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:47:59 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:04 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:09 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:14 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:19 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:25 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:30 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:35 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:39 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:45 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:50 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:48:55 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:00 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:05 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:10 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:15 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:20 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:25 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:30 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:35 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:40 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:45 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:50 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:49:55 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:00 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:06 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:11 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:16 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:21 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:26 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:31 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:50:35 [INFO] Bot terminated by user
+2025-05-12 10:50:46 [INFO] USD cash balance: 24.040900
+2025-05-12 10:50:47 [INFO] AAVE/USD: 0.064314 ≈ $14.35
+2025-05-12 10:50:48 [INFO] DOT/USD: 2.692341 ≈ $13.89
+2025-05-12 10:50:49 [INFO] RUNE/USD: 9.266803 ≈ $17.97
+2025-05-12 10:50:50 [INFO] SOL/USD: 0.078217 ≈ $13.86
+2025-05-12 10:50:51 [INFO] SUI/USD: 3.202640 ≈ $12.77
+2025-05-12 10:50:52 [INFO] TRX/USD: 98.270008 ≈ $27.02
+2025-05-12 10:50:53 [INFO] BTC/USD: 0.000124 ≈ $12.78
+2025-05-12 10:50:53 [INFO] portfolio.json updated (8 assets).
+2025-05-12 10:50:56 [INFO] positions.json verified (0 active).
+2025-05-12 10:50:58 [INFO] BTC/USD [15m] appended 1 rows
+2025-05-12 10:51:01 [INFO] BTC/USD [15m] saved 700 rows → data/historical/btc_usd/15m.csv
+2025-05-12 10:51:01 [INFO] BTC/USD [30m] saved 700 rows → data/historical/btc_usd/30m.csv
+2025-05-12 10:51:01 [INFO] BTC/USD [1h] saved 700 rows → data/historical/btc_usd/1h.csv
+2025-05-12 10:51:01 [INFO] BTC/USD [4h] saved 700 rows → data/historical/btc_usd/4h.csv
+2025-05-12 10:51:01 [INFO] BTC/USD [1d] saved 700 rows → data/historical/btc_usd/1d.csv
+2025-05-12 10:51:03 [INFO] BTC/USD [1w] saved 606 rows → data/historical/btc_usd/1w.csv
+2025-05-12 10:51:06 [INFO] ETH/USD [15m] appended 1 rows
+2025-05-12 10:51:08 [INFO] ETH/USD [15m] saved 700 rows → data/historical/eth_usd/15m.csv
+2025-05-12 10:51:08 [INFO] ETH/USD [30m] saved 700 rows → data/historical/eth_usd/30m.csv
+2025-05-12 10:51:08 [INFO] ETH/USD [1h] saved 700 rows → data/historical/eth_usd/1h.csv
+2025-05-12 10:51:08 [INFO] ETH/USD [4h] saved 700 rows → data/historical/eth_usd/4h.csv
+2025-05-12 10:51:08 [INFO] ETH/USD [1d] saved 700 rows → data/historical/eth_usd/1d.csv
+2025-05-12 10:51:11 [INFO] ETH/USD [1w] saved 510 rows → data/historical/eth_usd/1w.csv
+2025-05-12 10:51:14 [INFO] SOL/USD [15m] appended 1 rows
+2025-05-12 10:51:16 [INFO] SOL/USD [15m] saved 700 rows → data/historical/sol_usd/15m.csv
+2025-05-12 10:51:16 [INFO] SOL/USD [30m] saved 700 rows → data/historical/sol_usd/30m.csv
+2025-05-12 10:51:16 [INFO] SOL/USD [1h] saved 700 rows → data/historical/sol_usd/1h.csv
+2025-05-12 10:51:16 [INFO] SOL/USD [4h] saved 700 rows → data/historical/sol_usd/4h.csv
+2025-05-12 10:51:16 [INFO] SOL/USD [1d] saved 700 rows → data/historical/sol_usd/1d.csv
+2025-05-12 10:51:19 [INFO] SOL/USD [1w] saved 204 rows → data/historical/sol_usd/1w.csv
+2025-05-12 10:51:21 [INFO] XRP/USD [15m] appended 1 rows
+2025-05-12 10:51:24 [INFO] XRP/USD [15m] saved 700 rows → data/historical/xrp_usd/15m.csv
+2025-05-12 10:51:24 [INFO] XRP/USD [30m] saved 700 rows → data/historical/xrp_usd/30m.csv
+2025-05-12 10:51:24 [INFO] XRP/USD [1h] saved 700 rows → data/historical/xrp_usd/1h.csv
+2025-05-12 10:51:24 [INFO] XRP/USD [4h] saved 700 rows → data/historical/xrp_usd/4h.csv
+2025-05-12 10:51:24 [INFO] XRP/USD [1d] saved 700 rows → data/historical/xrp_usd/1d.csv
+2025-05-12 10:51:27 [INFO] XRP/USD [1w] saved 417 rows → data/historical/xrp_usd/1w.csv
+2025-05-12 10:51:30 [INFO] TON/USD [15m] appended 1 rows
+2025-05-12 10:51:32 [INFO] TON/USD [15m] saved 700 rows → data/historical/ton_usd/15m.csv
+2025-05-12 10:51:32 [INFO] TON/USD [30m] saved 700 rows → data/historical/ton_usd/30m.csv
+2025-05-12 10:51:32 [INFO] TON/USD [1h] saved 700 rows → data/historical/ton_usd/1h.csv
+2025-05-12 10:51:32 [INFO] TON/USD [4h] saved 700 rows → data/historical/ton_usd/4h.csv
+2025-05-12 10:51:35 [INFO] TON/USD [1d] saved 214 rows → data/historical/ton_usd/1d.csv
+2025-05-12 10:51:37 [INFO] TON/USD [1w] saved 31 rows → data/historical/ton_usd/1w.csv
+2025-05-12 10:51:40 [INFO] DOGE/USD [15m] appended 1 rows
+2025-05-12 10:51:42 [INFO] DOGE/USD [15m] saved 700 rows → data/historical/doge_usd/15m.csv
+2025-05-12 10:51:42 [INFO] DOGE/USD [30m] saved 700 rows → data/historical/doge_usd/30m.csv
+2025-05-12 10:51:42 [INFO] DOGE/USD [1h] saved 700 rows → data/historical/doge_usd/1h.csv
+2025-05-12 10:51:42 [INFO] DOGE/USD [4h] saved 700 rows → data/historical/doge_usd/4h.csv
+2025-05-12 10:51:42 [INFO] DOGE/USD [1d] saved 700 rows → data/historical/doge_usd/1d.csv
+2025-05-12 10:51:45 [INFO] DOGE/USD [1w] saved 282 rows → data/historical/doge_usd/1w.csv
+2025-05-12 10:51:48 [INFO] ADA/USD [15m] appended 1 rows
+2025-05-12 10:51:50 [INFO] ADA/USD [15m] saved 700 rows → data/historical/ada_usd/15m.csv
+2025-05-12 10:51:50 [INFO] ADA/USD [30m] saved 700 rows → data/historical/ada_usd/30m.csv
+2025-05-12 10:51:50 [INFO] ADA/USD [1h] saved 700 rows → data/historical/ada_usd/1h.csv
+2025-05-12 10:51:50 [INFO] ADA/USD [4h] saved 700 rows → data/historical/ada_usd/4h.csv
+2025-05-12 10:51:50 [INFO] ADA/USD [1d] saved 700 rows → data/historical/ada_usd/1d.csv
+2025-05-12 10:51:53 [INFO] ADA/USD [1w] saved 346 rows → data/historical/ada_usd/1w.csv
+2025-05-12 10:51:55 [INFO] DOT/USD [15m] appended 1 rows
+2025-05-12 10:51:58 [INFO] DOT/USD [15m] saved 700 rows → data/historical/dot_usd/15m.csv
+2025-05-12 10:51:58 [INFO] DOT/USD [30m] saved 700 rows → data/historical/dot_usd/30m.csv
+2025-05-12 10:51:58 [INFO] DOT/USD [1h] saved 700 rows → data/historical/dot_usd/1h.csv
+2025-05-12 10:51:58 [INFO] DOT/USD [4h] saved 700 rows → data/historical/dot_usd/4h.csv
+2025-05-12 10:51:58 [INFO] DOT/USD [1d] saved 700 rows → data/historical/dot_usd/1d.csv
+2025-05-12 10:52:00 [INFO] DOT/USD [1w] saved 248 rows → data/historical/dot_usd/1w.csv
+2025-05-12 10:52:03 [INFO] AVAX/USD [15m] appended 1 rows
+2025-05-12 10:52:06 [INFO] AVAX/USD [15m] saved 700 rows → data/historical/avax_usd/15m.csv
+2025-05-12 10:52:06 [INFO] AVAX/USD [30m] saved 700 rows → data/historical/avax_usd/30m.csv
+2025-05-12 10:52:06 [INFO] AVAX/USD [1h] saved 700 rows → data/historical/avax_usd/1h.csv
+2025-05-12 10:52:06 [INFO] AVAX/USD [4h] saved 700 rows → data/historical/avax_usd/4h.csv
+2025-05-12 10:52:06 [INFO] AVAX/USD [1d] saved 700 rows → data/historical/avax_usd/1d.csv
+2025-05-12 10:52:08 [INFO] AVAX/USD [1w] saved 178 rows → data/historical/avax_usd/1w.csv
+2025-05-12 10:52:11 [INFO] LINK/USD [15m] appended 1 rows
+2025-05-12 10:52:13 [INFO] LINK/USD [15m] saved 700 rows → data/historical/link_usd/15m.csv
+2025-05-12 10:52:13 [INFO] LINK/USD [30m] saved 700 rows → data/historical/link_usd/30m.csv
+2025-05-12 10:52:13 [INFO] LINK/USD [1h] saved 700 rows → data/historical/link_usd/1h.csv
+2025-05-12 10:52:13 [INFO] LINK/USD [4h] saved 700 rows → data/historical/link_usd/4h.csv
+2025-05-12 10:52:13 [INFO] LINK/USD [1d] saved 700 rows → data/historical/link_usd/1d.csv
+2025-05-12 10:52:16 [INFO] LINK/USD [1w] saved 295 rows → data/historical/link_usd/1w.csv
+2025-05-12 10:52:16 [INFO] MATIC/USD [15m] saved 700 rows → data/historical/matic_usd/15m.csv
+2025-05-12 10:52:16 [INFO] MATIC/USD [30m] saved 700 rows → data/historical/matic_usd/30m.csv
+2025-05-12 10:52:16 [INFO] MATIC/USD [1h] saved 700 rows → data/historical/matic_usd/1h.csv
+2025-05-12 10:52:16 [INFO] MATIC/USD [4h] saved 700 rows → data/historical/matic_usd/4h.csv
+2025-05-12 10:52:16 [INFO] MATIC/USD [1d] saved 700 rows → data/historical/matic_usd/1d.csv
+2025-05-12 10:52:19 [INFO] MATIC/USD [1w] saved 209 rows → data/historical/matic_usd/1w.csv
+2025-05-12 10:52:19 [INFO] SHIB/USD [15m] saved 700 rows → data/historical/shib_usd/15m.csv
+2025-05-12 10:52:19 [INFO] SHIB/USD [30m] saved 700 rows → data/historical/shib_usd/30m.csv
+2025-05-12 10:52:19 [INFO] SHIB/USD [1h] saved 700 rows → data/historical/shib_usd/1h.csv
+2025-05-12 10:52:19 [INFO] SHIB/USD [4h] saved 700 rows → data/historical/shib_usd/4h.csv
+2025-05-12 10:52:19 [INFO] SHIB/USD [1d] saved 700 rows → data/historical/shib_usd/1d.csv
+2025-05-12 10:52:21 [INFO] SHIB/USD [1w] saved 181 rows → data/historical/shib_usd/1w.csv
+2025-05-12 10:52:21 [INFO] ATOM/USD [15m] saved 700 rows → data/historical/atom_usd/15m.csv
+2025-05-12 10:52:21 [INFO] ATOM/USD [30m] saved 700 rows → data/historical/atom_usd/30m.csv
+2025-05-12 10:52:21 [INFO] ATOM/USD [1h] saved 700 rows → data/historical/atom_usd/1h.csv
+2025-05-12 10:52:21 [INFO] ATOM/USD [4h] saved 700 rows → data/historical/atom_usd/4h.csv
+2025-05-12 10:52:21 [INFO] ATOM/USD [1d] saved 700 rows → data/historical/atom_usd/1d.csv
+2025-05-12 10:52:24 [INFO] ATOM/USD [1w] saved 317 rows → data/historical/atom_usd/1w.csv
+2025-05-12 10:52:24 [INFO] LTC/USD [15m] saved 700 rows → data/historical/ltc_usd/15m.csv
+2025-05-12 10:52:24 [INFO] LTC/USD [30m] saved 700 rows → data/historical/ltc_usd/30m.csv
+2025-05-12 10:52:24 [INFO] LTC/USD [1h] saved 700 rows → data/historical/ltc_usd/1h.csv
+2025-05-12 10:52:24 [INFO] LTC/USD [4h] saved 700 rows → data/historical/ltc_usd/4h.csv
+2025-05-12 10:52:24 [INFO] LTC/USD [1d] saved 700 rows → data/historical/ltc_usd/1d.csv
+2025-05-12 10:52:26 [INFO] LTC/USD [1w] saved 602 rows → data/historical/ltc_usd/1w.csv
+2025-05-12 10:52:26 [INFO] TRX/USD [15m] saved 700 rows → data/historical/trx_usd/15m.csv
+2025-05-12 10:52:26 [INFO] TRX/USD [30m] saved 700 rows → data/historical/trx_usd/30m.csv
+2025-05-12 10:52:26 [INFO] TRX/USD [1h] saved 700 rows → data/historical/trx_usd/1h.csv
+2025-05-12 10:52:26 [INFO] TRX/USD [4h] saved 700 rows → data/historical/trx_usd/4h.csv
+2025-05-12 10:52:26 [INFO] TRX/USD [1d] saved 700 rows → data/historical/trx_usd/1d.csv
+2025-05-12 10:52:29 [INFO] TRX/USD [1w] saved 271 rows → data/historical/trx_usd/1w.csv
+2025-05-12 10:52:29 [INFO] XLM/USD [15m] saved 700 rows → data/historical/xlm_usd/15m.csv
+2025-05-12 10:52:29 [INFO] XLM/USD [30m] saved 700 rows → data/historical/xlm_usd/30m.csv
+2025-05-12 10:52:29 [INFO] XLM/USD [1h] saved 700 rows → data/historical/xlm_usd/1h.csv
+2025-05-12 10:52:29 [INFO] XLM/USD [4h] saved 700 rows → data/historical/xlm_usd/4h.csv
+2025-05-12 10:52:29 [INFO] XLM/USD [1d] saved 700 rows → data/historical/xlm_usd/1d.csv
+2025-05-12 10:52:32 [INFO] XLM/USD [1w] saved 411 rows → data/historical/xlm_usd/1w.csv
+2025-05-12 10:52:32 [INFO] FIL/USD [15m] saved 700 rows → data/historical/fil_usd/15m.csv
+2025-05-12 10:52:32 [INFO] FIL/USD [30m] saved 700 rows → data/historical/fil_usd/30m.csv
+2025-05-12 10:52:32 [INFO] FIL/USD [1h] saved 700 rows → data/historical/fil_usd/1h.csv
+2025-05-12 10:52:32 [INFO] FIL/USD [4h] saved 700 rows → data/historical/fil_usd/4h.csv
+2025-05-12 10:52:32 [INFO] FIL/USD [1d] saved 700 rows → data/historical/fil_usd/1d.csv
+2025-05-12 10:52:34 [INFO] FIL/USD [1w] saved 239 rows → data/historical/fil_usd/1w.csv
+2025-05-12 10:52:34 [INFO] UNI/USD [15m] saved 700 rows → data/historical/uni_usd/15m.csv
+2025-05-12 10:52:34 [INFO] UNI/USD [30m] saved 700 rows → data/historical/uni_usd/30m.csv
+2025-05-12 10:52:34 [INFO] UNI/USD [1h] saved 700 rows → data/historical/uni_usd/1h.csv
+2025-05-12 10:52:34 [INFO] UNI/USD [4h] saved 700 rows → data/historical/uni_usd/4h.csv
+2025-05-12 10:52:34 [INFO] UNI/USD [1d] saved 700 rows → data/historical/uni_usd/1d.csv
+2025-05-12 10:52:37 [INFO] UNI/USD [1w] saved 239 rows → data/historical/uni_usd/1w.csv
+2025-05-12 10:52:37 [INFO] ALGO/USD [15m] saved 700 rows → data/historical/algo_usd/15m.csv
+2025-05-12 10:52:37 [INFO] ALGO/USD [30m] saved 700 rows → data/historical/algo_usd/30m.csv
+2025-05-12 10:52:37 [INFO] ALGO/USD [1h] saved 700 rows → data/historical/algo_usd/1h.csv
+2025-05-12 10:52:37 [INFO] ALGO/USD [4h] saved 700 rows → data/historical/algo_usd/4h.csv
+2025-05-12 10:52:37 [INFO] ALGO/USD [1d] saved 700 rows → data/historical/algo_usd/1d.csv
+2025-05-12 10:52:39 [INFO] ALGO/USD [1w] saved 278 rows → data/historical/algo_usd/1w.csv
+2025-05-12 10:52:42 [INFO] EGLD/USD [15m] appended 2 rows
+2025-05-12 10:52:47 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:52:52 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:52:57 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:02 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:08 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:13 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:18 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:23 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:28 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:33 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:38 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:43 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:48 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:53 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:53:58 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:03 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:09 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:14 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:19 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:24 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:29 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:34 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:39 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:44 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:49 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:54 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:54:59 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:04 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:10 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:15 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:20 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:25 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:29 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:35 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:39 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:44 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:49 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:55:54 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:56:00 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:56:05 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:56:10 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:56:15 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:56:20 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:56:25 [INFO] EGLD/USD [15m] appended 1 rows
+2025-05-12 10:56:25 [INFO] Bot terminated by user
+2025-05-12 11:01:18 [INFO] USD cash balance: 24.040900
+2025-05-12 11:01:19 [INFO] AAVE/USD: 0.064314 ≈ $14.23
+2025-05-12 11:01:20 [INFO] DOT/USD: 2.692341 ≈ $13.85
+2025-05-12 11:01:21 [INFO] RUNE/USD: 9.266803 ≈ $17.86
+2025-05-12 11:01:22 [INFO] SOL/USD: 0.078217 ≈ $13.79
+2025-05-12 11:01:23 [INFO] SUI/USD: 3.202640 ≈ $12.72
+2025-05-12 11:01:24 [INFO] TRX/USD: 98.270008 ≈ $27.03
+2025-05-12 11:01:25 [INFO] BTC/USD: 0.000124 ≈ $12.76
+2025-05-12 11:01:26 [INFO] portfolio.json updated (8 assets).
+2025-05-12 11:01:28 [INFO] positions.json verified (0 active).
+2025-05-12 11:01:30 [INFO] BTC/USD [15m] appended 1 rows
+2025-05-12 11:01:33 [INFO] BTC/USD [15m] saved 700 rows → data/historical/btc_usd/15m.csv
+2025-05-12 11:01:36 [INFO] BTC/USD [30m] appended 1 rows
+2025-05-12 11:01:38 [INFO] BTC/USD [30m] saved 700 rows → data/historical/btc_usd/30m.csv
+2025-05-12 11:01:40 [INFO] BTC/USD [1h] appended 1 rows
+2025-05-12 11:01:43 [INFO] BTC/USD [1h] saved 700 rows → data/historical/btc_usd/1h.csv
+2025-05-12 11:01:43 [INFO] BTC/USD [4h] saved 700 rows → data/historical/btc_usd/4h.csv
+2025-05-12 11:01:43 [INFO] BTC/USD [1d] saved 700 rows → data/historical/btc_usd/1d.csv
+2025-05-12 11:01:46 [INFO] BTC/USD [1w] saved 606 rows → data/historical/btc_usd/1w.csv
+2025-05-12 11:01:48 [INFO] ETH/USD [15m] appended 1 rows
+2025-05-12 11:01:51 [INFO] ETH/USD [15m] saved 700 rows → data/historical/eth_usd/15m.csv
+2025-05-12 11:01:53 [INFO] ETH/USD [30m] appended 1 rows
+2025-05-12 11:01:56 [INFO] ETH/USD [30m] saved 700 rows → data/historical/eth_usd/30m.csv
+2025-05-12 11:01:58 [INFO] ETH/USD [1h] appended 1 rows
+2025-05-12 11:02:01 [INFO] ETH/USD [1h] saved 700 rows → data/historical/eth_usd/1h.csv
+2025-05-12 11:02:01 [INFO] ETH/USD [4h] saved 700 rows → data/historical/eth_usd/4h.csv
+2025-05-12 11:02:01 [INFO] ETH/USD [1d] saved 700 rows → data/historical/eth_usd/1d.csv
+2025-05-12 11:02:03 [INFO] ETH/USD [1w] saved 510 rows → data/historical/eth_usd/1w.csv
+2025-05-12 11:02:06 [INFO] SOL/USD [15m] appended 1 rows
+2025-05-12 11:02:09 [INFO] SOL/USD [15m] saved 700 rows → data/historical/sol_usd/15m.csv
+2025-05-12 11:02:11 [INFO] SOL/USD [30m] appended 1 rows
+2025-05-12 11:02:14 [INFO] SOL/USD [30m] saved 700 rows → data/historical/sol_usd/30m.csv
+2025-05-12 11:02:16 [INFO] SOL/USD [1h] appended 1 rows
+2025-05-12 11:02:19 [INFO] SOL/USD [1h] saved 700 rows → data/historical/sol_usd/1h.csv
+2025-05-12 11:02:19 [INFO] SOL/USD [4h] saved 700 rows → data/historical/sol_usd/4h.csv
+2025-05-12 11:02:19 [INFO] SOL/USD [1d] saved 700 rows → data/historical/sol_usd/1d.csv
+2025-05-12 11:02:21 [INFO] SOL/USD [1w] saved 204 rows → data/historical/sol_usd/1w.csv
+2025-05-12 11:02:24 [INFO] XRP/USD [15m] appended 1 rows
+2025-05-12 11:02:27 [INFO] XRP/USD [15m] saved 700 rows → data/historical/xrp_usd/15m.csv
+2025-05-12 11:02:29 [INFO] XRP/USD [30m] appended 1 rows
+2025-05-12 11:02:32 [INFO] XRP/USD [30m] saved 700 rows → data/historical/xrp_usd/30m.csv
+2025-05-12 11:02:34 [INFO] XRP/USD [1h] appended 1 rows
+2025-05-12 11:02:37 [INFO] XRP/USD [1h] saved 700 rows → data/historical/xrp_usd/1h.csv
+2025-05-12 11:02:37 [INFO] XRP/USD [4h] saved 700 rows → data/historical/xrp_usd/4h.csv
+2025-05-12 11:02:37 [INFO] XRP/USD [1d] saved 700 rows → data/historical/xrp_usd/1d.csv
+2025-05-12 11:02:39 [INFO] XRP/USD [1w] saved 417 rows → data/historical/xrp_usd/1w.csv
+2025-05-12 11:02:42 [INFO] TON/USD [15m] appended 1 rows
+2025-05-12 11:02:44 [INFO] TON/USD [15m] saved 700 rows → data/historical/ton_usd/15m.csv
+2025-05-12 11:02:47 [INFO] TON/USD [30m] appended 1 rows
+2025-05-12 11:02:49 [INFO] TON/USD [30m] saved 700 rows → data/historical/ton_usd/30m.csv
+2025-05-12 11:02:52 [INFO] TON/USD [1h] appended 1 rows
+2025-05-12 11:02:55 [INFO] TON/USD [1h] saved 700 rows → data/historical/ton_usd/1h.csv
+2025-05-12 11:02:55 [INFO] TON/USD [4h] saved 700 rows → data/historical/ton_usd/4h.csv
+2025-05-12 11:02:57 [INFO] TON/USD [1d] saved 214 rows → data/historical/ton_usd/1d.csv
+2025-05-12 11:03:00 [INFO] TON/USD [1w] saved 31 rows → data/historical/ton_usd/1w.csv
+2025-05-12 11:03:02 [INFO] DOGE/USD [15m] appended 1 rows
+2025-05-12 11:03:05 [INFO] DOGE/USD [15m] saved 700 rows → data/historical/doge_usd/15m.csv
+2025-05-12 11:03:07 [INFO] DOGE/USD [30m] appended 1 rows
+2025-05-12 11:03:10 [INFO] DOGE/USD [30m] saved 700 rows → data/historical/doge_usd/30m.csv
+2025-05-12 11:03:12 [INFO] DOGE/USD [1h] appended 1 rows
+2025-05-12 11:03:15 [INFO] DOGE/USD [1h] saved 700 rows → data/historical/doge_usd/1h.csv
+2025-05-12 11:03:15 [INFO] DOGE/USD [4h] saved 700 rows → data/historical/doge_usd/4h.csv
+2025-05-12 11:03:15 [INFO] DOGE/USD [1d] saved 700 rows → data/historical/doge_usd/1d.csv
+2025-05-12 11:03:17 [INFO] DOGE/USD [1w] saved 282 rows → data/historical/doge_usd/1w.csv
+2025-05-12 11:03:20 [INFO] ADA/USD [15m] appended 1 rows
+2025-05-12 11:03:22 [INFO] ADA/USD [15m] saved 700 rows → data/historical/ada_usd/15m.csv
+2025-05-12 11:03:25 [INFO] ADA/USD [30m] appended 1 rows
+2025-05-12 11:03:28 [INFO] ADA/USD [30m] saved 700 rows → data/historical/ada_usd/30m.csv
+2025-05-12 11:03:30 [INFO] ADA/USD [1h] appended 1 rows
+2025-05-12 11:03:33 [INFO] ADA/USD [1h] saved 700 rows → data/historical/ada_usd/1h.csv
+2025-05-12 11:03:33 [INFO] ADA/USD [4h] saved 700 rows → data/historical/ada_usd/4h.csv
+2025-05-12 11:03:33 [INFO] ADA/USD [1d] saved 700 rows → data/historical/ada_usd/1d.csv
+2025-05-12 11:03:35 [INFO] ADA/USD [1w] saved 346 rows → data/historical/ada_usd/1w.csv
+2025-05-12 11:03:38 [INFO] DOT/USD [15m] appended 1 rows
+2025-05-12 11:03:40 [INFO] DOT/USD [15m] saved 700 rows → data/historical/dot_usd/15m.csv
+2025-05-12 11:03:43 [INFO] DOT/USD [30m] appended 1 rows
+2025-05-12 11:03:45 [INFO] DOT/USD [30m] saved 700 rows → data/historical/dot_usd/30m.csv
+2025-05-12 11:03:48 [INFO] DOT/USD [1h] appended 1 rows
+2025-05-12 11:03:50 [INFO] DOT/USD [1h] saved 700 rows → data/historical/dot_usd/1h.csv
+2025-05-12 11:03:50 [INFO] DOT/USD [4h] saved 700 rows → data/historical/dot_usd/4h.csv
+2025-05-12 11:03:50 [INFO] DOT/USD [1d] saved 700 rows → data/historical/dot_usd/1d.csv
+2025-05-12 11:03:53 [INFO] DOT/USD [1w] saved 248 rows → data/historical/dot_usd/1w.csv
+2025-05-12 11:03:55 [INFO] AVAX/USD [15m] appended 1 rows
+2025-05-12 11:03:58 [INFO] AVAX/USD [15m] saved 700 rows → data/historical/avax_usd/15m.csv
+2025-05-12 11:04:00 [INFO] AVAX/USD [30m] appended 1 rows
+2025-05-12 11:04:03 [INFO] AVAX/USD [30m] saved 700 rows → data/historical/avax_usd/30m.csv
+2025-05-12 11:04:05 [INFO] AVAX/USD [1h] appended 1 rows
+2025-05-12 11:04:07 [INFO] Bot terminated by user
+2025-05-12 11:04:46 [INFO] USD cash balance: 24.040900
+2025-05-12 11:04:47 [INFO] AAVE/USD: 0.064314 ≈ $14.12
+2025-05-12 11:04:48 [INFO] DOT/USD: 2.692341 ≈ $13.66
+2025-05-12 11:04:50 [INFO] RUNE/USD: 9.266803 ≈ $17.71
+2025-05-12 11:04:50 [INFO] SOL/USD: 0.078217 ≈ $13.69
+2025-05-12 11:04:51 [INFO] SUI/USD: 3.202640 ≈ $12.50
+2025-05-12 11:04:53 [INFO] TRX/USD: 98.270008 ≈ $27.05
+2025-05-12 11:04:53 [INFO] BTC/USD: 0.000124 ≈ $12.71
+2025-05-12 11:04:54 [INFO] portfolio.json updated (8 assets).
+2025-05-12 11:04:56 [INFO] positions.json verified (0 active).
+2025-05-12 11:04:56 [INFO] BTC/USD [15m] saved 700 rows → data/historical/btc_usd/15m.csv
+2025-05-12 11:04:56 [INFO] BTC/USD [30m] saved 700 rows → data/historical/btc_usd/30m.csv
+2025-05-12 11:04:56 [INFO] BTC/USD [1h] saved 700 rows → data/historical/btc_usd/1h.csv
+2025-05-12 11:04:56 [INFO] BTC/USD [4h] saved 700 rows → data/historical/btc_usd/4h.csv
+2025-05-12 11:04:56 [INFO] BTC/USD [1d] saved 700 rows → data/historical/btc_usd/1d.csv
+2025-05-12 11:04:59 [INFO] BTC/USD [1w] saved 606 rows → data/historical/btc_usd/1w.csv
+2025-05-12 11:04:59 [INFO] ETH/USD [15m] saved 700 rows → data/historical/eth_usd/15m.csv
+2025-05-12 11:04:59 [INFO] ETH/USD [30m] saved 700 rows → data/historical/eth_usd/30m.csv
+2025-05-12 11:04:59 [INFO] ETH/USD [1h] saved 700 rows → data/historical/eth_usd/1h.csv
+2025-05-12 11:04:59 [INFO] ETH/USD [4h] saved 700 rows → data/historical/eth_usd/4h.csv
+2025-05-12 11:04:59 [INFO] ETH/USD [1d] saved 700 rows → data/historical/eth_usd/1d.csv
+2025-05-12 11:05:02 [INFO] ETH/USD [1w] saved 510 rows → data/historical/eth_usd/1w.csv
+2025-05-12 11:05:02 [INFO] SOL/USD [15m] saved 700 rows → data/historical/sol_usd/15m.csv
+2025-05-12 11:05:02 [INFO] SOL/USD [30m] saved 700 rows → data/historical/sol_usd/30m.csv
+2025-05-12 11:05:02 [INFO] SOL/USD [1h] saved 700 rows → data/historical/sol_usd/1h.csv
+2025-05-12 11:05:02 [INFO] SOL/USD [4h] saved 700 rows → data/historical/sol_usd/4h.csv
+2025-05-12 11:05:02 [INFO] SOL/USD [1d] saved 700 rows → data/historical/sol_usd/1d.csv
+2025-05-12 11:05:04 [INFO] SOL/USD [1w] saved 204 rows → data/historical/sol_usd/1w.csv
+2025-05-12 11:05:04 [INFO] XRP/USD [15m] saved 700 rows → data/historical/xrp_usd/15m.csv
+2025-05-12 11:05:04 [INFO] XRP/USD [30m] saved 700 rows → data/historical/xrp_usd/30m.csv
+2025-05-12 11:05:04 [INFO] XRP/USD [1h] saved 700 rows → data/historical/xrp_usd/1h.csv
+2025-05-12 11:05:04 [INFO] XRP/USD [4h] saved 700 rows → data/historical/xrp_usd/4h.csv
+2025-05-12 11:05:04 [INFO] XRP/USD [1d] saved 700 rows → data/historical/xrp_usd/1d.csv
+2025-05-12 11:05:07 [INFO] XRP/USD [1w] saved 417 rows → data/historical/xrp_usd/1w.csv
+2025-05-12 11:05:07 [INFO] TON/USD [15m] saved 700 rows → data/historical/ton_usd/15m.csv
+2025-05-12 11:05:07 [INFO] TON/USD [30m] saved 700 rows → data/historical/ton_usd/30m.csv
+2025-05-12 11:05:07 [INFO] TON/USD [1h] saved 700 rows → data/historical/ton_usd/1h.csv
+2025-05-12 11:05:07 [INFO] TON/USD [4h] saved 700 rows → data/historical/ton_usd/4h.csv
+2025-05-12 11:05:10 [INFO] TON/USD [1d] saved 214 rows → data/historical/ton_usd/1d.csv
+2025-05-12 11:05:12 [INFO] TON/USD [1w] saved 31 rows → data/historical/ton_usd/1w.csv
+2025-05-12 11:05:12 [INFO] DOGE/USD [15m] saved 700 rows → data/historical/doge_usd/15m.csv
+2025-05-12 11:05:12 [INFO] DOGE/USD [30m] saved 700 rows → data/historical/doge_usd/30m.csv
+2025-05-12 11:05:12 [INFO] DOGE/USD [1h] saved 700 rows → data/historical/doge_usd/1h.csv
+2025-05-12 11:05:12 [INFO] DOGE/USD [4h] saved 700 rows → data/historical/doge_usd/4h.csv
+2025-05-12 11:05:12 [INFO] DOGE/USD [1d] saved 700 rows → data/historical/doge_usd/1d.csv
+2025-05-12 11:05:15 [INFO] DOGE/USD [1w] saved 282 rows → data/historical/doge_usd/1w.csv
+2025-05-12 11:05:15 [INFO] ADA/USD [15m] saved 700 rows → data/historical/ada_usd/15m.csv
+2025-05-12 11:05:15 [INFO] ADA/USD [30m] saved 700 rows → data/historical/ada_usd/30m.csv
+2025-05-12 11:05:15 [INFO] ADA/USD [1h] saved 700 rows → data/historical/ada_usd/1h.csv
+2025-05-12 11:05:15 [INFO] ADA/USD [4h] saved 700 rows → data/historical/ada_usd/4h.csv
+2025-05-12 11:05:15 [INFO] ADA/USD [1d] saved 700 rows → data/historical/ada_usd/1d.csv
+2025-05-12 11:05:17 [INFO] ADA/USD [1w] saved 346 rows → data/historical/ada_usd/1w.csv
+2025-05-12 11:05:17 [INFO] DOT/USD [15m] saved 700 rows → data/historical/dot_usd/15m.csv
+2025-05-12 11:05:17 [INFO] DOT/USD [30m] saved 700 rows → data/historical/dot_usd/30m.csv
+2025-05-12 11:05:17 [INFO] DOT/USD [1h] saved 700 rows → data/historical/dot_usd/1h.csv
+2025-05-12 11:05:17 [INFO] DOT/USD [4h] saved 700 rows → data/historical/dot_usd/4h.csv
+2025-05-12 11:05:17 [INFO] DOT/USD [1d] saved 700 rows → data/historical/dot_usd/1d.csv
+2025-05-12 11:05:20 [INFO] DOT/USD [1w] saved 248 rows → data/historical/dot_usd/1w.csv
+2025-05-12 11:05:20 [INFO] AVAX/USD [15m] saved 700 rows → data/historical/avax_usd/15m.csv
+2025-05-12 11:05:20 [INFO] AVAX/USD [30m] saved 700 rows → data/historical/avax_usd/30m.csv
+2025-05-12 11:05:22 [INFO] AVAX/USD [1h] appended 1 rows
+2025-05-12 11:05:23 [INFO] AVAX/USD [1h] saved 700 rows → data/historical/avax_usd/1h.csv
+2025-05-12 11:05:23 [INFO] AVAX/USD [4h] saved 700 rows → data/historical/avax_usd/4h.csv
+2025-05-12 11:05:23 [INFO] AVAX/USD [1d] saved 700 rows → data/historical/avax_usd/1d.csv
+2025-05-12 11:05:26 [INFO] AVAX/USD [1w] saved 178 rows → data/historical/avax_usd/1w.csv
+2025-05-12 11:05:29 [INFO] LINK/USD [15m] appended 1 rows
+2025-05-12 11:05:30 [INFO] LINK/USD [15m] saved 700 rows → data/historical/link_usd/15m.csv
+2025-05-12 11:05:32 [INFO] LINK/USD [30m] appended 1 rows
+2025-05-12 11:05:33 [INFO] LINK/USD [30m] saved 700 rows → data/historical/link_usd/30m.csv
+2025-05-12 11:05:36 [INFO] LINK/USD [1h] appended 1 rows
+2025-05-12 11:05:37 [INFO] LINK/USD [1h] saved 700 rows → data/historical/link_usd/1h.csv
+2025-05-12 11:05:37 [INFO] LINK/USD [4h] saved 700 rows → data/historical/link_usd/4h.csv
+2025-05-12 11:05:37 [INFO] LINK/USD [1d] saved 700 rows → data/historical/link_usd/1d.csv
+2025-05-12 11:05:39 [INFO] LINK/USD [1w] saved 295 rows → data/historical/link_usd/1w.csv
+2025-05-12 11:05:42 [INFO] MATIC/USD [15m] appended 1 rows
+2025-05-12 11:05:43 [INFO] MATIC/USD [15m] saved 700 rows → data/historical/matic_usd/15m.csv
+2025-05-12 11:05:45 [INFO] MATIC/USD [30m] appended 1 rows
+2025-05-12 11:05:46 [INFO] MATIC/USD [30m] saved 700 rows → data/historical/matic_usd/30m.csv
+2025-05-12 11:05:49 [INFO] MATIC/USD [1h] appended 1 rows
+2025-05-12 11:05:50 [INFO] MATIC/USD [1h] saved 700 rows → data/historical/matic_usd/1h.csv
+2025-05-12 11:05:50 [INFO] MATIC/USD [4h] saved 700 rows → data/historical/matic_usd/4h.csv
+2025-05-12 11:05:50 [INFO] MATIC/USD [1d] saved 700 rows → data/historical/matic_usd/1d.csv
+2025-05-12 11:05:53 [INFO] MATIC/USD [1w] saved 209 rows → data/historical/matic_usd/1w.csv
+2025-05-12 11:05:55 [INFO] SHIB/USD [15m] appended 1 rows
+2025-05-12 11:05:56 [INFO] SHIB/USD [15m] saved 700 rows → data/historical/shib_usd/15m.csv
+2025-05-12 11:05:59 [INFO] SHIB/USD [30m] appended 1 rows
+2025-05-12 11:06:00 [INFO] SHIB/USD [30m] saved 700 rows → data/historical/shib_usd/30m.csv
+2025-05-12 11:06:02 [INFO] SHIB/USD [1h] appended 1 rows
+2025-05-12 11:06:03 [INFO] SHIB/USD [1h] saved 700 rows → data/historical/shib_usd/1h.csv
+2025-05-12 11:06:03 [INFO] SHIB/USD [4h] saved 700 rows → data/historical/shib_usd/4h.csv
+2025-05-12 11:06:03 [INFO] SHIB/USD [1d] saved 700 rows → data/historical/shib_usd/1d.csv
+2025-05-12 11:06:06 [INFO] SHIB/USD [1w] saved 181 rows → data/historical/shib_usd/1w.csv
+2025-05-12 11:06:08 [INFO] ATOM/USD [15m] appended 1 rows
+2025-05-12 11:06:09 [INFO] ATOM/USD [15m] saved 700 rows → data/historical/atom_usd/15m.csv
+2025-05-12 11:06:12 [INFO] ATOM/USD [30m] appended 1 rows
+2025-05-12 11:06:13 [INFO] ATOM/USD [30m] saved 700 rows → data/historical/atom_usd/30m.csv
+2025-05-12 11:06:16 [INFO] ATOM/USD [1h] appended 1 rows
+2025-05-12 11:06:17 [INFO] ATOM/USD [1h] saved 700 rows → data/historical/atom_usd/1h.csv
+2025-05-12 11:06:17 [INFO] ATOM/USD [4h] saved 700 rows → data/historical/atom_usd/4h.csv
+2025-05-12 11:06:17 [INFO] ATOM/USD [1d] saved 700 rows → data/historical/atom_usd/1d.csv
+2025-05-12 11:06:19 [INFO] ATOM/USD [1w] saved 317 rows → data/historical/atom_usd/1w.csv
+2025-05-12 11:06:22 [INFO] LTC/USD [15m] appended 1 rows
+2025-05-12 11:06:23 [INFO] LTC/USD [15m] saved 700 rows → data/historical/ltc_usd/15m.csv
+2025-05-12 11:06:26 [INFO] LTC/USD [30m] appended 1 rows
+2025-05-12 11:06:27 [INFO] LTC/USD [30m] saved 700 rows → data/historical/ltc_usd/30m.csv
+2025-05-12 11:06:29 [INFO] LTC/USD [1h] appended 1 rows
+2025-05-12 11:06:30 [INFO] LTC/USD [1h] saved 700 rows → data/historical/ltc_usd/1h.csv
+2025-05-12 11:06:30 [INFO] LTC/USD [4h] saved 700 rows → data/historical/ltc_usd/4h.csv
+2025-05-12 11:06:30 [INFO] LTC/USD [1d] saved 700 rows → data/historical/ltc_usd/1d.csv
+2025-05-12 11:06:33 [INFO] LTC/USD [1w] saved 602 rows → data/historical/ltc_usd/1w.csv
+2025-05-12 11:06:35 [INFO] TRX/USD [15m] appended 1 rows
+2025-05-12 11:06:36 [INFO] TRX/USD [15m] saved 700 rows → data/historical/trx_usd/15m.csv
+2025-05-12 11:06:39 [INFO] TRX/USD [30m] appended 1 rows
+2025-05-12 11:06:40 [INFO] TRX/USD [30m] saved 700 rows → data/historical/trx_usd/30m.csv
+2025-05-12 11:06:42 [INFO] TRX/USD [1h] appended 1 rows
+2025-05-12 11:06:43 [INFO] TRX/USD [1h] saved 700 rows → data/historical/trx_usd/1h.csv
+2025-05-12 11:06:43 [INFO] TRX/USD [4h] saved 700 rows → data/historical/trx_usd/4h.csv
+2025-05-12 11:06:43 [INFO] TRX/USD [1d] saved 700 rows → data/historical/trx_usd/1d.csv
+2025-05-12 11:06:46 [INFO] TRX/USD [1w] saved 271 rows → data/historical/trx_usd/1w.csv
+2025-05-12 11:06:49 [INFO] XLM/USD [15m] appended 1 rows
+2025-05-12 11:06:50 [INFO] XLM/USD [15m] saved 700 rows → data/historical/xlm_usd/15m.csv
+2025-05-12 11:06:52 [INFO] XLM/USD [30m] appended 1 rows
+2025-05-12 11:06:53 [INFO] XLM/USD [30m] saved 700 rows → data/historical/xlm_usd/30m.csv
+2025-05-12 11:06:56 [INFO] XLM/USD [1h] appended 1 rows
+2025-05-12 11:06:57 [INFO] XLM/USD [1h] saved 700 rows → data/historical/xlm_usd/1h.csv
+2025-05-12 11:06:57 [INFO] XLM/USD [4h] saved 700 rows → data/historical/xlm_usd/4h.csv
+2025-05-12 11:06:57 [INFO] XLM/USD [1d] saved 700 rows → data/historical/xlm_usd/1d.csv
+2025-05-12 11:07:00 [INFO] XLM/USD [1w] saved 411 rows → data/historical/xlm_usd/1w.csv
+2025-05-12 11:07:02 [INFO] FIL/USD [15m] appended 1 rows
+2025-05-12 11:07:03 [INFO] FIL/USD [15m] saved 700 rows → data/historical/fil_usd/15m.csv
+2025-05-12 11:07:06 [INFO] FIL/USD [30m] appended 1 rows
+2025-05-12 11:07:07 [INFO] FIL/USD [30m] saved 700 rows → data/historical/fil_usd/30m.csv
+2025-05-12 11:07:09 [INFO] FIL/USD [1h] appended 1 rows
+2025-05-12 11:07:10 [INFO] FIL/USD [1h] saved 700 rows → data/historical/fil_usd/1h.csv
+2025-05-12 11:07:10 [INFO] FIL/USD [4h] saved 700 rows → data/historical/fil_usd/4h.csv
+2025-05-12 11:07:10 [INFO] FIL/USD [1d] saved 700 rows → data/historical/fil_usd/1d.csv
+2025-05-12 11:07:13 [INFO] FIL/USD [1w] saved 239 rows → data/historical/fil_usd/1w.csv
+2025-05-12 11:07:15 [INFO] UNI/USD [15m] appended 1 rows
+2025-05-12 11:07:16 [INFO] UNI/USD [15m] saved 700 rows → data/historical/uni_usd/15m.csv
+2025-05-12 11:07:19 [INFO] UNI/USD [30m] appended 1 rows
+2025-05-12 11:07:20 [INFO] UNI/USD [30m] saved 700 rows → data/historical/uni_usd/30m.csv
+2025-05-12 11:07:22 [INFO] UNI/USD [1h] appended 1 rows
+2025-05-12 11:07:23 [INFO] UNI/USD [1h] saved 700 rows → data/historical/uni_usd/1h.csv
+2025-05-12 11:07:23 [INFO] UNI/USD [4h] saved 700 rows → data/historical/uni_usd/4h.csv
+2025-05-12 11:07:23 [INFO] UNI/USD [1d] saved 700 rows → data/historical/uni_usd/1d.csv
+2025-05-12 11:07:26 [INFO] UNI/USD [1w] saved 239 rows → data/historical/uni_usd/1w.csv
+2025-05-12 11:07:28 [INFO] ALGO/USD [15m] appended 1 rows
+2025-05-12 11:07:29 [INFO] ALGO/USD [15m] saved 700 rows → data/historical/algo_usd/15m.csv
+2025-05-12 11:07:32 [INFO] ALGO/USD [30m] appended 1 rows
+2025-05-12 11:07:33 [INFO] ALGO/USD [30m] saved 700 rows → data/historical/algo_usd/30m.csv
+2025-05-12 11:07:35 [INFO] ALGO/USD [1h] appended 1 rows
+2025-05-12 11:07:36 [INFO] ALGO/USD [1h] saved 700 rows → data/historical/algo_usd/1h.csv
+2025-05-12 11:07:37 [INFO] ALGO/USD [4h] saved 700 rows → data/historical/algo_usd/4h.csv
+2025-05-12 11:07:37 [INFO] ALGO/USD [1d] saved 700 rows → data/historical/algo_usd/1d.csv
+2025-05-12 11:07:39 [INFO] ALGO/USD [1w] saved 278 rows → data/historical/algo_usd/1w.csv
+2025-05-12 11:07:42 [INFO] AAVE/USD [15m] appended 3 rows
+2025-05-12 11:07:43 [INFO] AAVE/USD [15m] saved 700 rows → data/historical/aave_usd/15m.csv
+2025-05-12 11:07:45 [INFO] AAVE/USD [30m] appended 2 rows
+2025-05-12 11:07:46 [INFO] AAVE/USD [30m] saved 700 rows → data/historical/aave_usd/30m.csv
+2025-05-12 11:07:49 [INFO] AAVE/USD [1h] appended 1 rows
+2025-05-12 11:07:50 [INFO] AAVE/USD [1h] saved 700 rows → data/historical/aave_usd/1h.csv
+2025-05-12 11:07:50 [INFO] AAVE/USD [4h] saved 700 rows → data/historical/aave_usd/4h.csv
+2025-05-12 11:07:50 [INFO] AAVE/USD [1d] saved 700 rows → data/historical/aave_usd/1d.csv
+2025-05-12 11:07:52 [INFO] AAVE/USD [1w] saved 231 rows → data/historical/aave_usd/1w.csv
+2025-05-12 11:07:55 [INFO] NEAR/USD [15m] appended 3 rows
+2025-05-12 11:07:56 [INFO] NEAR/USD [15m] saved 700 rows → data/historical/near_usd/15m.csv
+2025-05-12 11:07:58 [INFO] NEAR/USD [30m] appended 2 rows
+2025-05-12 11:07:59 [INFO] NEAR/USD [30m] saved 700 rows → data/historical/near_usd/30m.csv
+2025-05-12 11:08:02 [INFO] NEAR/USD [1h] appended 1 rows
+2025-05-12 11:08:03 [INFO] NEAR/USD [1h] saved 700 rows → data/historical/near_usd/1h.csv
+2025-05-12 11:08:03 [INFO] NEAR/USD [4h] saved 700 rows → data/historical/near_usd/4h.csv
+2025-05-12 11:08:03 [INFO] NEAR/USD [1d] saved 700 rows → data/historical/near_usd/1d.csv
+2025-05-12 11:08:05 [INFO] NEAR/USD [1w] saved 152 rows → data/historical/near_usd/1w.csv
+2025-05-12 11:08:08 [INFO] XTZ/USD [15m] appended 3 rows
+2025-05-12 11:08:09 [INFO] XTZ/USD [15m] saved 700 rows → data/historical/xtz_usd/15m.csv
+2025-05-12 11:08:12 [INFO] XTZ/USD [30m] appended 2 rows
+2025-05-12 11:08:13 [INFO] XTZ/USD [30m] saved 700 rows → data/historical/xtz_usd/30m.csv
+2025-05-12 11:08:15 [INFO] XTZ/USD [1h] appended 1 rows
+2025-05-12 11:08:16 [INFO] XTZ/USD [1h] saved 700 rows → data/historical/xtz_usd/1h.csv
+2025-05-12 11:08:16 [INFO] XTZ/USD [4h] saved 700 rows → data/historical/xtz_usd/4h.csv
+2025-05-12 11:08:16 [INFO] XTZ/USD [1d] saved 700 rows → data/historical/xtz_usd/1d.csv
+2025-05-12 11:08:19 [INFO] XTZ/USD [1w] saved 344 rows → data/historical/xtz_usd/1w.csv
+2025-05-12 11:08:21 [INFO] CRV/USD [15m] appended 3 rows
+2025-05-12 11:08:22 [INFO] CRV/USD [15m] saved 700 rows → data/historical/crv_usd/15m.csv
+2025-05-12 11:08:25 [INFO] CRV/USD [30m] appended 2 rows
+2025-05-12 11:08:26 [INFO] CRV/USD [30m] saved 700 rows → data/historical/crv_usd/30m.csv
+2025-05-12 11:08:29 [INFO] CRV/USD [1h] appended 1 rows
+2025-05-12 11:08:30 [INFO] CRV/USD [1h] saved 700 rows → data/historical/crv_usd/1h.csv
+2025-05-12 11:08:30 [INFO] CRV/USD [4h] saved 700 rows → data/historical/crv_usd/4h.csv
+2025-05-12 11:08:30 [INFO] CRV/USD [1d] saved 700 rows → data/historical/crv_usd/1d.csv
+2025-05-12 11:08:32 [INFO] CRV/USD [1w] saved 243 rows → data/historical/crv_usd/1w.csv
+2025-05-12 11:08:35 [INFO] RUNE/USD [15m] appended 3 rows
+2025-05-12 11:08:41 [INFO] RUNE/USD [15m] saved 689 rows → data/historical/rune_usd/15m.csv
+2025-05-12 11:08:44 [INFO] RUNE/USD [30m] appended 2 rows
+2025-05-12 11:08:45 [INFO] RUNE/USD [30m] saved 700 rows → data/historical/rune_usd/30m.csv
+2025-05-12 11:08:47 [INFO] RUNE/USD [1h] appended 1 rows
+2025-05-12 11:08:48 [INFO] RUNE/USD [1h] saved 700 rows → data/historical/rune_usd/1h.csv
+2025-05-12 11:08:48 [INFO] RUNE/USD [4h] saved 700 rows → data/historical/rune_usd/4h.csv
+2025-05-12 11:08:48 [INFO] RUNE/USD [1d] saved 700 rows → data/historical/rune_usd/1d.csv
+2025-05-12 11:08:51 [INFO] RUNE/USD [1w] saved 158 rows → data/historical/rune_usd/1w.csv
+2025-05-12 11:08:54 [INFO] INJ/USD [15m] appended 3 rows
+2025-05-12 11:08:55 [INFO] INJ/USD [15m] saved 700 rows → data/historical/inj_usd/15m.csv
+2025-05-12 11:08:57 [INFO] INJ/USD [30m] appended 2 rows
+2025-05-12 11:08:58 [INFO] INJ/USD [30m] saved 700 rows → data/historical/inj_usd/30m.csv
+2025-05-12 11:09:01 [INFO] INJ/USD [1h] appended 1 rows
+2025-05-12 11:09:02 [INFO] INJ/USD [1h] saved 700 rows → data/historical/inj_usd/1h.csv
+2025-05-12 11:09:02 [INFO] INJ/USD [4h] saved 700 rows → data/historical/inj_usd/4h.csv
+2025-05-12 11:09:02 [INFO] INJ/USD [1d] saved 700 rows → data/historical/inj_usd/1d.csv
+2025-05-12 11:09:04 [INFO] INJ/USD [1w] saved 197 rows → data/historical/inj_usd/1w.csv
+2025-05-12 11:09:07 [INFO] LDO/USD [15m] appended 3 rows
+2025-05-12 11:09:13 [INFO] LDO/USD [15m] saved 683 rows → data/historical/ldo_usd/15m.csv
+2025-05-12 11:09:16 [INFO] LDO/USD [30m] appended 2 rows
+2025-05-12 11:09:17 [INFO] LDO/USD [30m] saved 700 rows → data/historical/ldo_usd/30m.csv
+2025-05-12 11:09:19 [INFO] LDO/USD [1h] appended 1 rows
+2025-05-12 11:09:20 [INFO] LDO/USD [1h] saved 700 rows → data/historical/ldo_usd/1h.csv
+2025-05-12 11:09:20 [INFO] LDO/USD [4h] saved 700 rows → data/historical/ldo_usd/4h.csv
+2025-05-12 11:09:20 [INFO] LDO/USD [1d] saved 700 rows → data/historical/ldo_usd/1d.csv
+2025-05-12 11:09:23 [INFO] LDO/USD [1w] saved 158 rows → data/historical/ldo_usd/1w.csv
+2025-05-12 11:09:25 [INFO] SUI/USD [15m] appended 3 rows
+2025-05-12 11:09:26 [INFO] SUI/USD [15m] saved 700 rows → data/historical/sui_usd/15m.csv
+2025-05-12 11:09:29 [INFO] SUI/USD [30m] appended 2 rows
+2025-05-12 11:09:30 [INFO] SUI/USD [30m] saved 700 rows → data/historical/sui_usd/30m.csv
+2025-05-12 11:09:33 [INFO] SUI/USD [1h] appended 1 rows
+2025-05-12 11:09:34 [INFO] SUI/USD [1h] saved 700 rows → data/historical/sui_usd/1h.csv
+2025-05-12 11:09:34 [INFO] SUI/USD [4h] saved 700 rows → data/historical/sui_usd/4h.csv
+2025-05-12 11:09:34 [INFO] SUI/USD [1d] saved 700 rows → data/historical/sui_usd/1d.csv
+2025-05-12 11:09:36 [INFO] SUI/USD [1w] saved 107 rows → data/historical/sui_usd/1w.csv
+2025-05-12 11:09:39 [INFO] OP/USD [15m] appended 3 rows
+2025-05-12 11:09:40 [INFO] OP/USD [15m] saved 700 rows → data/historical/op_usd/15m.csv
+2025-05-12 11:09:43 [INFO] OP/USD [30m] appended 2 rows
+2025-05-12 11:09:44 [INFO] OP/USD [30m] saved 700 rows → data/historical/op_usd/30m.csv
+2025-05-12 11:09:46 [INFO] OP/USD [1h] appended 1 rows
+2025-05-12 11:09:47 [INFO] OP/USD [1h] saved 700 rows → data/historical/op_usd/1h.csv
+2025-05-12 11:09:47 [INFO] OP/USD [4h] saved 700 rows → data/historical/op_usd/4h.csv
+2025-05-12 11:09:50 [INFO] OP/USD [1d] saved 592 rows → data/historical/op_usd/1d.csv
+2025-05-12 11:09:52 [INFO] OP/USD [1w] saved 85 rows → data/historical/op_usd/1w.csv
+2025-05-12 11:09:55 [INFO] STX/USD [15m] appended 3 rows
+2025-05-12 11:09:56 [INFO] STX/USD [15m] saved 700 rows → data/historical/stx_usd/15m.csv
+2025-05-12 11:09:58 [INFO] STX/USD [30m] appended 2 rows
+2025-05-12 11:09:59 [INFO] STX/USD [30m] saved 700 rows → data/historical/stx_usd/30m.csv
+2025-05-12 11:10:02 [INFO] STX/USD [1h] appended 1 rows
+2025-05-12 11:10:03 [INFO] STX/USD [1h] saved 700 rows → data/historical/stx_usd/1h.csv
+2025-05-12 11:10:03 [INFO] STX/USD [4h] saved 700 rows → data/historical/stx_usd/4h.csv
+2025-05-12 11:10:03 [INFO] STX/USD [1d] saved 700 rows → data/historical/stx_usd/1d.csv
+2025-05-12 11:10:06 [INFO] STX/USD [1w] saved 136 rows → data/historical/stx_usd/1w.csv
+2025-05-12 11:10:08 [INFO] GRT/USD [15m] appended 3 rows
+2025-05-12 11:10:09 [INFO] GRT/USD [15m] saved 700 rows → data/historical/grt_usd/15m.csv
+2025-05-12 11:10:12 [INFO] GRT/USD [30m] appended 2 rows
+2025-05-12 11:10:13 [INFO] GRT/USD [30m] saved 700 rows → data/historical/grt_usd/30m.csv
+2025-05-12 11:10:15 [INFO] GRT/USD [1h] appended 1 rows
+2025-05-12 11:10:16 [INFO] GRT/USD [1h] saved 700 rows → data/historical/grt_usd/1h.csv
+2025-05-12 11:10:16 [INFO] GRT/USD [4h] saved 700 rows → data/historical/grt_usd/4h.csv
+2025-05-12 11:10:16 [INFO] GRT/USD [1d] saved 700 rows → data/historical/grt_usd/1d.csv
+2025-05-12 11:10:19 [INFO] GRT/USD [1w] saved 230 rows → data/historical/grt_usd/1w.csv
+2025-05-12 11:10:21 [INFO] FLOW/USD [15m] appended 3 rows
+2025-05-12 11:10:28 [INFO] FLOW/USD [15m] saved 608 rows → data/historical/flow_usd/15m.csv
+2025-05-12 11:10:30 [INFO] FLOW/USD [30m] appended 2 rows
+2025-05-12 11:10:37 [INFO] FLOW/USD [30m] saved 696 rows → data/historical/flow_usd/30m.csv
+2025-05-12 11:10:40 [INFO] FLOW/USD [1h] appended 1 rows
+2025-05-12 11:10:41 [INFO] FLOW/USD [1h] saved 700 rows → data/historical/flow_usd/1h.csv
+2025-05-12 11:10:41 [INFO] FLOW/USD [4h] saved 700 rows → data/historical/flow_usd/4h.csv
+2025-05-12 11:10:41 [INFO] FLOW/USD [1d] saved 700 rows → data/historical/flow_usd/1d.csv
+2025-05-12 11:10:43 [INFO] FLOW/USD [1w] saved 225 rows → data/historical/flow_usd/1w.csv
+2025-05-12 11:10:46 [INFO] AR/USD [15m] appended 3 rows
+2025-05-12 11:10:52 [INFO] AR/USD [15m] saved 520 rows → data/historical/ar_usd/15m.csv
+2025-05-12 11:10:55 [INFO] AR/USD [30m] appended 2 rows
+2025-05-12 11:10:58 [INFO] AR/USD [30m] saved 619 rows → data/historical/ar_usd/30m.csv
+2025-05-12 11:11:01 [INFO] AR/USD [1h] appended 1 rows
+2025-05-12 11:11:05 [INFO] AR/USD [1h] saved 331 rows → data/historical/ar_usd/1h.csv
+2025-05-12 11:11:07 [INFO] AR/USD [4h] saved 85 rows → data/historical/ar_usd/4h.csv
+2025-05-12 11:11:10 [INFO] AR/USD [1d] saved 15 rows → data/historical/ar_usd/1d.csv
+2025-05-12 11:11:12 [INFO] Error fetching AR/USD [1w]: kraken {"error":["EGeneral:Too many requests"]}
+2025-05-12 11:11:12 [INFO] No data returned for AR/USD [1w]
+2025-05-12 11:11:12 [INFO] AR/USD [1w] cannot fetch further history
+2025-05-12 11:11:12 [INFO] AR/USD [1w] saved 3 rows → data/historical/ar_usd/1w.csv
+2025-05-12 11:11:15 [INFO] ENS/USD [15m] appended 3 rows
+2025-05-12 11:11:21 [INFO] ENS/USD [15m] saved 646 rows → data/historical/ens_usd/15m.csv
+2025-05-12 11:11:24 [INFO] ENS/USD [30m] appended 2 rows
+2025-05-12 11:11:25 [INFO] ENS/USD [30m] saved 700 rows → data/historical/ens_usd/30m.csv
+2025-05-12 11:11:28 [INFO] ENS/USD [1h] appended 1 rows
+2025-05-12 11:11:29 [INFO] ENS/USD [1h] saved 700 rows → data/historical/ens_usd/1h.csv
+2025-05-12 11:11:29 [INFO] ENS/USD [4h] saved 700 rows → data/historical/ens_usd/4h.csv
+2025-05-12 11:11:29 [INFO] ENS/USD [1d] saved 700 rows → data/historical/ens_usd/1d.csv
+2025-05-12 11:11:31 [INFO] ENS/USD [1w] saved 168 rows → data/historical/ens_usd/1w.csv
+2025-05-12 11:11:34 [INFO] IMX/USD [15m] appended 2 rows
+2025-05-12 11:11:35 [INFO] IMX/USD [15m] saved 700 rows → data/historical/imx_usd/15m.csv
+2025-05-12 11:11:37 [INFO] IMX/USD [30m] appended 1 rows
+2025-05-12 11:11:38 [INFO] IMX/USD [30m] saved 700 rows → data/historical/imx_usd/30m.csv
+2025-05-12 11:11:41 [INFO] IMX/USD [1h] appended 1 rows
+2025-05-12 11:11:42 [INFO] IMX/USD [1h] saved 700 rows → data/historical/imx_usd/1h.csv
+2025-05-12 11:11:42 [INFO] IMX/USD [4h] saved 700 rows → data/historical/imx_usd/4h.csv
+2025-05-12 11:11:42 [INFO] IMX/USD [1d] saved 700 rows → data/historical/imx_usd/1d.csv
+2025-05-12 11:11:44 [INFO] IMX/USD [1w] saved 168 rows → data/historical/imx_usd/1w.csv
+2025-05-12 11:11:47 [INFO] SNX/USD [15m] appended 2 rows
+2025-05-12 11:11:54 [INFO] SNX/USD [15m] saved 634 rows → data/historical/snx_usd/15m.csv
+2025-05-12 11:11:56 [INFO] SNX/USD [30m] appended 1 rows
+2025-05-12 11:11:57 [INFO] SNX/USD [30m] saved 700 rows → data/historical/snx_usd/30m.csv
+2025-05-12 11:12:00 [INFO] SNX/USD [1h] appended 1 rows
+2025-05-12 11:12:01 [INFO] SNX/USD [1h] saved 700 rows → data/historical/snx_usd/1h.csv
+2025-05-12 11:12:01 [INFO] SNX/USD [4h] saved 700 rows → data/historical/snx_usd/4h.csv
+2025-05-12 11:12:01 [INFO] SNX/USD [1d] saved 700 rows → data/historical/snx_usd/1d.csv
+2025-05-12 11:12:03 [INFO] SNX/USD [1w] saved 243 rows → data/historical/snx_usd/1w.csv
+2025-05-12 11:12:06 [INFO] KAVA/USD [15m] appended 2 rows
+2025-05-12 11:12:13 [INFO] KAVA/USD [15m] saved 686 rows → data/historical/kava_usd/15m.csv
+2025-05-12 11:12:15 [INFO] KAVA/USD [30m] appended 1 rows
+2025-05-12 11:12:16 [INFO] KAVA/USD [30m] saved 700 rows → data/historical/kava_usd/30m.csv
+2025-05-12 11:12:19 [INFO] KAVA/USD [1h] appended 1 rows
+2025-05-12 11:12:20 [INFO] KAVA/USD [1h] saved 700 rows → data/historical/kava_usd/1h.csv
+2025-05-12 11:12:20 [INFO] KAVA/USD [4h] saved 700 rows → data/historical/kava_usd/4h.csv
+2025-05-12 11:12:20 [INFO] KAVA/USD [1d] saved 700 rows → data/historical/kava_usd/1d.csv
+2025-05-12 11:12:22 [INFO] KAVA/USD [1w] saved 253 rows → data/historical/kava_usd/1w.csv
+2025-05-12 11:12:25 [INFO] BCH/USD [15m] appended 2 rows
+2025-05-12 11:12:26 [INFO] BCH/USD [15m] saved 700 rows → data/historical/bch_usd/15m.csv
+2025-05-12 11:12:29 [INFO] BCH/USD [30m] appended 1 rows
+2025-05-12 11:12:30 [INFO] BCH/USD [30m] saved 700 rows → data/historical/bch_usd/30m.csv
+2025-05-12 11:12:32 [INFO] BCH/USD [1h] appended 1 rows
+2025-05-12 11:12:33 [INFO] BCH/USD [1h] saved 700 rows → data/historical/bch_usd/1h.csv
+2025-05-12 11:12:33 [INFO] BCH/USD [4h] saved 700 rows → data/historical/bch_usd/4h.csv
+2025-05-12 11:12:33 [INFO] BCH/USD [1d] saved 700 rows → data/historical/bch_usd/1d.csv
+2025-05-12 11:12:36 [INFO] BCH/USD [1w] saved 407 rows → data/historical/bch_usd/1w.csv
+2025-05-12 11:12:39 [INFO] SAND/USD [15m] appended 2 rows
+2025-05-12 11:12:40 [INFO] SAND/USD [15m] saved 700 rows → data/historical/sand_usd/15m.csv
+2025-05-12 11:12:42 [INFO] SAND/USD [30m] appended 1 rows
+2025-05-12 11:12:43 [INFO] SAND/USD [30m] saved 700 rows → data/historical/sand_usd/30m.csv
+2025-05-12 11:12:46 [INFO] SAND/USD [1h] appended 1 rows
+2025-05-12 11:12:47 [INFO] SAND/USD [1h] saved 700 rows → data/historical/sand_usd/1h.csv
+2025-05-12 11:12:47 [INFO] SAND/USD [4h] saved 700 rows → data/historical/sand_usd/4h.csv
+2025-05-12 11:12:47 [INFO] SAND/USD [1d] saved 700 rows → data/historical/sand_usd/1d.csv
+2025-05-12 11:12:49 [INFO] SAND/USD [1w] saved 208 rows → data/historical/sand_usd/1w.csv
+2025-05-12 11:12:52 [INFO] CHZ/USD [15m] appended 2 rows
+2025-05-12 11:12:59 [INFO] CHZ/USD [15m] saved 600 rows → data/historical/chz_usd/15m.csv
+2025-05-12 11:13:02 [INFO] CHZ/USD [30m] appended 1 rows
+2025-05-12 11:13:08 [INFO] CHZ/USD [30m] saved 678 rows → data/historical/chz_usd/30m.csv
+2025-05-12 11:13:11 [INFO] CHZ/USD [1h] appended 1 rows
+2025-05-12 11:13:12 [INFO] CHZ/USD [1h] saved 700 rows → data/historical/chz_usd/1h.csv
+2025-05-12 11:13:12 [INFO] CHZ/USD [4h] saved 700 rows → data/historical/chz_usd/4h.csv
+2025-05-12 11:13:12 [INFO] CHZ/USD [1d] saved 700 rows → data/historical/chz_usd/1d.csv
+2025-05-12 11:13:15 [INFO] CHZ/USD [1w] saved 201 rows → data/historical/chz_usd/1w.csv
+2025-05-12 11:13:17 [INFO] APE/USD [15m] appended 2 rows
+2025-05-12 11:13:23 [INFO] APE/USD [15m] saved 627 rows → data/historical/ape_usd/15m.csv
+2025-05-12 11:13:26 [INFO] APE/USD [30m] appended 1 rows
+2025-05-12 11:13:32 [INFO] APE/USD [30m] saved 679 rows → data/historical/ape_usd/30m.csv
+2025-05-12 11:13:35 [INFO] APE/USD [1h] appended 1 rows
+2025-05-12 11:13:36 [INFO] APE/USD [1h] saved 700 rows → data/historical/ape_usd/1h.csv
+2025-05-12 11:13:36 [INFO] APE/USD [4h] saved 700 rows → data/historical/ape_usd/4h.csv
+2025-05-12 11:13:36 [INFO] APE/USD [1d] saved 700 rows → data/historical/ape_usd/1d.csv
+2025-05-12 11:13:39 [INFO] APE/USD [1w] saved 165 rows → data/historical/ape_usd/1w.csv
+2025-05-12 11:13:41 [INFO] AXS/USD [15m] appended 2 rows
+2025-05-12 11:13:42 [INFO] AXS/USD [15m] saved 700 rows → data/historical/axs_usd/15m.csv
+2025-05-12 11:13:45 [INFO] AXS/USD [30m] appended 1 rows
+2025-05-12 11:13:46 [INFO] AXS/USD [30m] saved 700 rows → data/historical/axs_usd/30m.csv
+2025-05-12 11:13:48 [INFO] AXS/USD [1h] appended 1 rows
+2025-05-12 11:13:49 [INFO] AXS/USD [1h] saved 700 rows → data/historical/axs_usd/1h.csv
+2025-05-12 11:13:49 [INFO] AXS/USD [4h] saved 700 rows → data/historical/axs_usd/4h.csv
+2025-05-12 11:13:49 [INFO] AXS/USD [1d] saved 700 rows → data/historical/axs_usd/1d.csv
+2025-05-12 11:13:52 [INFO] AXS/USD [1w] saved 201 rows → data/historical/axs_usd/1w.csv
+2025-05-12 11:13:54 [INFO] DYDX/USD [15m] appended 2 rows
+2025-05-12 11:14:01 [INFO] DYDX/USD [15m] saved 589 rows → data/historical/dydx_usd/15m.csv
+2025-05-12 11:14:04 [INFO] DYDX/USD [30m] appended 1 rows
+2025-05-12 11:14:10 [INFO] DYDX/USD [30m] saved 670 rows → data/historical/dydx_usd/30m.csv
+2025-05-12 11:14:13 [INFO] DYDX/USD [1h] appended 1 rows
+2025-05-12 11:14:14 [INFO] DYDX/USD [1h] saved 700 rows → data/historical/dydx_usd/1h.csv
+2025-05-12 11:14:14 [INFO] DYDX/USD [4h] saved 700 rows → data/historical/dydx_usd/4h.csv
+2025-05-12 11:14:14 [INFO] DYDX/USD [1d] saved 700 rows → data/historical/dydx_usd/1d.csv
+2025-05-12 11:14:16 [INFO] DYDX/USD [1w] saved 192 rows → data/historical/dydx_usd/1w.csv
+2025-05-12 11:14:19 [INFO] COMP/USD [15m] appended 2 rows
+2025-05-12 11:14:25 [INFO] COMP/USD [15m] saved 599 rows → data/historical/comp_usd/15m.csv
+2025-05-12 11:14:28 [INFO] COMP/USD [30m] appended 1 rows
+2025-05-12 11:14:34 [INFO] COMP/USD [30m] saved 688 rows → data/historical/comp_usd/30m.csv
+2025-05-12 11:14:37 [INFO] COMP/USD [1h] appended 1 rows
+2025-05-12 11:14:38 [INFO] COMP/USD [1h] saved 700 rows → data/historical/comp_usd/1h.csv
+2025-05-12 11:14:38 [INFO] COMP/USD [4h] saved 700 rows → data/historical/comp_usd/4h.csv
+2025-05-12 11:14:38 [INFO] COMP/USD [1d] saved 700 rows → data/historical/comp_usd/1d.csv
+2025-05-12 11:14:40 [INFO] COMP/USD [1w] saved 253 rows → data/historical/comp_usd/1w.csv
+2025-05-12 11:14:48 [INFO] BTC/USD: wrote 2 rows → events.json (+1)
+2025-05-12 11:14:57 [INFO] ETH/USD: no new fills
+2025-05-12 11:15:04 [INFO] SOL/USD: wrote 4 rows → events.json (+1)
+2025-05-12 11:15:14 [INFO] XRP/USD: no new fills
+2025-05-12 11:15:21 [INFO] TON/USD: no new fills
+2025-05-12 11:15:29 [INFO] DOGE/USD: no new fills
+2025-05-12 11:15:36 [INFO] ADA/USD: no new fills
+2025-05-12 11:15:43 [INFO] DOT/USD: wrote 3 rows → events.json (+2)
+2025-05-12 11:15:53 [INFO] AVAX/USD: wrote 5 rows → events.json (+1)
+2025-05-12 11:16:02 [INFO] LINK/USD: no new fills
+2025-05-12 11:16:09 [INFO] MATIC/USD: no new fills
+2025-05-12 11:16:17 [INFO] SHIB/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:16:26 [INFO] ATOM/USD: no new fills
+2025-05-12 11:16:34 [INFO] LTC/USD: no new fills
+2025-05-12 11:16:41 [INFO] TRX/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:16:50 [INFO] XLM/USD: no new fills
+2025-05-12 11:16:58 [INFO] FIL/USD: no new fills
+2025-05-12 11:17:05 [INFO] UNI/USD: no new fills
+2025-05-12 11:17:12 [INFO] ALGO/USD: no new fills
+2025-05-12 11:17:19 [INFO] AAVE/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:17:29 [INFO] NEAR/USD: no new fills
+2025-05-12 11:17:36 [INFO] XTZ/USD: no new fills
+2025-05-12 11:17:43 [INFO] CRV/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:17:53 [INFO] RUNE/USD: wrote 4 rows → events.json (+1)
+2025-05-12 11:18:02 [INFO] INJ/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:18:12 [INFO] LDO/USD: no new fills
+2025-05-12 11:18:19 [INFO] SUI/USD: wrote 2 rows → events.json (+1)
+2025-05-12 11:18:29 [INFO] OP/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:18:39 [INFO] STX/USD: no new fills
+2025-05-12 11:18:46 [INFO] GRT/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:18:55 [INFO] FLOW/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:19:05 [INFO] AR/USD: no new fills
+2025-05-12 11:19:12 [INFO] ENS/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:19:22 [INFO] IMX/USD: no new fills
+2025-05-12 11:19:30 [INFO] SNX/USD: no new fills
+2025-05-12 11:19:37 [INFO] KAVA/USD: wrote 5 rows → events.json (+1)
+2025-05-12 11:19:46 [INFO] BCH/USD: no new fills
+2025-05-12 11:19:54 [INFO] SAND/USD: no new fills
+2025-05-12 11:20:01 [INFO] CHZ/USD: no new fills
+2025-05-12 11:20:08 [INFO] APE/USD: wrote 7 rows → events.json (+1)
+2025-05-12 11:20:18 [INFO] AXS/USD: no new fills
+2025-05-12 11:20:25 [INFO] DYDX/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:20:35 [INFO] COMP/USD: no new fills
+2025-05-12 11:20:49 [INFO] USD cash balance: 24.040900
+2025-05-12 11:20:50 [INFO] AAVE/USD: 0.064314 ≈ $14.26
+2025-05-12 11:20:51 [INFO] DOT/USD: 2.692341 ≈ $13.85
+2025-05-12 11:20:52 [INFO] RUNE/USD: 9.266803 ≈ $17.87
+2025-05-12 11:20:53 [INFO] SOL/USD: 0.078217 ≈ $13.83
+2025-05-12 11:20:54 [INFO] SUI/USD: 3.202640 ≈ $12.68
+2025-05-12 11:20:55 [INFO] TRX/USD: 98.270008 ≈ $27.21
+2025-05-12 11:20:56 [INFO] BTC/USD: 0.000124 ≈ $12.78
+2025-05-12 11:20:56 [INFO] portfolio.json updated (8 assets).
+2025-05-12 11:20:59 [INFO] positions.json verified (0 active).
+2025-05-12 11:21:01 [INFO] BTC/USD [15m] appended 1 rows
+2025-05-12 11:21:02 [INFO] BTC/USD [15m] saved 700 rows → data/historical/btc_usd/15m.csv
+2025-05-12 11:21:02 [INFO] BTC/USD [30m] saved 700 rows → data/historical/btc_usd/30m.csv
+2025-05-12 11:21:02 [INFO] BTC/USD [1h] saved 700 rows → data/historical/btc_usd/1h.csv
+2025-05-12 11:21:02 [INFO] BTC/USD [4h] saved 700 rows → data/historical/btc_usd/4h.csv
+2025-05-12 11:21:02 [INFO] BTC/USD [1d] saved 700 rows → data/historical/btc_usd/1d.csv
+2025-05-12 11:21:05 [INFO] BTC/USD [1w] saved 606 rows → data/historical/btc_usd/1w.csv
+2025-05-12 11:21:08 [INFO] ETH/USD [15m] appended 1 rows
+2025-05-12 11:21:09 [INFO] ETH/USD [15m] saved 700 rows → data/historical/eth_usd/15m.csv
+2025-05-12 11:21:09 [INFO] ETH/USD [30m] saved 700 rows → data/historical/eth_usd/30m.csv
+2025-05-12 11:21:09 [INFO] ETH/USD [1h] saved 700 rows → data/historical/eth_usd/1h.csv
+2025-05-12 11:21:09 [INFO] ETH/USD [4h] saved 700 rows → data/historical/eth_usd/4h.csv
+2025-05-12 11:21:09 [INFO] ETH/USD [1d] saved 700 rows → data/historical/eth_usd/1d.csv
+2025-05-12 11:21:11 [INFO] ETH/USD [1w] saved 510 rows → data/historical/eth_usd/1w.csv
+2025-05-12 11:21:14 [INFO] SOL/USD [15m] appended 1 rows
+2025-05-12 11:21:15 [INFO] SOL/USD [15m] saved 700 rows → data/historical/sol_usd/15m.csv
+2025-05-12 11:21:15 [INFO] SOL/USD [30m] saved 700 rows → data/historical/sol_usd/30m.csv
+2025-05-12 11:21:15 [INFO] SOL/USD [1h] saved 700 rows → data/historical/sol_usd/1h.csv
+2025-05-12 11:21:15 [INFO] SOL/USD [4h] saved 700 rows → data/historical/sol_usd/4h.csv
+2025-05-12 11:21:15 [INFO] SOL/USD [1d] saved 700 rows → data/historical/sol_usd/1d.csv
+2025-05-12 11:21:18 [INFO] SOL/USD [1w] saved 204 rows → data/historical/sol_usd/1w.csv
+2025-05-12 11:21:20 [INFO] XRP/USD [15m] appended 1 rows
+2025-05-12 11:21:21 [INFO] XRP/USD [15m] saved 700 rows → data/historical/xrp_usd/15m.csv
+2025-05-12 11:21:21 [INFO] XRP/USD [30m] saved 700 rows → data/historical/xrp_usd/30m.csv
+2025-05-12 11:21:21 [INFO] XRP/USD [1h] saved 700 rows → data/historical/xrp_usd/1h.csv
+2025-05-12 11:21:21 [INFO] XRP/USD [4h] saved 700 rows → data/historical/xrp_usd/4h.csv
+2025-05-12 11:21:21 [INFO] XRP/USD [1d] saved 700 rows → data/historical/xrp_usd/1d.csv
+2025-05-12 11:21:24 [INFO] XRP/USD [1w] saved 417 rows → data/historical/xrp_usd/1w.csv
+2025-05-12 11:21:27 [INFO] TON/USD [15m] appended 1 rows
+2025-05-12 11:21:28 [INFO] TON/USD [15m] saved 700 rows → data/historical/ton_usd/15m.csv
+2025-05-12 11:21:28 [INFO] TON/USD [30m] saved 700 rows → data/historical/ton_usd/30m.csv
+2025-05-12 11:21:28 [INFO] TON/USD [1h] saved 700 rows → data/historical/ton_usd/1h.csv
+2025-05-12 11:21:28 [INFO] TON/USD [4h] saved 700 rows → data/historical/ton_usd/4h.csv
+2025-05-12 11:21:30 [INFO] TON/USD [1d] saved 214 rows → data/historical/ton_usd/1d.csv
+2025-05-12 11:21:33 [INFO] TON/USD [1w] saved 31 rows → data/historical/ton_usd/1w.csv
+2025-05-12 11:21:36 [INFO] DOGE/USD [15m] appended 1 rows
+2025-05-12 11:21:37 [INFO] DOGE/USD [15m] saved 700 rows → data/historical/doge_usd/15m.csv
+2025-05-12 11:21:37 [INFO] DOGE/USD [30m] saved 700 rows → data/historical/doge_usd/30m.csv
+2025-05-12 11:21:37 [INFO] DOGE/USD [1h] saved 700 rows → data/historical/doge_usd/1h.csv
+2025-05-12 11:21:37 [INFO] DOGE/USD [4h] saved 700 rows → data/historical/doge_usd/4h.csv
+2025-05-12 11:21:37 [INFO] DOGE/USD [1d] saved 700 rows → data/historical/doge_usd/1d.csv
+2025-05-12 11:21:39 [INFO] DOGE/USD [1w] saved 282 rows → data/historical/doge_usd/1w.csv
+2025-05-12 11:21:42 [INFO] ADA/USD [15m] appended 1 rows
+2025-05-12 11:21:43 [INFO] ADA/USD [15m] saved 700 rows → data/historical/ada_usd/15m.csv
+2025-05-12 11:21:43 [INFO] ADA/USD [30m] saved 700 rows → data/historical/ada_usd/30m.csv
+2025-05-12 11:21:43 [INFO] ADA/USD [1h] saved 700 rows → data/historical/ada_usd/1h.csv
+2025-05-12 11:21:43 [INFO] ADA/USD [4h] saved 700 rows → data/historical/ada_usd/4h.csv
+2025-05-12 11:21:43 [INFO] ADA/USD [1d] saved 700 rows → data/historical/ada_usd/1d.csv
+2025-05-12 11:21:45 [INFO] ADA/USD [1w] saved 346 rows → data/historical/ada_usd/1w.csv
+2025-05-12 11:21:48 [INFO] DOT/USD [15m] appended 1 rows
+2025-05-12 11:21:49 [INFO] DOT/USD [15m] saved 700 rows → data/historical/dot_usd/15m.csv
+2025-05-12 11:21:49 [INFO] DOT/USD [30m] saved 700 rows → data/historical/dot_usd/30m.csv
+2025-05-12 11:21:49 [INFO] DOT/USD [1h] saved 700 rows → data/historical/dot_usd/1h.csv
+2025-05-12 11:21:49 [INFO] DOT/USD [4h] saved 700 rows → data/historical/dot_usd/4h.csv
+2025-05-12 11:21:49 [INFO] DOT/USD [1d] saved 700 rows → data/historical/dot_usd/1d.csv
+2025-05-12 11:21:52 [INFO] DOT/USD [1w] saved 248 rows → data/historical/dot_usd/1w.csv
+2025-05-12 11:21:54 [INFO] AVAX/USD [15m] appended 1 rows
+2025-05-12 11:21:55 [INFO] AVAX/USD [15m] saved 700 rows → data/historical/avax_usd/15m.csv
+2025-05-12 11:21:55 [INFO] AVAX/USD [30m] saved 700 rows → data/historical/avax_usd/30m.csv
+2025-05-12 11:21:55 [INFO] AVAX/USD [1h] saved 700 rows → data/historical/avax_usd/1h.csv
+2025-05-12 11:21:55 [INFO] AVAX/USD [4h] saved 700 rows → data/historical/avax_usd/4h.csv
+2025-05-12 11:21:55 [INFO] AVAX/USD [1d] saved 700 rows → data/historical/avax_usd/1d.csv
+2025-05-12 11:21:58 [INFO] AVAX/USD [1w] saved 178 rows → data/historical/avax_usd/1w.csv
+2025-05-12 11:22:01 [INFO] LINK/USD [15m] appended 1 rows
+2025-05-12 11:22:02 [INFO] LINK/USD [15m] saved 700 rows → data/historical/link_usd/15m.csv
+2025-05-12 11:22:02 [INFO] LINK/USD [30m] saved 700 rows → data/historical/link_usd/30m.csv
+2025-05-12 11:22:02 [INFO] LINK/USD [1h] saved 700 rows → data/historical/link_usd/1h.csv
+2025-05-12 11:22:02 [INFO] LINK/USD [4h] saved 700 rows → data/historical/link_usd/4h.csv
+2025-05-12 11:22:02 [INFO] LINK/USD [1d] saved 700 rows → data/historical/link_usd/1d.csv
+2025-05-12 11:22:04 [INFO] LINK/USD [1w] saved 295 rows → data/historical/link_usd/1w.csv
+2025-05-12 11:22:07 [INFO] MATIC/USD [15m] appended 1 rows
+2025-05-12 11:22:08 [INFO] MATIC/USD [15m] saved 700 rows → data/historical/matic_usd/15m.csv
+2025-05-12 11:22:08 [INFO] MATIC/USD [30m] saved 700 rows → data/historical/matic_usd/30m.csv
+2025-05-12 11:22:08 [INFO] MATIC/USD [1h] saved 700 rows → data/historical/matic_usd/1h.csv
+2025-05-12 11:22:08 [INFO] MATIC/USD [4h] saved 700 rows → data/historical/matic_usd/4h.csv
+2025-05-12 11:22:08 [INFO] MATIC/USD [1d] saved 700 rows → data/historical/matic_usd/1d.csv
+2025-05-12 11:22:10 [INFO] MATIC/USD [1w] saved 209 rows → data/historical/matic_usd/1w.csv
+2025-05-12 11:22:13 [INFO] SHIB/USD [15m] appended 1 rows
+2025-05-12 11:22:14 [INFO] SHIB/USD [15m] saved 700 rows → data/historical/shib_usd/15m.csv
+2025-05-12 11:22:14 [INFO] SHIB/USD [30m] saved 700 rows → data/historical/shib_usd/30m.csv
+2025-05-12 11:22:14 [INFO] SHIB/USD [1h] saved 700 rows → data/historical/shib_usd/1h.csv
+2025-05-12 11:22:14 [INFO] SHIB/USD [4h] saved 700 rows → data/historical/shib_usd/4h.csv
+2025-05-12 11:22:14 [INFO] SHIB/USD [1d] saved 700 rows → data/historical/shib_usd/1d.csv
+2025-05-12 11:22:17 [INFO] SHIB/USD [1w] saved 181 rows → data/historical/shib_usd/1w.csv
+2025-05-12 11:22:19 [INFO] ATOM/USD [15m] appended 1 rows
+2025-05-12 11:22:20 [INFO] ATOM/USD [15m] saved 700 rows → data/historical/atom_usd/15m.csv
+2025-05-12 11:22:20 [INFO] ATOM/USD [30m] saved 700 rows → data/historical/atom_usd/30m.csv
+2025-05-12 11:22:20 [INFO] ATOM/USD [1h] saved 700 rows → data/historical/atom_usd/1h.csv
+2025-05-12 11:22:20 [INFO] ATOM/USD [4h] saved 700 rows → data/historical/atom_usd/4h.csv
+2025-05-12 11:22:20 [INFO] ATOM/USD [1d] saved 700 rows → data/historical/atom_usd/1d.csv
+2025-05-12 11:22:23 [INFO] ATOM/USD [1w] saved 317 rows → data/historical/atom_usd/1w.csv
+2025-05-12 11:22:25 [INFO] LTC/USD [15m] appended 1 rows
+2025-05-12 11:22:26 [INFO] LTC/USD [15m] saved 700 rows → data/historical/ltc_usd/15m.csv
+2025-05-12 11:22:26 [INFO] LTC/USD [30m] saved 700 rows → data/historical/ltc_usd/30m.csv
+2025-05-12 11:22:26 [INFO] LTC/USD [1h] saved 700 rows → data/historical/ltc_usd/1h.csv
+2025-05-12 11:22:26 [INFO] LTC/USD [4h] saved 700 rows → data/historical/ltc_usd/4h.csv
+2025-05-12 11:22:26 [INFO] LTC/USD [1d] saved 700 rows → data/historical/ltc_usd/1d.csv
+2025-05-12 11:22:29 [INFO] LTC/USD [1w] saved 602 rows → data/historical/ltc_usd/1w.csv
+2025-05-12 11:22:32 [INFO] TRX/USD [15m] appended 1 rows
+2025-05-12 11:22:33 [INFO] TRX/USD [15m] saved 700 rows → data/historical/trx_usd/15m.csv
+2025-05-12 11:22:33 [INFO] TRX/USD [30m] saved 700 rows → data/historical/trx_usd/30m.csv
+2025-05-12 11:22:33 [INFO] TRX/USD [1h] saved 700 rows → data/historical/trx_usd/1h.csv
+2025-05-12 11:22:33 [INFO] TRX/USD [4h] saved 700 rows → data/historical/trx_usd/4h.csv
+2025-05-12 11:22:33 [INFO] TRX/USD [1d] saved 700 rows → data/historical/trx_usd/1d.csv
+2025-05-12 11:22:35 [INFO] TRX/USD [1w] saved 271 rows → data/historical/trx_usd/1w.csv
+2025-05-12 11:22:38 [INFO] XLM/USD [15m] appended 1 rows
+2025-05-12 11:22:39 [INFO] XLM/USD [15m] saved 700 rows → data/historical/xlm_usd/15m.csv
+2025-05-12 11:22:39 [INFO] XLM/USD [30m] saved 700 rows → data/historical/xlm_usd/30m.csv
+2025-05-12 11:22:39 [INFO] XLM/USD [1h] saved 700 rows → data/historical/xlm_usd/1h.csv
+2025-05-12 11:22:39 [INFO] XLM/USD [4h] saved 700 rows → data/historical/xlm_usd/4h.csv
+2025-05-12 11:22:39 [INFO] XLM/USD [1d] saved 700 rows → data/historical/xlm_usd/1d.csv
+2025-05-12 11:22:41 [INFO] XLM/USD [1w] saved 411 rows → data/historical/xlm_usd/1w.csv
+2025-05-12 11:22:44 [INFO] FIL/USD [15m] appended 1 rows
+2025-05-12 11:22:45 [INFO] FIL/USD [15m] saved 700 rows → data/historical/fil_usd/15m.csv
+2025-05-12 11:22:45 [INFO] FIL/USD [30m] saved 700 rows → data/historical/fil_usd/30m.csv
+2025-05-12 11:22:45 [INFO] FIL/USD [1h] saved 700 rows → data/historical/fil_usd/1h.csv
+2025-05-12 11:22:45 [INFO] FIL/USD [4h] saved 700 rows → data/historical/fil_usd/4h.csv
+2025-05-12 11:22:45 [INFO] FIL/USD [1d] saved 700 rows → data/historical/fil_usd/1d.csv
+2025-05-12 11:22:48 [INFO] FIL/USD [1w] saved 239 rows → data/historical/fil_usd/1w.csv
+2025-05-12 11:22:50 [INFO] UNI/USD [15m] appended 1 rows
+2025-05-12 11:22:51 [INFO] UNI/USD [15m] saved 700 rows → data/historical/uni_usd/15m.csv
+2025-05-12 11:22:51 [INFO] UNI/USD [30m] saved 700 rows → data/historical/uni_usd/30m.csv
+2025-05-12 11:22:51 [INFO] UNI/USD [1h] saved 700 rows → data/historical/uni_usd/1h.csv
+2025-05-12 11:22:51 [INFO] UNI/USD [4h] saved 700 rows → data/historical/uni_usd/4h.csv
+2025-05-12 11:22:51 [INFO] UNI/USD [1d] saved 700 rows → data/historical/uni_usd/1d.csv
+2025-05-12 11:22:54 [INFO] UNI/USD [1w] saved 239 rows → data/historical/uni_usd/1w.csv
+2025-05-12 11:22:56 [INFO] ALGO/USD [15m] appended 1 rows
+2025-05-12 11:22:57 [INFO] ALGO/USD [15m] saved 700 rows → data/historical/algo_usd/15m.csv
+2025-05-12 11:22:57 [INFO] ALGO/USD [30m] saved 700 rows → data/historical/algo_usd/30m.csv
+2025-05-12 11:22:57 [INFO] ALGO/USD [1h] saved 700 rows → data/historical/algo_usd/1h.csv
+2025-05-12 11:22:57 [INFO] ALGO/USD [4h] saved 700 rows → data/historical/algo_usd/4h.csv
+2025-05-12 11:22:58 [INFO] ALGO/USD [1d] saved 700 rows → data/historical/algo_usd/1d.csv
+2025-05-12 11:23:00 [INFO] ALGO/USD [1w] saved 278 rows → data/historical/algo_usd/1w.csv
+2025-05-12 11:23:02 [INFO] AAVE/USD [15m] appended 1 rows
+2025-05-12 11:23:04 [INFO] AAVE/USD [15m] saved 700 rows → data/historical/aave_usd/15m.csv
+2025-05-12 11:23:04 [INFO] AAVE/USD [30m] saved 700 rows → data/historical/aave_usd/30m.csv
+2025-05-12 11:23:04 [INFO] AAVE/USD [1h] saved 700 rows → data/historical/aave_usd/1h.csv
+2025-05-12 11:23:04 [INFO] AAVE/USD [4h] saved 700 rows → data/historical/aave_usd/4h.csv
+2025-05-12 11:23:04 [INFO] AAVE/USD [1d] saved 700 rows → data/historical/aave_usd/1d.csv
+2025-05-12 11:23:06 [INFO] AAVE/USD [1w] saved 231 rows → data/historical/aave_usd/1w.csv
+2025-05-12 11:23:09 [INFO] NEAR/USD [15m] appended 1 rows
+2025-05-12 11:23:10 [INFO] NEAR/USD [15m] saved 700 rows → data/historical/near_usd/15m.csv
+2025-05-12 11:23:10 [INFO] NEAR/USD [30m] saved 700 rows → data/historical/near_usd/30m.csv
+2025-05-12 11:23:10 [INFO] NEAR/USD [1h] saved 700 rows → data/historical/near_usd/1h.csv
+2025-05-12 11:23:10 [INFO] NEAR/USD [4h] saved 700 rows → data/historical/near_usd/4h.csv
+2025-05-12 11:23:10 [INFO] NEAR/USD [1d] saved 700 rows → data/historical/near_usd/1d.csv
+2025-05-12 11:23:12 [INFO] NEAR/USD [1w] saved 152 rows → data/historical/near_usd/1w.csv
+2025-05-12 11:23:15 [INFO] XTZ/USD [15m] appended 1 rows
+2025-05-12 11:23:16 [INFO] XTZ/USD [15m] saved 700 rows → data/historical/xtz_usd/15m.csv
+2025-05-12 11:23:16 [INFO] XTZ/USD [30m] saved 700 rows → data/historical/xtz_usd/30m.csv
+2025-05-12 11:23:16 [INFO] XTZ/USD [1h] saved 700 rows → data/historical/xtz_usd/1h.csv
+2025-05-12 11:23:16 [INFO] XTZ/USD [4h] saved 700 rows → data/historical/xtz_usd/4h.csv
+2025-05-12 11:23:16 [INFO] XTZ/USD [1d] saved 700 rows → data/historical/xtz_usd/1d.csv
+2025-05-12 11:23:18 [INFO] XTZ/USD [1w] saved 344 rows → data/historical/xtz_usd/1w.csv
+2025-05-12 11:23:21 [INFO] CRV/USD [15m] appended 1 rows
+2025-05-12 11:23:22 [INFO] CRV/USD [15m] saved 700 rows → data/historical/crv_usd/15m.csv
+2025-05-12 11:23:22 [INFO] CRV/USD [30m] saved 700 rows → data/historical/crv_usd/30m.csv
+2025-05-12 11:23:22 [INFO] CRV/USD [1h] saved 700 rows → data/historical/crv_usd/1h.csv
+2025-05-12 11:23:22 [INFO] CRV/USD [4h] saved 700 rows → data/historical/crv_usd/4h.csv
+2025-05-12 11:23:22 [INFO] CRV/USD [1d] saved 700 rows → data/historical/crv_usd/1d.csv
+2025-05-12 11:23:25 [INFO] CRV/USD [1w] saved 243 rows → data/historical/crv_usd/1w.csv
+2025-05-12 11:23:27 [INFO] RUNE/USD [15m] appended 1 rows
+2025-05-12 11:23:33 [INFO] RUNE/USD [15m] saved 690 rows → data/historical/rune_usd/15m.csv
+2025-05-12 11:23:33 [INFO] RUNE/USD [30m] saved 700 rows → data/historical/rune_usd/30m.csv
+2025-05-12 11:23:33 [INFO] RUNE/USD [1h] saved 700 rows → data/historical/rune_usd/1h.csv
+2025-05-12 11:23:33 [INFO] RUNE/USD [4h] saved 700 rows → data/historical/rune_usd/4h.csv
+2025-05-12 11:23:33 [INFO] RUNE/USD [1d] saved 700 rows → data/historical/rune_usd/1d.csv
+2025-05-12 11:23:36 [INFO] RUNE/USD [1w] saved 158 rows → data/historical/rune_usd/1w.csv
+2025-05-12 11:23:39 [INFO] INJ/USD [15m] appended 1 rows
+2025-05-12 11:23:40 [INFO] INJ/USD [15m] saved 700 rows → data/historical/inj_usd/15m.csv
+2025-05-12 11:23:40 [INFO] INJ/USD [30m] saved 700 rows → data/historical/inj_usd/30m.csv
+2025-05-12 11:23:40 [INFO] INJ/USD [1h] saved 700 rows → data/historical/inj_usd/1h.csv
+2025-05-12 11:23:40 [INFO] INJ/USD [4h] saved 700 rows → data/historical/inj_usd/4h.csv
+2025-05-12 11:23:40 [INFO] INJ/USD [1d] saved 700 rows → data/historical/inj_usd/1d.csv
+2025-05-12 11:23:42 [INFO] INJ/USD [1w] saved 197 rows → data/historical/inj_usd/1w.csv
+2025-05-12 11:23:45 [INFO] LDO/USD [15m] appended 1 rows
+2025-05-12 11:23:51 [INFO] LDO/USD [15m] saved 684 rows → data/historical/ldo_usd/15m.csv
+2025-05-12 11:23:51 [INFO] LDO/USD [30m] saved 700 rows → data/historical/ldo_usd/30m.csv
+2025-05-12 11:23:51 [INFO] LDO/USD [1h] saved 700 rows → data/historical/ldo_usd/1h.csv
+2025-05-12 11:23:51 [INFO] LDO/USD [4h] saved 700 rows → data/historical/ldo_usd/4h.csv
+2025-05-12 11:23:51 [INFO] LDO/USD [1d] saved 700 rows → data/historical/ldo_usd/1d.csv
+2025-05-12 11:23:54 [INFO] LDO/USD [1w] saved 158 rows → data/historical/ldo_usd/1w.csv
+2025-05-12 11:23:56 [INFO] SUI/USD [15m] appended 1 rows
+2025-05-12 11:23:57 [INFO] SUI/USD [15m] saved 700 rows → data/historical/sui_usd/15m.csv
+2025-05-12 11:23:57 [INFO] SUI/USD [30m] saved 700 rows → data/historical/sui_usd/30m.csv
+2025-05-12 11:23:57 [INFO] SUI/USD [1h] saved 700 rows → data/historical/sui_usd/1h.csv
+2025-05-12 11:23:57 [INFO] SUI/USD [4h] saved 700 rows → data/historical/sui_usd/4h.csv
+2025-05-12 11:23:57 [INFO] SUI/USD [1d] saved 700 rows → data/historical/sui_usd/1d.csv
+2025-05-12 11:24:00 [INFO] SUI/USD [1w] saved 107 rows → data/historical/sui_usd/1w.csv
+2025-05-12 11:24:02 [INFO] OP/USD [15m] appended 1 rows
+2025-05-12 11:24:03 [INFO] OP/USD [15m] saved 700 rows → data/historical/op_usd/15m.csv
+2025-05-12 11:24:03 [INFO] OP/USD [30m] saved 700 rows → data/historical/op_usd/30m.csv
+2025-05-12 11:24:03 [INFO] OP/USD [1h] saved 700 rows → data/historical/op_usd/1h.csv
+2025-05-12 11:24:03 [INFO] OP/USD [4h] saved 700 rows → data/historical/op_usd/4h.csv
+2025-05-12 11:24:06 [INFO] OP/USD [1d] saved 592 rows → data/historical/op_usd/1d.csv
+2025-05-12 11:24:08 [INFO] OP/USD [1w] saved 85 rows → data/historical/op_usd/1w.csv
+2025-05-12 11:24:11 [INFO] STX/USD [15m] appended 1 rows
+2025-05-12 11:24:12 [INFO] STX/USD [15m] saved 700 rows → data/historical/stx_usd/15m.csv
+2025-05-12 11:24:12 [INFO] STX/USD [30m] saved 700 rows → data/historical/stx_usd/30m.csv
+2025-05-12 11:24:12 [INFO] STX/USD [1h] saved 700 rows → data/historical/stx_usd/1h.csv
+2025-05-12 11:24:12 [INFO] STX/USD [4h] saved 700 rows → data/historical/stx_usd/4h.csv
+2025-05-12 11:24:12 [INFO] STX/USD [1d] saved 700 rows → data/historical/stx_usd/1d.csv
+2025-05-12 11:24:14 [INFO] STX/USD [1w] saved 136 rows → data/historical/stx_usd/1w.csv
+2025-05-12 11:24:17 [INFO] GRT/USD [15m] appended 1 rows
+2025-05-12 11:24:18 [INFO] GRT/USD [15m] saved 700 rows → data/historical/grt_usd/15m.csv
+2025-05-12 11:24:18 [INFO] GRT/USD [30m] saved 700 rows → data/historical/grt_usd/30m.csv
+2025-05-12 11:24:18 [INFO] GRT/USD [1h] saved 700 rows → data/historical/grt_usd/1h.csv
+2025-05-12 11:24:18 [INFO] GRT/USD [4h] saved 700 rows → data/historical/grt_usd/4h.csv
+2025-05-12 11:24:18 [INFO] GRT/USD [1d] saved 700 rows → data/historical/grt_usd/1d.csv
+2025-05-12 11:24:20 [INFO] GRT/USD [1w] saved 230 rows → data/historical/grt_usd/1w.csv
+2025-05-12 11:24:23 [INFO] FLOW/USD [15m] appended 1 rows
+2025-05-12 11:24:29 [INFO] FLOW/USD [15m] saved 609 rows → data/historical/flow_usd/15m.csv
+2025-05-12 11:24:35 [INFO] FLOW/USD [30m] saved 696 rows → data/historical/flow_usd/30m.csv
+2025-05-12 11:24:35 [INFO] FLOW/USD [1h] saved 700 rows → data/historical/flow_usd/1h.csv
+2025-05-12 11:24:35 [INFO] FLOW/USD [4h] saved 700 rows → data/historical/flow_usd/4h.csv
+2025-05-12 11:24:35 [INFO] FLOW/USD [1d] saved 700 rows → data/historical/flow_usd/1d.csv
+2025-05-12 11:24:37 [INFO] FLOW/USD [1w] saved 225 rows → data/historical/flow_usd/1w.csv
+2025-05-12 11:24:40 [INFO] AR/USD [15m] appended 2 rows
+2025-05-12 11:24:46 [INFO] AR/USD [15m] saved 522 rows → data/historical/ar_usd/15m.csv
+2025-05-12 11:24:49 [INFO] AR/USD [30m] saved 619 rows → data/historical/ar_usd/30m.csv
+2025-05-12 11:24:51 [INFO] AR/USD [1h] saved 331 rows → data/historical/ar_usd/1h.csv
+2025-05-12 11:24:54 [INFO] AR/USD [4h] saved 85 rows → data/historical/ar_usd/4h.csv
+2025-05-12 11:24:56 [INFO] AR/USD [1d] saved 15 rows → data/historical/ar_usd/1d.csv
+2025-05-12 11:24:59 [INFO] AR/USD [1w] saved 3 rows → data/historical/ar_usd/1w.csv
+2025-05-12 11:25:02 [INFO] ENS/USD [15m] appended 1 rows
+2025-05-12 11:25:08 [INFO] ENS/USD [15m] saved 647 rows → data/historical/ens_usd/15m.csv
+2025-05-12 11:25:08 [INFO] ENS/USD [30m] saved 700 rows → data/historical/ens_usd/30m.csv
+2025-05-12 11:25:08 [INFO] ENS/USD [1h] saved 700 rows → data/historical/ens_usd/1h.csv
+2025-05-12 11:25:08 [INFO] ENS/USD [4h] saved 700 rows → data/historical/ens_usd/4h.csv
+2025-05-12 11:25:08 [INFO] ENS/USD [1d] saved 700 rows → data/historical/ens_usd/1d.csv
+2025-05-12 11:25:10 [INFO] ENS/USD [1w] saved 168 rows → data/historical/ens_usd/1w.csv
+2025-05-12 11:25:13 [INFO] IMX/USD [15m] appended 1 rows
+2025-05-12 11:25:14 [INFO] IMX/USD [15m] saved 700 rows → data/historical/imx_usd/15m.csv
+2025-05-12 11:25:14 [INFO] IMX/USD [30m] saved 700 rows → data/historical/imx_usd/30m.csv
+2025-05-12 11:25:14 [INFO] IMX/USD [1h] saved 700 rows → data/historical/imx_usd/1h.csv
+2025-05-12 11:25:14 [INFO] IMX/USD [4h] saved 700 rows → data/historical/imx_usd/4h.csv
+2025-05-12 11:25:14 [INFO] IMX/USD [1d] saved 700 rows → data/historical/imx_usd/1d.csv
+2025-05-12 11:25:16 [INFO] IMX/USD [1w] saved 168 rows → data/historical/imx_usd/1w.csv
+2025-05-12 11:25:19 [INFO] SNX/USD [15m] appended 1 rows
+2025-05-12 11:25:25 [INFO] SNX/USD [15m] saved 635 rows → data/historical/snx_usd/15m.csv
+2025-05-12 11:25:25 [INFO] SNX/USD [30m] saved 700 rows → data/historical/snx_usd/30m.csv
+2025-05-12 11:25:25 [INFO] SNX/USD [1h] saved 700 rows → data/historical/snx_usd/1h.csv
+2025-05-12 11:25:25 [INFO] SNX/USD [4h] saved 700 rows → data/historical/snx_usd/4h.csv
+2025-05-12 11:25:25 [INFO] SNX/USD [1d] saved 700 rows → data/historical/snx_usd/1d.csv
+2025-05-12 11:25:28 [INFO] SNX/USD [1w] saved 243 rows → data/historical/snx_usd/1w.csv
+2025-05-12 11:25:31 [INFO] KAVA/USD [15m] appended 1 rows
+2025-05-12 11:25:37 [INFO] KAVA/USD [15m] saved 687 rows → data/historical/kava_usd/15m.csv
+2025-05-12 11:25:37 [INFO] KAVA/USD [30m] saved 700 rows → data/historical/kava_usd/30m.csv
+2025-05-12 11:25:37 [INFO] KAVA/USD [1h] saved 700 rows → data/historical/kava_usd/1h.csv
+2025-05-12 11:25:37 [INFO] KAVA/USD [4h] saved 700 rows → data/historical/kava_usd/4h.csv
+2025-05-12 11:25:37 [INFO] KAVA/USD [1d] saved 700 rows → data/historical/kava_usd/1d.csv
+2025-05-12 11:25:40 [INFO] KAVA/USD [1w] saved 253 rows → data/historical/kava_usd/1w.csv
+2025-05-12 11:25:42 [INFO] BCH/USD [15m] appended 1 rows
+2025-05-12 11:25:43 [INFO] BCH/USD [15m] saved 700 rows → data/historical/bch_usd/15m.csv
+2025-05-12 11:25:43 [INFO] BCH/USD [30m] saved 700 rows → data/historical/bch_usd/30m.csv
+2025-05-12 11:25:43 [INFO] BCH/USD [1h] saved 700 rows → data/historical/bch_usd/1h.csv
+2025-05-12 11:25:43 [INFO] BCH/USD [4h] saved 700 rows → data/historical/bch_usd/4h.csv
+2025-05-12 11:25:43 [INFO] BCH/USD [1d] saved 700 rows → data/historical/bch_usd/1d.csv
+2025-05-12 11:25:46 [INFO] BCH/USD [1w] saved 407 rows → data/historical/bch_usd/1w.csv
+2025-05-12 11:25:48 [INFO] SAND/USD [15m] appended 1 rows
+2025-05-12 11:25:49 [INFO] SAND/USD [15m] saved 700 rows → data/historical/sand_usd/15m.csv
+2025-05-12 11:25:49 [INFO] SAND/USD [30m] saved 700 rows → data/historical/sand_usd/30m.csv
+2025-05-12 11:25:49 [INFO] SAND/USD [1h] saved 700 rows → data/historical/sand_usd/1h.csv
+2025-05-12 11:25:49 [INFO] SAND/USD [4h] saved 700 rows → data/historical/sand_usd/4h.csv
+2025-05-12 11:25:49 [INFO] SAND/USD [1d] saved 700 rows → data/historical/sand_usd/1d.csv
+2025-05-12 11:25:52 [INFO] SAND/USD [1w] saved 208 rows → data/historical/sand_usd/1w.csv
+2025-05-12 11:25:54 [INFO] CHZ/USD [15m] appended 1 rows
+2025-05-12 11:26:01 [INFO] CHZ/USD [15m] saved 601 rows → data/historical/chz_usd/15m.csv
+2025-05-12 11:26:06 [INFO] CHZ/USD [30m] saved 678 rows → data/historical/chz_usd/30m.csv
+2025-05-12 11:26:06 [INFO] CHZ/USD [1h] saved 700 rows → data/historical/chz_usd/1h.csv
+2025-05-12 11:26:06 [INFO] CHZ/USD [4h] saved 700 rows → data/historical/chz_usd/4h.csv
+2025-05-12 11:26:06 [INFO] CHZ/USD [1d] saved 700 rows → data/historical/chz_usd/1d.csv
+2025-05-12 11:26:09 [INFO] CHZ/USD [1w] saved 201 rows → data/historical/chz_usd/1w.csv
+2025-05-12 11:26:11 [INFO] APE/USD [15m] appended 1 rows
+2025-05-12 11:26:18 [INFO] APE/USD [15m] saved 628 rows → data/historical/ape_usd/15m.csv
+2025-05-12 11:26:23 [INFO] APE/USD [30m] saved 679 rows → data/historical/ape_usd/30m.csv
+2025-05-12 11:26:23 [INFO] APE/USD [1h] saved 700 rows → data/historical/ape_usd/1h.csv
+2025-05-12 11:26:23 [INFO] APE/USD [4h] saved 700 rows → data/historical/ape_usd/4h.csv
+2025-05-12 11:26:23 [INFO] APE/USD [1d] saved 700 rows → data/historical/ape_usd/1d.csv
+2025-05-12 11:26:26 [INFO] APE/USD [1w] saved 165 rows → data/historical/ape_usd/1w.csv
+2025-05-12 11:26:28 [INFO] AXS/USD [15m] appended 1 rows
+2025-05-12 11:26:29 [INFO] AXS/USD [15m] saved 700 rows → data/historical/axs_usd/15m.csv
+2025-05-12 11:26:29 [INFO] AXS/USD [30m] saved 700 rows → data/historical/axs_usd/30m.csv
+2025-05-12 11:26:29 [INFO] AXS/USD [1h] saved 700 rows → data/historical/axs_usd/1h.csv
+2025-05-12 11:26:29 [INFO] AXS/USD [4h] saved 700 rows → data/historical/axs_usd/4h.csv
+2025-05-12 11:26:29 [INFO] AXS/USD [1d] saved 700 rows → data/historical/axs_usd/1d.csv
+2025-05-12 11:26:32 [INFO] AXS/USD [1w] saved 201 rows → data/historical/axs_usd/1w.csv
+2025-05-12 11:26:34 [INFO] DYDX/USD [15m] appended 1 rows
+2025-05-12 11:26:41 [INFO] DYDX/USD [15m] saved 590 rows → data/historical/dydx_usd/15m.csv
+2025-05-12 11:26:46 [INFO] DYDX/USD [30m] saved 670 rows → data/historical/dydx_usd/30m.csv
+2025-05-12 11:26:46 [INFO] DYDX/USD [1h] saved 700 rows → data/historical/dydx_usd/1h.csv
+2025-05-12 11:26:46 [INFO] DYDX/USD [4h] saved 700 rows → data/historical/dydx_usd/4h.csv
+2025-05-12 11:26:46 [INFO] DYDX/USD [1d] saved 700 rows → data/historical/dydx_usd/1d.csv
+2025-05-12 11:26:49 [INFO] DYDX/USD [1w] saved 192 rows → data/historical/dydx_usd/1w.csv
+2025-05-12 11:26:51 [INFO] COMP/USD [15m] appended 1 rows
+2025-05-12 11:26:57 [INFO] COMP/USD [15m] saved 600 rows → data/historical/comp_usd/15m.csv
+2025-05-12 11:27:03 [INFO] COMP/USD [30m] saved 688 rows → data/historical/comp_usd/30m.csv
+2025-05-12 11:27:03 [INFO] COMP/USD [1h] saved 700 rows → data/historical/comp_usd/1h.csv
+2025-05-12 11:27:03 [INFO] COMP/USD [4h] saved 700 rows → data/historical/comp_usd/4h.csv
+2025-05-12 11:27:03 [INFO] COMP/USD [1d] saved 700 rows → data/historical/comp_usd/1d.csv
+2025-05-12 11:27:05 [INFO] COMP/USD [1w] saved 253 rows → data/historical/comp_usd/1w.csv
+2025-05-12 11:27:13 [INFO] BTC/USD: wrote 2 rows → events.json (+1)
+2025-05-12 11:27:22 [INFO] ETH/USD: no new fills
+2025-05-12 11:27:29 [INFO] SOL/USD: wrote 4 rows → events.json (+1)
+2025-05-12 11:27:39 [INFO] XRP/USD: no new fills
+2025-05-12 11:27:46 [INFO] TON/USD: no new fills
+2025-05-12 11:27:53 [INFO] DOGE/USD: no new fills
+2025-05-12 11:28:01 [INFO] ADA/USD: no new fills
+2025-05-12 11:28:08 [INFO] DOT/USD: wrote 3 rows → events.json (+2)
+2025-05-12 11:28:17 [INFO] AVAX/USD: wrote 5 rows → events.json (+1)
+2025-05-12 11:28:27 [INFO] LINK/USD: no new fills
+2025-05-12 11:28:34 [INFO] MATIC/USD: no new fills
+2025-05-12 11:28:42 [INFO] SHIB/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:28:51 [INFO] ATOM/USD: no new fills
+2025-05-12 11:28:58 [INFO] LTC/USD: no new fills
+2025-05-12 11:29:06 [INFO] TRX/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:29:15 [INFO] XLM/USD: no new fills
+2025-05-12 11:29:23 [INFO] FIL/USD: no new fills
+2025-05-12 11:29:30 [INFO] UNI/USD: no new fills
+2025-05-12 11:29:37 [INFO] ALGO/USD: no new fills
+2025-05-12 11:29:44 [INFO] AAVE/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:29:54 [INFO] NEAR/USD: no new fills
+2025-05-12 11:30:01 [INFO] XTZ/USD: no new fills
+2025-05-12 11:30:08 [INFO] CRV/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:30:18 [INFO] RUNE/USD: wrote 4 rows → events.json (+1)
+2025-05-12 11:30:28 [INFO] INJ/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:30:37 [INFO] LDO/USD: no new fills
+2025-05-12 11:30:44 [INFO] SUI/USD: wrote 2 rows → events.json (+1)
+2025-05-12 11:30:54 [INFO] OP/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:31:04 [INFO] STX/USD: no new fills
+2025-05-12 11:31:11 [INFO] GRT/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:31:21 [INFO] FLOW/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:31:31 [INFO] AR/USD: no new fills
+2025-05-12 11:31:38 [INFO] ENS/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:31:47 [INFO] IMX/USD: no new fills
+2025-05-12 11:31:55 [INFO] SNX/USD: no new fills
+2025-05-12 11:32:02 [INFO] KAVA/USD: wrote 5 rows → events.json (+1)
+2025-05-12 11:32:11 [INFO] BCH/USD: no new fills
+2025-05-12 11:32:19 [INFO] SAND/USD: no new fills
+2025-05-12 11:32:26 [INFO] CHZ/USD: no new fills
+2025-05-12 11:32:33 [INFO] APE/USD: wrote 7 rows → events.json (+1)
+2025-05-12 11:32:43 [INFO] AXS/USD: no new fills
+2025-05-12 11:32:50 [INFO] DYDX/USD: wrote 3 rows → events.json (+1)
+2025-05-12 11:33:00 [INFO] COMP/USD: no new fills
+2025-05-12 11:33:00 [INFO] Processing AAVE/USD …
+2025-05-12 11:33:00 [INFO]   AAVE/USD final_ratio=0.7573 (succ 443 / 575)
+2025-05-12 11:33:00 [INFO] Processing ADA/USD …
+2025-05-12 11:33:01 [INFO]   ADA/USD final_ratio=0.7440 (succ 1633 / 2185)
+2025-05-12 11:33:01 [INFO] Processing ALGO/USD …
+2025-05-12 11:33:01 [INFO]   ALGO/USD final_ratio=0.7115 (succ 1403 / 1962)
+2025-05-12 11:33:01 [INFO] Processing APE/USD …
+2025-05-12 11:33:02 [INFO]   APE/USD final_ratio=0.7324 (succ 1136 / 1541)
+2025-05-12 11:33:02 [INFO] Processing AR/USD …
+2025-05-12 11:33:02 [INFO]   AR/USD final_ratio=0.4832 (succ 72 / 139)
+2025-05-12 11:33:02 [INFO] Processing ATOM/USD …
+2025-05-12 11:33:02 [INFO]   ATOM/USD final_ratio=0.7868 (succ 1661 / 2101)
+2025-05-12 11:33:02 [INFO] Processing AVAX/USD …
+2025-05-12 11:33:03 [INFO]   AVAX/USD final_ratio=0.6135 (succ 400 / 642)
+2025-05-12 11:33:03 [INFO] Processing AXS/USD …
+2025-05-12 11:33:03 [INFO]   AXS/USD final_ratio=0.8030 (succ 1341 / 1660)
+2025-05-12 11:33:03 [INFO] Processing BCH/USD …
+2025-05-12 11:33:04 [INFO]   BCH/USD final_ratio=0.6703 (succ 366 / 536)
+2025-05-12 11:33:04 [INFO] Processing BTC/USD …
+2025-05-12 11:33:04 [INFO]   BTC/USD final_ratio=0.6242 (succ 877 / 1395)
+2025-05-12 11:33:04 [INFO] Processing CHZ/USD …
+2025-05-12 11:33:04 [INFO]   CHZ/USD final_ratio=0.6888 (succ 1122 / 1619)
+2025-05-12 11:33:05 [INFO] Processing COMP/USD …
+2025-05-12 11:33:05 [INFO]   COMP/USD final_ratio=0.6655 (succ 569 / 845)
+2025-05-12 11:33:05 [INFO] Processing CRV/USD …
+2025-05-12 11:33:05 [INFO]   CRV/USD final_ratio=0.6731 (succ 1361 / 2012)
+2025-05-12 11:33:05 [INFO] Processing DOGE/USD …
+2025-05-12 11:33:06 [INFO]   DOGE/USD final_ratio=0.7052 (succ 995 / 1401)
+2025-05-12 11:33:06 [INFO] Processing DOT/USD …
+2025-05-12 11:33:06 [INFO]   DOT/USD final_ratio=0.8384 (succ 1754 / 2082)
+2025-05-12 11:33:06 [INFO] Processing DYDX/USD …
+2025-05-12 11:33:07 [INFO]   DYDX/USD final_ratio=0.6810 (succ 903 / 1316)
+2025-05-12 11:33:07 [INFO] Processing ENS/USD …
+2025-05-12 11:33:07 [INFO]   ENS/USD final_ratio=0.6456 (succ 419 / 639)
+2025-05-12 11:33:07 [INFO] Processing ETH/USD …
+2025-05-12 11:33:07 [INFO]   ETH/USD final_ratio=0.7854 (succ 816 / 1029)
+2025-05-12 11:33:08 [INFO] Processing FIL/USD …
+2025-05-12 11:33:08 [INFO]   FIL/USD final_ratio=0.7853 (succ 1145 / 1448)
+2025-05-12 11:33:08 [INFO] Processing FLOW/USD …
+2025-05-12 11:33:08 [INFO]   FLOW/USD final_ratio=0.6531 (succ 1237 / 1884)
+2025-05-12 11:33:08 [INFO] Processing GRT/USD …
+2025-05-12 11:33:09 [INFO]   GRT/USD final_ratio=0.7044 (succ 1225 / 1729)
+2025-05-12 11:33:09 [INFO] Processing IMX/USD …
+2025-05-12 11:33:09 [INFO]   IMX/USD final_ratio=0.7102 (succ 1436 / 2012)
+2025-05-12 11:33:09 [INFO] Processing INJ/USD …
+2025-05-12 11:33:09 [INFO]   INJ/USD final_ratio=0.7007 (succ 281 / 391)
+2025-05-12 11:33:10 [INFO] Processing KAVA/USD …
+2025-05-12 11:33:10 [INFO]   KAVA/USD final_ratio=0.6637 (succ 1058 / 1584)
+2025-05-12 11:33:10 [INFO] Processing LDO/USD …
+2025-05-12 11:33:10 [INFO]   LDO/USD final_ratio=0.6342 (succ 787 / 1231)
+2025-05-12 11:33:10 [INFO] Processing LINK/USD …
+2025-05-12 11:33:11 [INFO]   LINK/USD final_ratio=0.6300 (succ 349 / 544)
+2025-05-12 11:33:11 [INFO] Processing LTC/USD …
+2025-05-12 11:33:11 [INFO]   LTC/USD final_ratio=0.6732 (succ 519 / 761)
+2025-05-12 11:33:11 [INFO] Processing MATIC/USD …
+2025-05-12 11:33:12 [INFO]   MATIC/USD final_ratio=0.6242 (succ 754 / 1198)
+2025-05-12 11:33:12 [INFO] Processing NEAR/USD …
+2025-05-12 11:33:12 [INFO]   NEAR/USD final_ratio=0.7441 (succ 1128 / 1506)
+2025-05-12 11:33:12 [INFO] Processing OP/USD …
+2025-05-12 11:33:12 [INFO]   OP/USD final_ratio=0.5713 (succ 1586 / 2766)
+2025-05-12 11:33:12 [INFO] Processing RUNE/USD …
+2025-05-12 11:33:13 [INFO]   RUNE/USD final_ratio=0.8924 (succ 1568 / 1747)
+2025-05-12 11:33:13 [INFO] Processing SAND/USD …
+2025-05-12 11:33:13 [INFO]   SAND/USD final_ratio=0.6943 (succ 1442 / 2067)
+2025-05-12 11:33:13 [INFO] Processing SHIB/USD …
+2025-05-12 11:33:14 [INFO]   SHIB/USD final_ratio=0.7476 (succ 785 / 1040)
+2025-05-12 11:33:14 [INFO] Processing SNX/USD …
+2025-05-12 11:33:14 [INFO]   SNX/USD final_ratio=0.7139 (succ 1158 / 1612)
+2025-05-12 11:33:14 [INFO] Processing SOL/USD …
+2025-05-12 11:33:14 [INFO]   SOL/USD final_ratio=0.7873 (succ 585 / 733)
+2025-05-12 11:33:15 [INFO] Processing STX/USD …
+2025-05-12 11:33:15 [INFO]   STX/USD final_ratio=0.7071 (succ 2047 / 2885)
+2025-05-12 11:33:15 [INFO] Processing SUI/USD …
+2025-05-12 11:33:15 [INFO]   SUI/USD final_ratio=0.8226 (succ 700 / 841)
+2025-05-12 11:33:15 [INFO] Processing TON/USD …
+2025-05-12 11:33:16 [INFO]   TON/USD final_ratio=0.8575 (succ 1817 / 2109)
+2025-05-12 11:33:16 [INFO] Processing TRX/USD …
+2025-05-12 11:33:16 [INFO]   TRX/USD final_ratio=0.8915 (succ 1462 / 1630)
+2025-05-12 11:33:16 [INFO] Processing UNI/USD …
+2025-05-12 11:33:16 [INFO]   UNI/USD final_ratio=0.6801 (succ 893 / 1303)
+2025-05-12 11:33:16 [INFO] Processing XLM/USD …
+2025-05-12 11:33:17 [INFO]   XLM/USD final_ratio=0.7081 (succ 1494 / 2100)
+2025-05-12 11:33:17 [INFO] Processing XRP/USD …
+2025-05-12 11:33:17 [INFO]   XRP/USD final_ratio=0.7305 (succ 534 / 721)
+2025-05-12 11:33:17 [INFO] Processing XTZ/USD …
+2025-05-12 11:33:18 [INFO]   XTZ/USD final_ratio=0.6832 (succ 1324 / 1928)
+2025-05-12 11:33:18 [INFO] ranked_coins.json written with 43 symbols
+2025-05-12 11:33:18 [INFO] Portfolio 136.52 USD (cash 24.04 USD) – max allocation per coin 13.65 USD
+2025-05-12 11:33:18 [INFO] Placing limit buy: RUNE/USD 7.584459 @ 1.80000 USD
+2025-05-12 11:33:19 [ERROR] Error placing order for RUNE/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:19 [INFO] Placing limit buy: TRX/USD 51.148614 @ 0.26691 USD
+2025-05-12 11:33:19 [ERROR] Error placing order for TRX/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:19 [INFO] Placing limit buy: TON/USD 3.958256 @ 3.44900 USD
+2025-05-12 11:33:19 [ERROR] Error placing order for TON/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:19 [INFO] Placing limit buy: DOT/USD 2.661836 @ 5.12880 USD
+2025-05-12 11:33:20 [ERROR] Error placing order for DOT/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:20 [INFO] Placing limit buy: SUI/USD 3.381391 @ 4.03740 USD
+2025-05-12 11:33:20 [ERROR] Error placing order for SUI/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:20 [INFO] Placing limit buy: AXS/USD 4.357493 @ 3.13300 USD
+2025-05-12 11:33:20 [ERROR] Error placing order for AXS/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:20 [INFO] Placing limit buy: SOL/USD 0.078392 @ 174.14999 USD
+2025-05-12 11:33:20 [ERROR] Error placing order for SOL/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:20 [INFO] Placing limit buy: ATOM/USD 2.565110 @ 5.32220 USD
+2025-05-12 11:33:20 [ERROR] Error placing order for ATOM/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:20 [INFO] Placing limit buy: ETH/USD 0.005476 @ 2492.97998 USD
+2025-05-12 11:33:20 [ERROR] Error placing order for ETH/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:20 [INFO] Placing limit buy: FIL/USD 4.274272 @ 3.19400 USD
+2025-05-12 11:33:20 [ERROR] Error placing order for FIL/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:20 [INFO] Placing limit buy: AAVE/USD 0.061771 @ 221.00999 USD
+2025-05-12 11:33:21 [ERROR] Error placing order for AAVE/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:21 [INFO] Placing limit buy: SHIB/USD 842717.653306 @ 0.00002 USD
+2025-05-12 11:33:21 [ERROR] Error placing order for SHIB/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:21 [INFO] Placing limit buy: NEAR/USD 4.303917 @ 3.17200 USD
+2025-05-12 11:33:21 [ERROR] Error placing order for NEAR/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:21 [INFO] Placing limit buy: ADA/USD 16.727697 @ 0.81613 USD
+2025-05-12 11:33:21 [ERROR] Error placing order for ADA/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:21 [INFO] Placing limit buy: APE/USD 19.991251 @ 0.68290 USD
+2025-05-12 11:33:21 [ERROR] Error placing order for APE/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:21 [INFO] Placing limit buy: XRP/USD 5.692518 @ 2.39824 USD
+2025-05-12 11:33:21 [ERROR] Error placing order for XRP/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:21 [INFO] Placing limit buy: SNX/USD 15.549004 @ 0.87800 USD
+2025-05-12 11:33:22 [ERROR] Error placing order for SNX/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:22 [INFO] Placing limit buy: ALGO/USD 56.362091 @ 0.24222 USD
+2025-05-12 11:33:22 [ERROR] Error placing order for ALGO/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:22 [INFO] Placing limit buy: IMX/USD 18.523780 @ 0.73700 USD
+2025-05-12 11:33:22 [ERROR] Error placing order for IMX/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:22 [INFO] Placing limit buy: XLM/USD 43.762804 @ 0.31196 USD
+2025-05-12 11:33:22 [ERROR] Error placing order for XLM/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:22 [INFO] Placing limit buy: STX/USD 13.605767 @ 1.00340 USD
+2025-05-12 11:33:22 [ERROR] Error placing order for STX/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:22 [INFO] Placing limit buy: DOGE/USD 57.629405 @ 0.23689 USD
+2025-05-12 11:33:22 [ERROR] Error placing order for DOGE/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:22 [INFO] Placing limit buy: GRT/USD 113.304222 @ 0.12049 USD
+2025-05-12 11:33:22 [ERROR] Error placing order for GRT/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 11:33:22 [INFO] Placing limit buy: INJ/USD 1.009019 @ 13.53000 USD
+2025-05-12 11:33:23 [ERROR] Error placing order for INJ/USD: kraken {"error":["EOrder:Insufficient funds"]}
+2025-05-12 12:20:04 [INFO] Bot terminated by user
+2025-05-12 12:20:12 [INFO] USD cash balance: 24.040900
+2025-05-12 12:20:13 [INFO] AAVE/USD: 0.064314 ≈ $14.15
+2025-05-12 12:20:14 [INFO] DOT/USD: 2.692341 ≈ $13.82
+2025-05-12 12:20:15 [INFO] RUNE/USD: 9.266803 ≈ $17.67
+2025-05-12 12:20:16 [INFO] SOL/USD: 0.078217 ≈ $13.73
+2025-05-12 12:20:17 [INFO] SUI/USD: 3.202640 ≈ $12.73
+2025-05-12 12:20:18 [INFO] TRX/USD: 98.270008 ≈ $27.00
+2025-05-12 12:20:19 [INFO] BTC/USD: 0.000124 ≈ $12.76
+2025-05-12 12:20:19 [INFO] portfolio.json updated (8 assets).
+2025-05-12 12:20:22 [INFO] positions.json verified (0 active).
+2025-05-12 12:20:25 [INFO] BTC/USD [15m] appended 4 rows
+2025-05-12 12:20:26 [INFO] BTC/USD [15m] saved 700 rows → data/historical/btc_usd/15m.csv
+2025-05-12 12:20:28 [INFO] BTC/USD [30m] appended 2 rows
+2025-05-12 12:20:29 [INFO] BTC/USD [30m] saved 700 rows → data/historical/btc_usd/30m.csv
+2025-05-12 12:20:32 [INFO] BTC/USD [1h] appended 1 rows
+2025-05-12 12:20:33 [INFO] BTC/USD [1h] saved 700 rows → data/historical/btc_usd/1h.csv
+2025-05-12 12:20:35 [INFO] BTC/USD [4h] appended 1 rows

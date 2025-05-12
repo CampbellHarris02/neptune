@@ -67,58 +67,75 @@ def monitor_positions() -> None:
     for symbol, data in positions.items():
         current_price = get_price(symbol)
         if current_price is None:
-            new_pos[symbol] = data          # keep unchanged – price fetch failed
+            new_pos[symbol] = data
             continue
 
         entry_px   = data["entry_price"]
         triggered  = data.get("triggered", False)
         stop_price = data["stop_price"]
 
-        # --------------------------------------------------------------------
-        # 1) BEFORE trigger  (+2% not yet reached)
-        # --------------------------------------------------------------------
+        # ────────────────────────────────────────────────────────
+        # Step 1: BEFORE trigger — raise stop or hard stop
+        # ────────────────────────────────────────────────────────
         if not triggered:
-            # raise stop once +2 % reached
             if current_price >= entry_px * (1 + TRIGGER_PROFIT):
-                stop_price          = entry_px * (1 + TRIGGER_PROFIT)
-                data["stop_price"]  = stop_price
-                data["triggered"]   = True
+                stop_price         = entry_px * (1 + TRIGGER_PROFIT)
+                data["stop_price"] = stop_price
+                data["triggered"]  = True
                 logger.info("%s trigger fired → SL raised to %.4f", symbol, stop_price)
-                triggered = True     # continue to momentum logic
-
-            # hard stop 8 % below entry
+                triggered = True
             elif current_price <= entry_px * (1 - HARD_SL_PCT):
                 sell_and_log(symbol, current_price, data, portfolio,
                              reason="Hard SL 8 % below entry")
                 continue
 
-        # --------------------------------------------------------------------
-        # 2) AFTER trigger – momentum-based stop
-        # --------------------------------------------------------------------
+        # ────────────────────────────────────────────────────────
+        # Step 2: AFTER trigger — momentum-based exit logic
+        # ────────────────────────────────────────────────────────
+        score = None
         if triggered:
-            # momentum check
-            ohlcv = KRAKEN.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=MOM_WINDOW)
-            mom_df = pd.DataFrame(ohlcv, columns=["ts","open","high","low","close","vol"])
-            mom_df["close"] = mom_df["close"].astype(float)
-            score = momentum_score(mom_df[["open","high","low","close"]])
+            try:
+                ohlcv = KRAKEN.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=MOM_WINDOW)
+                mom_df = pd.DataFrame(ohlcv, columns=["ts", "open", "high", "low", "close", "vol"])
+                mom_df["close"] = mom_df["close"].astype(float)
+                score = momentum_score(mom_df[["open", "high", "low", "close"]])
+            except Exception as e:
+                logger.warning("Momentum fetch error for %s: %s", symbol, e)
 
-            if score < 0:
+            if score is not None and score < 0:
                 sell_and_log(symbol, current_price, data, portfolio,
                              reason=f"Momentum down (score {score:.2f})")
                 continue
 
-            # fallback hard stop at fixed stop_price
             if current_price <= stop_price:
                 sell_and_log(symbol, current_price, data, portfolio,
                              reason="Fixed +2 % stop hit")
                 continue
 
-        # position still open – write back any updated fields
+        # still open
         data["stop_price"] = stop_price
         new_pos[symbol] = data
 
+        # ────────────────────────────────────────────────────────
+        # Save monitoring info
+        # ────────────────────────────────────────────────────────
+        sym_id = symbol.replace("/", "_").lower()
+        mon_path = os.path.join("data", "historical", sym_id, "monitor.json")
+        os.makedirs(os.path.dirname(mon_path), exist_ok=True)
+
+        monitor_data = {
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "price": current_price,
+            "momentum_score": score,
+            "stop_loss": stop_price,
+            "triggered": triggered
+        }
+
+        save_json(monitor_data, mon_path)
+
     save_json(new_pos, POSITION_FILE)
     save_json(portfolio, PORTFOLIO_FILE)
+
 
 
 # ------------------------------------------------------------
