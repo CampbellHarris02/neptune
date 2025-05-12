@@ -10,10 +10,14 @@ logs/
 
 data/
 
+log
 log.txt
 
+status
 status.txt
 
+portfolio
 portfolio.json
 
+ranked_coins
 ranked_coins.json

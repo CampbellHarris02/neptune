@@ -5,6 +5,7 @@ from dotenv import load_dotenv        # type: ignore
 from rich.console import Console        # type: ignore
 from rich.logging import RichHandler    # type: ignore
 import logging
+from datetime import datetime
 
 console = Console()
 
@@ -21,6 +22,20 @@ logging.basicConfig(
     ],
 )
 logger = logging.getLogger(__name__)
+
+STATUS_FILE = "status.txt"
+def update_log_status(status, message: str) -> None:
+    """Replace the status line in the terminal and write status.txt."""
+    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    full = f"[{ts}] {message}"
+
+    # Update Rich status (overwrites the same line)
+    status.update(f"[cyan]{message}")
+
+    # Persist for the web-UI
+    with open(STATUS_FILE, "w") as f:
+        f.write(full + "\n")
+
 
 # --- Utilities ---
 from pathlib import Path

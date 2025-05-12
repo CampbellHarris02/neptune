@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Neptune</title>
+
+  <!-- favicon -->
+  <link rel="icon" href="/static/assets/neptune_icon.png" />
+
+  <!-- base styles -->
+  <link rel="stylesheet" href="/static/css/home.css" />
+
+  <!-- htmx + sse -->
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.10/dist/ext/sse.js"></script>
+  <!-- In <head> or before closing </body> -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.2/dist/echarts.min.js"></script>
+</head>
+<body>
+  <!-- ─── Planet header ───────────────────────────────────────────── -->
+  <header class="planet-header">
+    <img src="/static/assets/neptune_icon.png" class="planet-img" alt="planet icon" />
+    <h1 class="site-title">Neptune</h1>
+  </header>
+
+
+
+  <main class="content">
+    <!-- chart -->
+    <section id="pnl-chart"
+            class="chart-box"
+            hx-ext="sse"
+            sse-connect="/events"
+            hx-get="/chart"
+            hx-trigger="sse:update, load"
+            hx-swap="innerHTML">
+      Loading…
+    </section>
+
+    <!-- asset snapshot -->
+    <section id="asset-box" class="asset-box">
+      <div class="asset-value" id="assetValue">$--</div>
+      <div class="asset-delta" id="assetDelta">Δ -- %</div>
+    </section>
+
+    <!-- buttons -->
+    <nav class="side-buttons">
+      <a href="/portfolio" class="btn">Portfolio</a>
+      <a href="/strategy"  class="btn">Strategy</a>
+    </nav>
+  </main>
+
+<script>
+/* fetch assets_usd.json every 15 s */
+async function refreshAssets(){
+  try{
+    const r  = await fetch('/assets_usd');
+    if(!r.ok) return;
+    const j  = await r.json();          //  {cash:125, delta:30}
+    document.getElementById('assetValue').textContent =
+        '$ ' + j.cash.toLocaleString(undefined,{minimumFractionDigits:2});
+    const sign = j.delta>=0 ? '+' : '–';
+    document.getElementById('assetDelta').textContent =
+        `Δ ${sign}${Math.abs(j.delta).toFixed(2)} %`;
+    document.getElementById('assetDelta').style.color =
+        j.delta>=0 ? '#37d67a' : '#f44336';
+  }catch(e){/* ignore network errors */}
+}
+refreshAssets();
+setInterval(refreshAssets, 15000);
+</script>
+
+</body>
+</html>

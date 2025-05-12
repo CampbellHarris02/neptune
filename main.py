@@ -12,6 +12,8 @@ import time
 import logging
 from typing import Dict
 from datetime import datetime
+import ccxt
+import os
 
 from rich.console import Console # type: ignore
 from rich.logging import RichHandler # type: ignore
@@ -22,6 +24,7 @@ from scripts.update_all import update_all
 from scripts.buyer import buyer
 from scripts.check_pending_orders import check_pending_orders
 from scripts.monitor_positions import monitor_positions
+from scripts.pnl_tracker import update_account_pnl
 
 
 # ───────────────────────────── Logging / Rich setup ──────────────────────────
@@ -103,10 +106,20 @@ ASSETS: Dict[str, str] = {
 }
 
 
+def kraken_client():
+    return ccxt.kraken({
+        "apiKey"         : os.getenv("KRAKEN_API_KEY"),
+        "secret"         : os.getenv("KRAKEN_API_SECRET"),
+        "enableRateLimit": True,
+    })
+
 
 def main() -> None:
+    kraken = kraken_client()
+    
     last_hourly = 0.0
-    update_all(assets=ASSETS, status=status)          # initial sync
+    update_all(assets=ASSETS, status=status) # initial sync
+    update_account_pnl(kraken, status)
     console.rule("[bold cyan]Bot started")
     while True:
         now = time.time()
@@ -118,6 +131,10 @@ def main() -> None:
             log_status(message="Running buyer...")
             buyer()
             last_hourly = now
+                # once a UTC-day
+        if now - last_daily >= 24*3600:
+            update_account_pnl(kraken)   # <───────────────────────────
+            last_daily = now
         log_status(message="Checking pending orders...")
         check_pending_orders()
         log_status(message="Monitoring positions...")

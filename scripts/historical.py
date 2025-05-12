@@ -2,12 +2,20 @@ import os
 import time
 import json
 import pandas as pd
+from pandas.errors import EmptyDataError
 from datetime import datetime, timedelta, timezone
 import ccxt # type: ignore
+
+
+
+import os, time, logging, pandas as pd, ccxt
+from datetime import datetime, timedelta, timezone
 
 from dotenv import load_dotenv # type: ignore
 load_dotenv()
 import logging
+
+from scripts.utilities import update_log_status
 
 
 LOG_FILE = "log.txt"
@@ -17,6 +25,8 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
+
+STATUS_FILE = "status.txt"
 
 # ─────────────────────────────────────────────────────────────
 # Configuration
@@ -138,66 +148,237 @@ def fetch_kraken_ohlcv(symbol, timeframe, lookback_amount, lookback_unit="hours"
 # Main Execution
 # ─────────────────────────────────────────────────────────────
 
-def historical(assets):
-    """Update OHLCV data by fetching only the minimal recent data required to keep up-to-date."""
-    for symbol in assets:
-        symbol_id = symbol.replace("/", "_").lower()
-        coin_dir = os.path.join(BASE_OUTPUT_DIR, symbol_id)
+
+TARGET_ROWS = 700                         # keep exactly 720 rows
+
+
+
+def historical(assets, status):
+    """Maintain a rolling 720-row UTC-aware OHLCV window for every symbol / timeframe."""
+    total = len(assets)
+    for i, symbol in enumerate(assets, 1):
+        message = f"[{i}/{total}] Updating historical data for {symbol}..."
+        update_log_status(status=status, message=message)
+        
+        sym_id   = symbol.replace("/", "_").lower()        # e.g. btc_usd
+        coin_dir = os.path.join(BASE_OUTPUT_DIR, sym_id)
         os.makedirs(coin_dir, exist_ok=True)
 
-        for timeframe, delta in TIMEFRAME_DELTAS.items():
-            file_path = os.path.join(coin_dir, f"{timeframe}.csv")
+        for tf, delta in TIMEFRAME_DELTAS.items():
+            path = os.path.join(coin_dir, f"{tf}.csv")
+            now  = datetime.now(timezone.utc)
 
-            df_existing = None
-            last_timestamp = None
+            # ── read existing file (if any) ──────────────────────────────
+            try:
+                if os.path.exists(path) and os.path.getsize(path) > 0:
+                    df = (
+                        pd.read_csv(path, parse_dates=["timestamp"])
+                        .set_index("timestamp")
+                    )
+                    if df.index.tzinfo is None:
+                        df.index = df.index.tz_localize("UTC")
+                else:
+                    raise EmptyDataError("file missing or empty")
+            except (ValueError, EmptyDataError):
+                # Bad header, empty file, or no 'timestamp' column → start fresh
+                df = pd.DataFrame(
+                    columns=["open", "high", "low", "close", "volume"],
+                    index=pd.DatetimeIndex([], name="timestamp", tz="UTC")
+                )
+
+            # ── 1 · append forward to present ────────────────────────────
+            last_ts = df.index[-1] if not df.empty else now - TARGET_ROWS * delta
+            while last_ts + delta <= now:
+                look_hours = 4 * delta.total_seconds() / 3600  # grab 4 candles
+                new = fetch_kraken_ohlcv(symbol, tf, lookback_amount=look_hours)
+                if new is None or new.empty:
+                    break
+                if new.index.tzinfo is None:
+                    new.index = new.index.tz_localize("UTC")
+
+                new = new[new.index > last_ts]
+                if new.empty:
+                    break
+                if not new.empty:
+                    df = (
+                        pd.concat([df, new]) if not df.empty else new
+                    ).sort_index().drop_duplicates()
+
+                last_ts = df.index[-1]
+                logging.info(f"{symbol} [{tf}] appended {len(new)} rows")
+                time.sleep(2.5)
+
+            # ── 2 · back-fill until we have 720 rows ─────────────────────
+            while len(df) < TARGET_ROWS:
+                if df.empty:
+                    # no data yet → start TARGET_ROWS*delta back from 'now'
+                    earliest_needed = now - TARGET_ROWS * delta
+                else:
+                    earliest_needed = df.index[0] - (TARGET_ROWS - len(df)) * delta
+
+                hours_back = (now - earliest_needed).total_seconds() / 3600 * 1.2
+                old = fetch_kraken_ohlcv(symbol, tf, lookback_amount=hours_back)
+
+                if old is None or old.empty:
+                    logging.info(f"{symbol} [{tf}] cannot fetch further history")
+                    break
+
+                if old.index.tzinfo is None:
+                    old.index = old.index.tz_localize("UTC")
+
+                # keep only rows strictly older than current first row (if any)
+                if not df.empty:
+                    old = old[old.index < df.index[0]]
+
+                if old.empty:
+                    break
+
+                df = pd.concat([old, df]).sort_index().drop_duplicates()
+                logging.info(f"{symbol} [{tf}] prepended {len(old)} rows")
+                time.sleep(2.5)
 
 
-            # Try to read existing data
-            if os.path.exists(file_path):
-                try:
-                    df_existing = pd.read_csv(file_path, parse_dates=["timestamp"])
-                    df_existing.set_index("timestamp", inplace=True)
-                    last_timestamp = df_existing.index[-1]
-                    # Ensure last_timestamp is timezone-aware (UTC)
-                    if last_timestamp.tzinfo is None:
-                        last_timestamp = last_timestamp.tz_localize("UTC")
-                except Exception as e:
-                    logging.info(f"Error reading {file_path}: {e}")
+            # ── 3 · final trim to latest 720 rows & save ─────────────────
+            df = df.tail(TARGET_ROWS)
+            df.to_csv(path)
+            logging.info(f"{symbol} [{tf}] saved {len(df)} rows → {path}")
 
-            # Determine if update is needed
-            now = datetime.now(timezone.utc)
-            hours_to_fetch = 2 * delta.total_seconds() / 3600
 
-            if last_timestamp:
-                next_expected_time = last_timestamp + delta
-                if next_expected_time > now:
-                    logging.info(f"Up-to-date: {symbol} [{timeframe}] — skipping.")
-                    continue
-            else:
-                logging.info(f"No file yet for {symbol} [{timeframe}] — creating with recent data.")
 
-            # Always fetch 2 candles worth (minimally)
-            df_new = fetch_kraken_ohlcv(symbol, timeframe, lookback_amount=hours_to_fetch)
 
-            if df_new is None or df_new.empty:
-                continue
 
-            # Filter and combine only if prior data exists
-            if df_existing is not None:
-                df_new = df_new[df_new.index > df_existing.index[-1]]
-                if df_new.empty:
-                    logging.info(f"No new rows for {symbol} [{timeframe}]")
-                    continue
-                df_combined = pd.concat([df_existing, df_new])
-                df_combined = df_combined[~df_combined.index.duplicated(keep="last")]
-                df_combined.sort_index(inplace=True)
-                df_combined.to_csv(file_path)
-                logging.info(f"Appended {len(df_new)} rows to {symbol} [{timeframe}]")
-            else:
-                df_new.to_csv(file_path)
-                logging.info(f"Created new file with {len(df_new)} rows for {symbol} [{timeframe}]")
 
-            time.sleep(2.5)  # Respect Kraken API rate limits
+def fetch_kraken_my_trades(
+        symbol: str,
+        lookback_amount: int,
+        lookback_unit: str = "hours",      # "hours", "days" …
+        limit_per_fetch: int = 1000,       # Kraken returns max 1000 fills
+        pause: float = 2.5                 # throttle between pages
+    ) -> pd.DataFrame:
+    """
+    Fetch your personal trade history for <symbol> over the last <lookback_amount>
+    units (eg. 24 hours, 30 days).  Returns a DataFrame with UTC-aware index and
+    columns: side, price, qty.
+    """
+    kraken = ccxt.kraken({
+        "apiKey": os.getenv("KRAKEN_API_KEY"),
+        "secret": os.getenv("KRAKEN_API_SECRET"),
+        "enableRateLimit": True,
+    })
+
+    # ---- time window ---------------------------------------------------
+    end_time   = datetime.now(timezone.utc)
+    delta_kw   = {lookback_unit: lookback_amount}
+    start_time = end_time - timedelta(**delta_kw)
+    since_ms   = int(start_time.timestamp() * 1000)
+
+    all_rows   = []
+    while True:
+        try:
+            trades = kraken.fetch_my_trades(symbol,
+                                            since=since_ms,
+                                            limit=limit_per_fetch)
+        except Exception as e:
+            logging.info(f"Error fetching trades for {symbol}: {e}")
+            break
+
+        if not trades:
+            break
+
+        # convert list[dict] → rows
+        for t in trades:
+            all_rows.append({
+                "time":   pd.to_datetime(t["timestamp"], unit="ms", utc=True),
+                "side":   t["side"],               # "buy" | "sell"
+                "price":  float(t["price"]),
+                "qty":    float(t["amount"]),
+            })
+
+        # advance 'since' cursor
+        since_ms = int(trades[-1]["timestamp"]) + 1
+        if len(trades) < limit_per_fetch:
+            break    # finished window
+        time.sleep(pause)
+
+    if not all_rows:
+        return pd.DataFrame(columns=["side","price","qty"],
+                            index=pd.DatetimeIndex([], name="time", tz="UTC"))
+
+    df = pd.DataFrame(all_rows).set_index("time").sort_index()
+    return df[~df.index.duplicated(keep="last")]
+
+
+
+
+
+def symbol_dir(sym: str) -> str:
+    return sym.replace("/", "_").lower()
+
+def load_events(path: str) -> pd.DataFrame:
+    if not os.path.exists(path):
+        return pd.DataFrame(columns=["side","price","qty"],
+                            index=pd.DatetimeIndex([], name="time", tz="UTC"))
+    with open(path, "r") as f:
+        arr = json.load(f)
+    df = pd.DataFrame(arr).set_index("time")
+    df.index = pd.to_datetime(df.index, utc=True)
+    return df.sort_index()
+
+def save_events(df: pd.DataFrame, path: str):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    out = df.reset_index()
+    out["time"] = out["time"].dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+    with open(path, "w") as f:
+        json.dump(out.to_dict(orient="records"), f, indent=2)
+
+def update_events(assets, status, full_days_init: int = 90):
+    """
+    Refresh each <symbol>/events.json so it contains ALL personal fills.
+    Reads existing rows, fetches only what's missing, appends, dedupes, saves.
+    """
+    total = len(assets)
+    for i, sym in enumerate(assets, 1):
+        message = f"[{i}/{total}] Updating historical events for {sym}..."
+        update_log_status(status=status, message=message)
+        folder = os.path.join("data", "historical", symbol_dir(sym))
+        path   = os.path.join(folder, "events.json")
+
+        df = load_events(path)          # existing (may be empty)
+
+        # ── decide look-back window ───────────────────────────────────
+        if df.empty:
+            look_amount, look_unit = full_days_init, "days"
+        else:
+            last_ts    = df.index[-1]
+            hours_diff = max(1, int((datetime.now(timezone.utc) - last_ts)
+                                     .total_seconds() // 3600) + 1)
+            look_amount, look_unit = hours_diff, "hours"
+
+        # ── fetch new private trades ─────────────────────────────────
+        new = fetch_kraken_my_trades(sym,
+                                     lookback_amount = look_amount,
+                                     lookback_unit   = look_unit)
+
+        if new.empty:
+            logging.info(f"{sym}: no new fills")
+            continue
+
+        # keep only rows strictly newer than our last stored candle
+        if not df.empty:
+            new = new[new.index > df.index[-1]]
+        if new.empty:
+            logging.info(f"{sym}: nothing beyond last stored fill")
+            continue
+
+        # ── combine, dedupe, save ───────────────────────────────────
+        df = pd.concat([df, new]).sort_index()
+        df = df[~df.index.duplicated(keep="last")]
+
+        save_events(df, path)
+        logging.info(f"{sym}: wrote {len(df)} rows → events.json (+{len(new)})")
+
+        time.sleep(2.5)             # respect Kraken private rate-limit
+
 
 
 

@@ -1,0 +1,14 @@
+{{ define "header" }}
+<header class="top-bar">
+  <a class="back-btn" href="{{ .Back }}">{{ .BackLabel }}</a>
+  <span class="status">{{ .Status }}</span>
+</header>
+
+<style>
+  .top-bar {display:flex;justify-content:space-between;align-items:center;
+            max-width:900px;margin:2rem auto 1.2rem;font-size:1.05rem;color:#fff;}
+  .back-btn{color:#1e90ff;text-decoration:none;font-weight:600}
+  .back-btn:hover{text-decoration:underline}
+  .status   {opacity:.85}
+</style>
+{{ end }}
