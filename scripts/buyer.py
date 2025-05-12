@@ -8,7 +8,7 @@ buyer.py  -  Scans ranked_coins.json and places limit-buy orders
 from __future__ import annotations
 
 import os, logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any
 
 import ccxt                           # type: ignore
@@ -70,10 +70,11 @@ def sync_open_orders() -> None:
             # Safely parse timestamp
             try:
                 ts = datetime.utcfromtimestamp(timestamp / 1000) if timestamp else datetime.utcnow()
-                placed_at = ts.isoformat()
+                placed_at = ts.replace(tzinfo=timezone.utc).isoformat()
+
             except Exception as e:
                 logger.warning("Invalid timestamp on order %s: %s", oid, e)
-                placed_at = datetime.utcnow().isoformat()
+                placed_at = datetime.utcnow().replace(tzinfo=timezone.utc).isoformat()
 
             logger.info("Re-synced open order %s (%s)", oid, symbol)
 

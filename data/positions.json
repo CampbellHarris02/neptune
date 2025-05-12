@@ -1,42 +1,64 @@
 {
-  "AAVE": {
+  "AAVE/USD": {
+    "filled_at": "2025-05-08T19:00:43.510000",
+    "current_price": 222.29,
     "entry_price": 194.66,
     "qty": 0.064314,
-    "filled_at": "2025-05-08T19:00:43.510000"
+    "stop_price": 215.6213,
+    "peak_price": 222.29
   },
-  "DOT": {
+  "DOT/USD": {
+    "filled_at": "2025-05-09T19:41:12.121000",
+    "current_price": 5.0761,
     "entry_price": 4.7722,
     "qty": 2.692341,
-    "filled_at": "2025-05-09T19:41:12.121000"
+    "stop_price": 4.9238170000000006,
+    "peak_price": 5.0761
   },
-  "RUNE": {
+  "RUNE/USD": {
+    "filled_at": "2025-05-08T18:59:42.199000",
+    "current_price": 1.927,
     "entry_price": 1.3796,
     "qty": 9.266803,
-    "filled_at": "2025-05-08T18:59:42.199000"
+    "stop_price": 1.86725,
+    "peak_price": 1.925
   },
-  "SOL": {
+  "SOL/USD": {
+    "filled_at": "2025-05-08T18:59:42.078000",
+    "current_price": 171.86,
     "entry_price": 154.7945,
     "qty": 0.078217,
-    "filled_at": "2025-05-08T18:59:42.078000"
+    "stop_price": 166.743,
+    "peak_price": 171.9
   },
-  "SUI": {
+  "SUI/USD": {
+    "filled_at": "2025-05-08T19:06:25.543000",
+    "current_price": 3.9484,
     "entry_price": 3.9091,
     "qty": 3.20264,
-    "filled_at": "2025-05-08T19:06:25.543000"
+    "stop_price": 3.596372,
+    "peak_price": 3.9484
   },
-  "TRX": {
+  "TRX/USD": {
+    "filled_at": "2025-05-09T19:53:57.098000",
+    "current_price": 0.2743,
     "entry_price": 0.2581,
     "qty": 98.270008,
-    "filled_at": "2025-05-09T19:53:57.098000"
+    "stop_price": 0.26602832,
+    "peak_price": 0.274256
   },
-  "BTC": {
+  "BTC/USD": {
+    "filled_at": "2025-05-08T19:01:46.851000",
+    "current_price": 102534.6,
     "entry_price": 101355.5,
     "qty": 0.000124,
-    "filled_at": "2025-05-08T19:01:46.851000"
+    "stop_price": 93247.06,
+    "peak_price": 102462.8
   },
-  "USD": {
+  "USD/USD": {
+    "filled_at": null,
+    "current_price": null,
     "entry_price": null,
-    "qty": 24.0409,
-    "filled_at": null
+    "qty": 24.0409
   }
 }

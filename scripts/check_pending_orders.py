@@ -13,6 +13,7 @@ import json
 import logging
 from datetime import datetime
 from typing import Dict, Any
+from datetime import datetime, timedelta, timezone
 
 import ccxt                           # type: ignore
 from dotenv import load_dotenv        # type: ignore
@@ -55,9 +56,9 @@ kraken = ccxt.kraken({
     "enableRateLimit": True,
 })
 
-from datetime import datetime, timedelta, timezone
 
-# … existing imports & config …
+
+
 
 MAX_PENDING_AGE = timedelta(hours=3)
 
@@ -72,9 +73,14 @@ def check_pending_orders() -> None:
     for order_data in pending:
         symbol      = order_data["symbol"]
         order_id    = order_data["order_id"]
-        placed_iso  = order_data.get("placed_at")         # ISO-8601 str
-        placed_time = (datetime.fromisoformat(placed_iso)
-                       if placed_iso else now)
+        placed_iso = order_data.get("placed_at")
+        if placed_iso:
+            placed_time = datetime.fromisoformat(placed_iso)
+            if placed_time.tzinfo is None:
+                placed_time = placed_time.replace(tzinfo=timezone.utc)
+        else:
+            placed_time = now
+
 
         logger.info("Checking pending order %s → %s", symbol, order_id)
         order = fetch_order_status(order_id)

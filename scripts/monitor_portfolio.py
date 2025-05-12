@@ -19,6 +19,7 @@ load_dotenv()
 PENDING_FILE   = "data/pending_orders.json"
 POSITION_FILE  = "data/positions.json"
 PORTFOLIO_FILE = "data/portfolio.json"
+MONITOR_FILE = "data/monitor.json"
 
 LOG_FILE       = "log.txt"
 SLEEP_SECONDS  = 30          # loop delay
@@ -68,9 +69,11 @@ MOM_WINDOW      = 60     # number of candles to use
 def monitor_portfolio() -> None:
     positions = load_json(POSITION_FILE)
     portfolio = load_json(PORTFOLIO_FILE)
+    monitor   = load_json(MONITOR_FILE)
     new_pos   = {}
 
     for symbol, data in positions.items():
+        symbol = f"{symbol}/USD"
         current_price = get_price(symbol)
         if current_price is None:
             new_pos[symbol] = data
@@ -80,24 +83,19 @@ def monitor_portfolio() -> None:
         stop_price = data.get("stop_price", entry_px * (1 - HARD_SL_PCT))
         peak_price = data.get("peak_price", entry_px)
 
-        # Update peak price if new high
         if current_price > peak_price:
             peak_price = current_price
 
-        # If profit has exceeded trigger threshold, activate trailing SL
         if current_price >= entry_px * (1 + TRIGGER_PROFIT):
             trailing_sl = peak_price * (1 - TRAIL_SL_PCT)
             stop_price = max(stop_price, trailing_sl)
 
-        # Check hard SL (applies always)
         if current_price <= stop_price:
             sell_and_log(symbol, current_price, data, portfolio,
                          reason=f"SL hit: price={current_price:.4f}, stop={stop_price:.4f}, peak={peak_price:.4f}")
             continue
 
-        # ───────────────────────────────
-        # Step 2: Momentum-based exit
-        # ───────────────────────────────
+        # ─── Momentum logic ───
         score = None
         try:
             ohlcv = KRAKEN.fetch_ohlcv(symbol, timeframe=TIMEFRAME, limit=MOM_WINDOW)
@@ -113,17 +111,13 @@ def monitor_portfolio() -> None:
                          reason=f"Bearish momentum (score {score:.2f})")
             continue
 
-        # Update tracking
+        # Track updates
         data["stop_price"] = stop_price
         data["peak_price"] = peak_price
         new_pos[symbol] = data
 
-        # Save monitoring info
-        sym_id = symbol.replace("/", "_").lower()
-        mon_path = os.path.join("data", "historical", sym_id, "monitor.json")
-        os.makedirs(os.path.dirname(mon_path), exist_ok=True)
-
-        monitor_data = {
+        # Save to single monitor.json
+        monitor[symbol] = {
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "price": current_price,
             "momentum_score": score,
@@ -131,10 +125,10 @@ def monitor_portfolio() -> None:
             "peak_price": peak_price
         }
 
-        save_json(monitor_data, mon_path)
-
+    # Final saves
     save_json(new_pos, POSITION_FILE)
     save_json(portfolio, PORTFOLIO_FILE)
+    save_json(monitor, MONITOR_FILE)
 
 
 
