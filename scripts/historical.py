@@ -159,7 +159,7 @@ def safe_fetch_ohlcv(symbol: str, tf: str, hours: float) -> pd.DataFrame:
 
 
 def historical(assets, status):
-    """Maintain a rolling 720-row UTC-aware OHLCV window for every symbol / timeframe."""
+    """Maintain a rolling TARGET_ROWS-row UTC-aware OHLCV window for every symbol/timeframe."""
     total = len(assets)
     for i, symbol in enumerate(assets, 1):
         update_log_status(status=status, message=f"[{i}/{total}] Updating historical data for {symbol}...")
@@ -172,12 +172,12 @@ def historical(assets, status):
             path = os.path.join(coin_dir, f"{tf}.csv")
             now = datetime.now(timezone.utc)
 
-            # ── read existing file (if any) ──────────────────────────────
+            # ── load existing or start fresh ─────────────────────────────────
             try:
                 if os.path.exists(path) and os.path.getsize(path) > 0:
                     df = (
                         pd.read_csv(path, parse_dates=["timestamp"])
-                        .set_index("timestamp")
+                          .set_index("timestamp")
                     )
                     if df.index.tzinfo is None:
                         df.index = df.index.tz_localize("UTC")
@@ -189,7 +189,10 @@ def historical(assets, status):
                     index=pd.DatetimeIndex([], name="timestamp", tz="UTC")
                 )
 
-            # ── 1 · append forward ───────────────────────────────────────
+            # ── track if we actually change the DataFrame ───────────────────
+            changed = False
+
+            # ── 1 · append forward ───────────────────────────────────────────
             last_ts = df.index[-1] if not df.empty else now - TARGET_ROWS * delta
             while last_ts + delta <= now:
                 look_hours = 100 * delta.total_seconds() / 3600
@@ -203,10 +206,11 @@ def historical(assets, status):
 
                 df = pd.concat([df, new])
                 last_ts = df.index[-1]
+                changed = True
                 logging.info(f"{symbol} [{tf}] appended {len(new)} rows")
-                time.sleep(1.0)  # only after successful fetch
+                time.sleep(1.0)
 
-            # ── 2 · back-fill ────────────────────────────────────────────
+            # ── 2 · back-fill ────────────────────────────────────────────────
             while len(df) < TARGET_ROWS:
                 if df.empty:
                     earliest_needed = now - TARGET_ROWS * delta
@@ -215,7 +219,6 @@ def historical(assets, status):
 
                 hours_back = (now - earliest_needed).total_seconds() / 3600 * 1.2
                 old = safe_fetch_ohlcv(symbol, tf, hours_back)
-
                 if old is None or old.empty:
                     logging.info(f"{symbol} [{tf}] cannot fetch further history")
                     break
@@ -226,13 +229,18 @@ def historical(assets, status):
                     break
 
                 df = pd.concat([old, df])
+                changed = True
                 logging.info(f"{symbol} [{tf}] prepended {len(old)} rows")
-                time.sleep(1.0)  # only after successful fetch
+                time.sleep(1.0)
 
-            # ── 3 · Final sort, dedup, trim, save ────────────────────────
+            # ── 3 · finalize and conditionally save ──────────────────────────
             df = df.sort_index().drop_duplicates().tail(TARGET_ROWS)
-            df.to_csv(path)
-            logging.info(f"{symbol} [{tf}] saved {len(df)} rows → {path}")
+
+            if changed:
+                df.to_csv(path)
+                logging.info(f"{symbol} [{tf}] saved {len(df)} rows → {path}")
+            else:
+                logging.debug(f"{symbol} [{tf}] no new data, skipped write")
 
 
 
