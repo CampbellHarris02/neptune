@@ -21,6 +21,7 @@ from datetime import datetime
 
 from scripts.historical import historical, update_events
 from scripts.utilities import update_log_status
+from scripts.buyer import sync_open_orders
 
 
 # ---------------------------------------------------------------------------
@@ -93,23 +94,59 @@ def safe_fetch_balances(max_attempts: int = 3) -> Optional[Dict[str, Any]]:
     logging.error("All fetch_balance attempts failed – keeping previous snapshot.")
     return None
 
-def fetch_and_save_positions() -> None:
+
+def fetch_and_save_positions():
     try:
-        open_positions = kraken.private_post_open_positions()  # or fetch_positions()
+        balances = kraken.fetch_balance()
+        trades = kraken.fetch_my_trades()
     except Exception as e:
         logging.error("Could not fetch positions: %s", e)
         return
 
+    # filter for coins with balance > 0
+    owned = {
+        sym: bal
+        for sym, bal in balances["total"].items()
+        if bal and bal > 0
+    }
+
     cleaned = {}
-    for symbol, pos in open_positions.items():
+
+    for symbol in owned:
+        # infer trade symbol, e.g. XBT/USD → XXBTZUSD
+        market = kraken.market(symbol + "/USD") if symbol != "USD" else None
+        current_price = None
+        if market:
+            ticker = kraken.fetch_ticker(market["symbol"])
+            current_price = ticker["last"]
+
+        # aggregate trades to estimate entry price and time
+        total_qty = 0
+        total_cost = 0
+        last_trade_time = None
+
+        for t in trades:
+            if t["symbol"].startswith(symbol) and t["side"] == "buy":
+                total_qty += t["amount"]
+                total_cost += t["amount"] * t["price"]
+                last_trade_time = t["timestamp"]
+
+        entry_price = total_cost / total_qty if total_qty else None
+        filled_at = (
+            datetime.utcfromtimestamp(last_trade_time / 1000).isoformat()
+            if last_trade_time else None
+        )
+
         cleaned[symbol] = {
-            "entry_price": float(pos["cost"])   ,   # or whatever field Kraken returns
-            "qty"        : float(pos["vol"]),
-            "filled_at"  : pos["open_time"],     # adjust key name/format to your taste
+            "qty": float(owned[symbol]),
+            "entry_price": round(entry_price, 4) if entry_price else None,
+            "current_price": round(current_price, 4) if current_price else None,
+            "filled_at": filled_at,
         }
 
     save_json(cleaned, POSITIONS_FILE)
     logging.info("positions.json populated (%d active).", len(cleaned))
+
 
 
 
@@ -199,9 +236,11 @@ def clean_pending_orders() -> None:
 
     updated: list[Dict[str, Any]] = []
     for order in pending:
-        order_id = order.get("id")
+        order_id = order.get("order_id")
         if not order_id:
+            logging.warning("Pending order missing 'order_id': %s", order)
             continue
+
         try:
             status = kraken.fetch_order(order_id)
             if status["status"] in ("open", "pending"):
@@ -225,6 +264,7 @@ def update_all(assets, status) -> None:
 
     update_log_status(status=status, message="Syncing local books with Kraken's portfolio positions...")
     fetch_and_save_positions()
+    sync_open_orders()
     verify_positions()
 
     update_log_status(status=status, message="Cleaning pending orders...")

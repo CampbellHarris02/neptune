@@ -14,6 +14,7 @@ from typing import Dict
 from datetime import datetime
 import ccxt # type: ignore
 import os
+import threading
 
 from rich.console import Console # type: ignore
 from rich.logging import RichHandler # type: ignore
@@ -112,12 +113,37 @@ def kraken_client():
         "enableRateLimit": True,
     })
 
+def loop_check_pending_orders():
+    while True:
+        try:
+            log_status(message="Checking pending orders...")
+            check_pending_orders()
+        except Exception as e:
+            logger.error("Pending order loop failed: %s", e)
+        time.sleep(30)  # every 30 sec
+
+def loop_monitor_portfolio():
+    while True:
+        try:
+            log_status(message="Monitoring positions...")
+            monitor_portfolio()
+        except Exception as e:
+            logger.error("Monitor loop failed: %s", e)
+        time.sleep(60)  # every 1 min
+
+
+
+
 
 def main() -> None:
     kraken = kraken_client()
 
+    # Start background threads
+    threading.Thread(target=loop_check_pending_orders, daemon=True).start()
+    threading.Thread(target=loop_monitor_portfolio, daemon=True).start()
+
     last_hourly = 0.0
-    last_daily  = time.time()       # ← initialize here
+    last_daily  = time.time()
     update_all(assets=ASSETS, status=status)  # initial sync
     update_account_pnl(kraken)
     console.rule("[bold cyan]Bot started")
@@ -136,17 +162,14 @@ def main() -> None:
             last_hourly = now
 
         # every 24 h
-        if now - last_daily >= 24 * 3600:
+        if now - last_daily >= 86400:
             log_status("Daily: account PnL update")
             update_account_pnl(kraken)
             last_daily = now
 
-        log_status(message="Checking pending orders...")
-        check_pending_orders()
-        log_status(message="Monitoring positions...")
-        monitor_portfolio()
+        time.sleep(60)  # lightweight main loop
 
-        time.sleep(300)
+
 
 
 

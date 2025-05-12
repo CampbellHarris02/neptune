@@ -46,10 +46,60 @@ kraken = ccxt.kraken({
     "enableRateLimit": True,
 })
 
+
+# sync open orders
+def sync_open_orders() -> None:
+    """Ensure pending_orders.json includes all live Kraken orders."""
+    try:
+        open_orders = kraken.fetch_open_orders()
+        existing = load_json("data/pending_orders.json")
+        if not isinstance(existing, list):
+            existing = []
+
+        known_ids = {o["order_id"] for o in existing if "order_id" in o}
+        new_pending = list(existing)  # shallow copy
+
+        for order in open_orders:
+            oid = order.get("id")
+            symbol = order.get("symbol", "")
+            timestamp = order.get("timestamp")
+
+            if oid in known_ids or not oid:
+                continue
+
+            # Safely parse timestamp
+            try:
+                ts = datetime.utcfromtimestamp(timestamp / 1000) if timestamp else datetime.utcnow()
+                placed_at = ts.isoformat()
+            except Exception as e:
+                logger.warning("Invalid timestamp on order %s: %s", oid, e)
+                placed_at = datetime.utcnow().isoformat()
+
+            logger.info("Re-synced open order %s (%s)", oid, symbol)
+
+            new_pending.append({
+                "order_id": oid,
+                "symbol": symbol,
+                "price": order.get("price"),
+                "qty": order.get("amount"),
+                "placed_at": placed_at,
+            })
+
+        save_json(new_pending, "data/pending_orders.json")
+
+    except Exception as e:
+        logger.error("sync_open_orders failed: %s", e)
+
+
+
+
+
 # ───────────────────────────── Core function ────────────────────────────────
 def buyer() -> None:
     """Read ranked_coins.json and place new limit-buy orders if conditions meet."""
     console.log("[cyan]Buyer started")
+
+    sync_open_orders()
 
     portfolio: Dict[str, float]  = load_json("data/portfolio.json")
     ranked_coins: Dict[str, Any] = load_json("data/ranked_coins.json")
