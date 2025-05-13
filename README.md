@@ -51,7 +51,7 @@ python main.py
 
 ### 6. Run the Dashboard
 ```bash
-python web/app.py
+go run main.go
 ```
 Then open your browser and navigate to:
 http://localhost:5000
