@@ -284,11 +284,14 @@ type CoinEvent struct {
 }
 
 type CoinPayload struct {
-	Symbol   string      `json:"symbol"`
-	Series   []CoinPoint `json:"series"`
-	Events   []CoinEvent `json:"events"`
-	StopLoss float64     `json:"stop_loss"`
+    Symbol        string       `json:"symbol"`
+    Series        []CoinPoint  `json:"series"`
+    Events        []CoinEvent  `json:"events"`
+    StopLoss      float64      `json:"stop_loss"`
+    MomentumScore float64      `json:"momentum_score"`
+    PeakPrice     float64      `json:"peak_price"`
 }
+
 
 // -----------------------------------------------------------------------------
 // Helper
@@ -343,15 +346,27 @@ func loadCoinPayload(sym, tf string) (CoinPayload, error) {
 	}
 
 	// ---- monitor (optional) ---------------------------------------------------
-	monPath := filepath.Join(base, "monitor.json")
+	monPath := filepath.Join("data", "monitor.json")
 	var stopLoss float64 = 0
+	var momentum float64 = 0
+	var peak float64 = 0
+
+	lookupSym := symbolDirToUpper(sym)
 
 	if monData, err := os.ReadFile(monPath); err == nil {
-		var monitor map[string]any
+		var monitor map[string]map[string]any
 		if err := json.Unmarshal(monData, &monitor); err == nil {
-			if val, ok := monitor["stop_loss"].(float64); ok {
-				stopLoss = val
-			}
+			if monEntry, ok := monitor[lookupSym]; ok {
+				if val, ok := monEntry["stop_loss"].(float64); ok {
+					stopLoss = val
+				}
+				if val, ok := monEntry["momentum_score"].(float64); ok {
+					momentum = val
+				}
+				if val, ok := monEntry["peak_price"].(float64); ok {
+					peak = val
+				}
+			}			
 		} else {
 			log.Printf("warning: could not parse monitor.json for %s: %v", sym, err)
 		}
@@ -364,6 +379,8 @@ func loadCoinPayload(sym, tf string) (CoinPayload, error) {
 		Series:   series,
 		Events:   events,
 		StopLoss: stopLoss,
+		MomentumScore: momentum,
+    	PeakPrice: peak,
 	}, nil
 }
 
@@ -371,6 +388,10 @@ func loadCoinPayload(sym, tf string) (CoinPayload, error) {
 func symbolDir(sym string) string {
 	return strings.ReplaceAll(strings.ToLower(sym), "/", "_")
 }
+
+func symbolDirToUpper(sym string) string {
+	return strings.ToUpper(strings.ReplaceAll(sym, "_", "/"))
+}	
 
 func readStatus() string {
 	b, err := os.ReadFile("status.txt")

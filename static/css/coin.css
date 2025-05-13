@@ -64,4 +64,32 @@ body {
   .event-sell {
     color: #f44336;
   }
+
+
+  
+  .chart-metrics {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem auto 1rem;
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+  }
+  
+  .metric-box {
+    background-color: #1e293b;  /* dark blue-gray */
+    color: #e0e1dd;             /* soft white */
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    font-family: "Segoe UI", sans-serif;
+    min-width: 160px;
+    text-align: center;
+  }
+  
+  .metric-box .label {
+    font-weight: 500;
+    margin-right: 0.25rem;
+    color: #7dd3fc;  /* light blue accent */
+  }
   

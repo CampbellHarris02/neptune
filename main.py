@@ -113,20 +113,13 @@ def kraken_client():
         "enableRateLimit": True,
     })
 
-def loop_check_pending_orders():
-    while True:
-        try:
-            log_status(message="Checking pending orders...")
-            check_pending_orders()
-        except Exception as e:
-            logger.error("Pending order loop failed: %s", e)
-        time.sleep(30)  # every 30 sec
 
 def loop_monitor_portfolio():
     while True:
         try:
             log_status(message="Monitoring positions...")
             monitor_portfolio()
+            check_pending_orders()
         except Exception as e:
             logger.error("Monitor loop failed: %s", e)
         time.sleep(60)  # every 1 min
@@ -139,7 +132,6 @@ def main() -> None:
     kraken = kraken_client()
 
     # Start background threads
-    threading.Thread(target=loop_check_pending_orders, daemon=True).start()
     threading.Thread(target=loop_monitor_portfolio, daemon=True).start()
 
     last_hourly = 0.0
@@ -168,7 +160,6 @@ def main() -> None:
             last_daily = now
 
         time.sleep(60)  # lightweight main loop
-
 
 
 

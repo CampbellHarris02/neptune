@@ -186,7 +186,7 @@ def update_portfolio() -> None:
     logging.info("portfolio.json updated (%d assets).", len(updated))
 
 
-ALLOWED_FIELDS = {"entry_price", "qty", "filled_at", "current_price"}
+ALLOWED_FIELDS = {"entry_price", "qty", "filled_at", "current_price", "stop_price", "peak_price"}
 
 def verify_positions() -> None:
     """

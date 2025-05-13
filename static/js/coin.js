@@ -2,6 +2,9 @@ const chart = echarts.init(document.getElementById("chart"), "dark");
 const tfBtns = document.querySelectorAll(".tf-btn");
 const listDiv = document.getElementById("eventsList");
 
+
+
+
 tfBtns.forEach((btn) => {
   btn.addEventListener("click", () => {
     tfBtns.forEach((b) => b.classList.remove("active"));
@@ -58,6 +61,26 @@ function draw(p) {
   const stopLoss = p.stop_loss ?? null;
   const events   = Array.isArray(p.events) ? p.events : [];
 
+  const momentumEl = document.getElementById("momentumLabel");
+  const stopLossEl = document.getElementById("stopLossLabel");
+  
+  momentumEl.textContent =
+    (p.momentum_score !== 0 ? p.momentum_score.toFixed(2) : "—");
+  
+  stopLossEl.textContent =
+    (p.stop_loss !== 0 ? p.stop_loss.toFixed(4) : "—");
+  
+  // Optional: color momentum green/red
+  if (p.momentum_score > 0.05) {
+    momentumEl.style.color = "#3fdb6f";
+  } else if (p.momentum_score < -0.05) {
+    momentumEl.style.color = "#f44336";
+  } else {
+    momentumEl.style.color = "#e0e1dd";
+  }
+  
+
+
   // Build ohlc entries with timestamps
   const ohlc = p.series.map(c => [
     c.t,       // time ISO string
@@ -86,8 +109,8 @@ function draw(p) {
     hLines.push({
       yAxis: stopLoss,
       name: "SL",
-      label: { show: true, position: "end", formatter: "SL", color: "#f44336" },
-      lineStyle: { type: "dashed", color: "#f44336", width: 1.5 }
+      label: { show: true, position: "end", formatter: "SL", color: "#ffffff" },
+      lineStyle: { type: "dashed", color: "#ffffff", width: 1.5 }
     });
   }
   if (lastBuy) {

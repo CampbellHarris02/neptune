@@ -73,7 +73,8 @@ def monitor_portfolio() -> None:
     new_pos   = {}
 
     for symbol, data in positions.items():
-        symbol = f"{symbol}/USD"
+        if "/" not in symbol:
+            symbol = f"{symbol}/USD"
         current_price = get_price(symbol)
         if current_price is None:
             new_pos[symbol] = data
